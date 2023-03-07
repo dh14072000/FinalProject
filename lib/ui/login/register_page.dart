@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:crypto/crypto.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -27,38 +29,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
   bool checkedValue = false;
   bool checkboxValue = false;
 
-  @override
-  void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    phoneController.dispose();
-    passwordController.dispose();
-    ageController.dispose();
-    super.dispose();
-  }
-
-  Future register() async {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim());
-    addEmployeesDetails(
-        nameController.text.trim(),
-        emailController.text.trim(),
-        phoneController.text.trim(),
-        passwordController.text.trim(),
-        ageController.text.trim());
-  }
-
-  Future addEmployeesDetails(String name, String email, String phone,
-      String password, String age) async {
-    await FirebaseFirestore.instance.collection('employees').add({
-      'name': name,
-      'email': email,
-      'phone': phone,
-      'password': password,
-      'age': age
-    });
-  }
+  CollectionReference employees =
+      FirebaseFirestore.instance.collection('employees');
 
   @override
   Widget build(BuildContext context) {
@@ -262,8 +234,21 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                               ),
                             ),
-                            onPressed: () {
-                              register();
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                await employees.add({
+                                  'name': nameController.text.trim(),
+                                  'email': emailController.text.trim(),
+                                  'phone': phoneController.text.trim(),
+                                  'password': sha512
+                                      .convert(utf8.encode(
+                                          passwordController.text.trim() +
+                                              emailController.text.trim()))
+                                      .toString(),
+                                  'age': ageController.text.trim()
+                                  // ignore: avoid_print
+                                }).then((value) => print('added'));
+                              } 
                             },
                           ),
                         ),
