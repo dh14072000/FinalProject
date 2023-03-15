@@ -28,8 +28,8 @@ class AppFonts {
       fontSize: 16,
       height: 18.75 / 16,
       color: Colors.black);
-  static TextStyle textHeadlineNotiffication = GoogleFonts.roboto(
-      fontWeight: FontWeight.w500,
+  static TextStyle textHeadline = GoogleFonts.roboto(
+      fontWeight: FontWeight.bold,
       fontSize: 16,
       fontStyle: FontStyle.normal,
       height: 19 / 16,

@@ -1,57 +1,75 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/ui/home/home_page.dart';
 import 'package:final_project/ui/home/register_employee/register_page.dart';
+import 'package:final_project/ui/home/register_employee/touchID.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/ui/login/forgot_password.dart';
 import 'package:final_project/ui/login/widget/header_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:crypto/crypto.dart';
+import 'package:local_auth/local_auth.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class LoginTest extends StatefulWidget {
+  const LoginTest({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginTestState createState() => _LoginTestState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginTestState extends State<LoginTest> {
   double _headerHeight = 250;
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController passwordController = TextEditingController();
   TextEditingController userController = TextEditingController();
 
-  Future<bool> userExists(user, password) {
-    return FirebaseFirestore.instance
-        .collection('admin')
-        .where('user', isEqualTo: user)
-        .where('password',
-            isEqualTo: sha512.convert(utf8.encode(password + user)).toString())
-        .get()
-        .then((value) => value.size > 0 ? true : false);
-  }
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FlutterSecureStorage storage = FlutterSecureStorage();
+  final LocalAuthentication auth = LocalAuthentication();
 
-  login() async {
-    bool result = await userExists(
-        userController.text.trim(), passwordController.text.trim());
-    if (result == true) {
-      Get.offAll(TabPage());
-    } else {
-      printError(info: 'error');
-    }
+  bool userTouchID = false;
+  void signIn({required String em, required String pw}) {
+    _auth.signInWithEmailAndPassword(email: em, password: pw).then(
+        (authResult) => Get.to(() => TouchID(
+            user: authResult.user!,
+            touchID: userTouchID,
+            employeePassword: passwordController.text)));
   }
 
   @override
-  void initState() {
+  void innitState() {
     super.initState();
-    userController.text = 'admin@gmail.com';
-    passwordController.text = 'admin@123456';
+    getSecureStorage();
   }
+
+  void getSecureStorage() async {
+    final isUsingBio = await storage.read(key: 'usingBiometric');
+    setState(() {
+      userTouchID = isUsingBio == 'true';
+    });
+  }
+
+  void authenticate() async {
+    List<BiometricType> availableBiomertrics =
+        await auth.getAvailableBiometrics();
+      final authentiacted = await auth.authenticate(
+          localizedReason: 'Enable Touch ID to sign in more easily');
+
+      if (!authentiacted) {
+        storage.read(key: 'email');
+        storage.read(key: 'password');
+        signIn(em: userController.text, pw: passwordController.text);
+      }
+    } 
+  
 
   @override
   Widget build(BuildContext context) {
@@ -102,15 +120,17 @@ class _LoginPageState extends State<LoginPage> {
                             controller: passwordController,
                             obscureText: true,
                             decoration: ThemeHelper().textInputDecoration(
-                                'Password',
-                                'Enter your password',
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                        Icons.fingerprint_outlined))),
+                              'Password',
+                              'Enter your password',
+                            ),
                           ),
                         ),
                         const SizedBox(height: 15.0),
+                        GestureDetector(
+                          child: IconButton(
+                              onPressed: () => authenticate(),
+                              icon: const Icon(Icons.fingerprint_outlined)),
+                        ),
                         Container(
                           margin: const EdgeInsets.fromLTRB(10, 0, 10, 20),
                           alignment: Alignment.topRight,
@@ -148,9 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                login();
-                              }
+                              if (_formKey.currentState!.validate()) {}
                             },
                           ),
                         ),

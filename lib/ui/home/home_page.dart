@@ -6,12 +6,7 @@ import 'package:get/get.dart';
 class TabPage extends StatelessWidget {
   RxInt currentTabIndex = 0.obs;
 
-  List<Widget> pages = [
-    EmployeePage(),
-    Container(),
-    Container(),
-    Container()
-  ];
+  List<Widget> pages = [EmployeePage(), Container(), Container(), Container()];
   Widget get currentPage => pages[currentTabIndex.value];
 
   void changePage(int index) {

@@ -46,3 +46,7 @@ final Color coolGreyBackground = HexColor.fromHex('#F7F7F7');
 
 final Color inProgressTextColor = HexColor.fromHex('#52c41a');
 final Color progressDoneColor = HexColor.fromHex('#1677ff');
+
+final Color background = HexColor.fromHex('#FF00FF');
+
+

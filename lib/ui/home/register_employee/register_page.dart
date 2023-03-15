@@ -2,23 +2,25 @@ import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/ui/home/register_employee/touchID.dart';
 import 'package:final_project/ui/login/Login_screen.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/ui/login/widget/header_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:crypto/crypto.dart';
 
-class RegistrationPage extends StatefulWidget {
+class RegisterEmployeePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _RegistrationPageState();
+    return _RegisterEmployeePageState();
   }
 }
 
-class _RegistrationPageState extends State<RegistrationPage> {
+class _RegisterEmployeePageState extends State<RegisterEmployeePage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -248,7 +250,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   'age': ageController.text.trim()
                                   // ignore: avoid_print
                                 }).then((value) => print('added'));
-                              } 
+                              }
+
+                              // Get.to(() => TouchID(
+                              //       user: widget.,
+                              //       touchID: checkboxValue,
+                              //       employeePassword: passwordController.text,
+                              //     )
+                              //     );
                             },
                           ),
                         ),
