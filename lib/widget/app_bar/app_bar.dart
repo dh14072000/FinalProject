@@ -10,7 +10,8 @@ class ProjectAppBar extends StatelessWidget with PreferredSizeWidget {
       this.image,
       required this.height,
       required this.backButton,
-      this.aligement,  this.action})
+      this.aligement,
+      this.action})
       : super(key: key);
   final Image? image;
   final String? text;
@@ -24,10 +25,10 @@ class ProjectAppBar extends StatelessWidget with PreferredSizeWidget {
       leading: backButton ? BackButton(color: Colors.black) : Container(),
       backgroundColor: Colors.transparent,
       elevation: 10,
-      actions:action,
+      actions: action,
       title: Text(
         text!,
-        style: AppFonts.textRedButton,
+        style: AppFonts.textContent,
       ),
       flexibleSpace: Container(
         alignment: Alignment.bottomCenter,

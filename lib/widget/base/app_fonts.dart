@@ -51,24 +51,24 @@ class AppFonts {
       fontStyle: FontStyle.normal,
       height: 19 / 16,
       color: whiteColor);
-  static TextStyle textGrey16 = GoogleFonts.roboto(
+  static TextStyle textDark16 = GoogleFonts.roboto(
       fontWeight: FontWeight.w500,
       fontSize: 16,
       fontStyle: FontStyle.normal,
       height: 19 / 16,
-      color: greyTextColor);
+      color: darkTextColor);
   static TextStyle textContentLogin = GoogleFonts.roboto(
       fontWeight: FontWeight.w300,
       fontSize: 22,
       fontStyle: FontStyle.normal,
       height: 26 / 22,
       color: colorGrey3);
-  static TextStyle textContentBoldLogin = GoogleFonts.roboto(
-      fontWeight: FontWeight.w400,
-      fontSize: 22,
+  static TextStyle textContent = GoogleFonts.roboto(
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
       fontStyle: FontStyle.normal,
-      height: 26 / 22,
-      color: colorGrey3);
+      height: 20 / 18,
+      color: darkTextColor);
   static TextStyle textDark15 = GoogleFonts.roboto(
       fontWeight: FontWeight.w400,
       fontSize: 15,
