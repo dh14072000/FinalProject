@@ -6,13 +6,21 @@ import 'package:final_project/ui/employees/function/timekeeping.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
 import 'package:final_project/widget/base/app_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:relative_scale/relative_scale.dart';
 
 // ignore: must_be_immutable
-class EmployeeDetail extends StatelessWidget {
+class EmployeeDetail extends StatefulWidget {
   EmployeeDetail({super.key});
+
+  @override
+  State<EmployeeDetail> createState() => _EmployeeDetailState();
+}
+
+class _EmployeeDetailState extends State<EmployeeDetail> {
   dynamic argument = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return RelativeBuilder(builder: (context, height, width, sy, sx) {
@@ -24,7 +32,7 @@ class EmployeeDetail extends StatelessWidget {
           aligement: Alignment.centerLeft,
           action: [
             IconButton(
-              onPressed: () {},
+              onPressed: () async => await FlutterPhoneDirectCaller.callNumber('${argument.get('phone')}'),
               icon: const Icon(Icons.phone),
               color: inProgressTextColor,
             ),
@@ -159,7 +167,7 @@ class EmployeeDetail extends StatelessWidget {
                       Row(
                         children: [
                           GestureDetector(
-                            onTap: () => Get.to(()=>TimeKeeping()),
+                            onTap: () => Get.to(() => TimeKeeping()),
                             child: Container(
                               margin: EdgeInsets.only(
                                   top: sx(10),
@@ -180,7 +188,7 @@ class EmployeeDetail extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () => Get.to(()=>Pay()),
+                            onTap: () => Get.to(() => Pay()),
                             child: Container(
                               margin: EdgeInsets.only(
                                   top: sx(10),
@@ -199,7 +207,7 @@ class EmployeeDetail extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
-                            onTap: ()=> Get.to(()=>Bonus()),
+                            onTap: () => Get.to(() => Bonus()),
                             child: Container(
                               margin: EdgeInsets.all(sx(10)),
                               padding: EdgeInsets.all(sx(10)),
@@ -221,7 +229,7 @@ class EmployeeDetail extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           GestureDetector(
-                            onTap: ()=> Get.to(()=>Reduce()),
+                            onTap: () => Get.to(() => Reduce()),
                             child: Container(
                               margin: EdgeInsets.only(
                                   top: sx(10),
@@ -230,7 +238,8 @@ class EmployeeDetail extends StatelessWidget {
                                   right: sx(25)),
                               padding: EdgeInsets.all(sx(10)),
                               child: Column(children: [
-                                Image.asset('images/giảm_lương.png', height: 40),
+                                Image.asset('images/giảm_lương.png',
+                                    height: 40),
                                 SizedBox(
                                   height: sx(5),
                                 ),

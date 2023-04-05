@@ -1,57 +1,54 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/controller/login_controller.dart';
 import 'package:final_project/ui/home/home_page.dart';
 import 'package:final_project/ui/home/register_employee/register_page.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/ui/login/forgot_password.dart';
+import 'package:final_project/ui/login/register_admin.dart';
 import 'package:final_project/ui/login/widget/header_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:crypto/crypto.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatelessWidget {
+  var controller = Get.find<LoginController>();
+  // double _headerHeight = 250;
+  // final _formKey = GlobalKey<FormState>();
 
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
+  // TextEditingController passwordController = TextEditingController();
+  // TextEditingController userController = TextEditingController();
 
-class _LoginPageState extends State<LoginPage> {
-  double _headerHeight = 250;
-  final _formKey = GlobalKey<FormState>();
+  // Future<bool> userExists(user, password) {
+  //   return FirebaseFirestore.instance
+  //       .collection('admin')
+  //       .where('email', isEqualTo: user)
+  //       .where('password',
+  //           isEqualTo: sha512.convert(utf8.encode(password + user)).toString())
+  //       .get()
+  //       .then((value) => value.size > 0 ? true : false);
+  // }
 
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController userController = TextEditingController();
+  // login() async {
+  //   bool result = await userExists(
+  //       userController.text.trim(), passwordController.text.trim());
+  //   if (result == true) {
+  //     Get.offAll(TabPage());
+  //   } else {
+  //     printError(info: 'error');
+  //   }
+  // }
 
-  Future<bool> userExists(user, password) {
-    return FirebaseFirestore.instance
-        .collection('admin')
-        .where('user', isEqualTo: user)
-        .where('password',
-            isEqualTo: sha512.convert(utf8.encode(password + user)).toString())
-        .get()
-        .then((value) => value.size > 0 ? true : false);
-  }
-
-  login() async {
-    bool result = await userExists(
-        userController.text.trim(), passwordController.text.trim());
-    if (result == true) {
-      Get.offAll(TabPage());
-    } else {
-      printError(info: 'error');
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    userController.text = 'admin@gmail.com';
-    passwordController.text = 'admin@123456';
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   userController.text = 'peter@gmail.com';
+  //   passwordController.text = 'peter@123456';
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +58,9 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             Container(
-              height: _headerHeight,
+              height: controller.headerHeight,
               child: HeaderWidget(
-                  _headerHeight,
+                  controller.headerHeight,
                   true,
                   Icons
                       .fingerprint_outlined), //let's create a common header widget
@@ -74,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                   margin: const EdgeInsets.fromLTRB(
                       20, 10, 20, 10), // This will be the login form
                   child: Form(
-                    key: _formKey,
+                    key: controller.formKey,
                     child: Column(
                       children: [
                         const Text(
@@ -90,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                         Container(
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                           child: TextFormField(
-                            controller: userController,
+                            controller: controller.userController,
                             decoration: ThemeHelper().textInputDecoration(
                                 'User Name', 'Enter your user name'),
                           ),
@@ -99,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                         Container(
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                           child: TextFormField(
-                            controller: passwordController,
+                            controller: controller.passwordController,
                             obscureText: true,
                             decoration: ThemeHelper().textInputDecoration(
                                 'Password',
@@ -148,8 +145,8 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                login();
+                              if (controller.formKey.currentState!.validate()) {
+                                controller.login();
                               }
                             },
                           ),
@@ -163,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                               text: 'Create',
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Get.to(RegisterEmployeePage());
+                                  Get.to(RegisterAdmin());
                                 },
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,

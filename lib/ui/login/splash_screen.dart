@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 
 class SplashScreen extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SplashScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(milliseconds: 2000), (){
       setState(() {
         Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const LoginPage()), (route) => false);
+        MaterialPageRoute(builder: (context) =>  LoginPage()), (route) => false);
       }
       );
     });

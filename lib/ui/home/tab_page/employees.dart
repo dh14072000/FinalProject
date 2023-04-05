@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/ui/employees/employee_detail.dart';
+import 'package:final_project/ui/home/register_employee/register_page.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
 import 'package:final_project/widget/card/employee_card.dart';
@@ -49,7 +50,7 @@ class EmployeePage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      onPressed: () async {},
+                      onPressed: ()=> Get.to(()=> RegisterEmployeePage()),
                     ),
                   ),
                 ],
@@ -75,7 +76,7 @@ class EmployeePage extends StatelessWidget {
                     );
                   }
                   if (snapshot.hasError) {
-                    return const Text('Error');
+                    return Text('Error');
                   } else
                     return CircularProgressIndicator();
                 })

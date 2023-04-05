@@ -43,8 +43,9 @@ class _ForgotPasswordVerificationPageState extends State<ForgotPasswordVerificat
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          // ignore: prefer_const_literals_to_create_immutables
                           children: [
-                            Text('Verification',
+                            const Text('Verification',
                               style: TextStyle(
                                   fontSize: 35,
                                   fontWeight: FontWeight.bold,
@@ -52,8 +53,8 @@ class _ForgotPasswordVerificationPageState extends State<ForgotPasswordVerificat
                               ),
                               // textAlign: TextAlign.center,
                             ),
-                            SizedBox(height: 10,),
-                            Text(
+                            const SizedBox(height: 10,),
+                            const Text(
                               'Enter the verification code we just sent you on your email address.',
                               style: TextStyle(
                                 // fontSize: 20,
