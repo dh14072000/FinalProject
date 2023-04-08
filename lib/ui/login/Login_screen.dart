@@ -1,15 +1,11 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/controller/home_controller.dart';
 import 'package:final_project/controller/login_controller.dart';
-import 'package:final_project/ui/home/home_page.dart';
-import 'package:final_project/ui/home/register_employee/register_page.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/ui/login/forgot_password.dart';
 import 'package:final_project/ui/login/register_admin.dart';
 import 'package:final_project/ui/login/widget/header_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,38 +13,6 @@ import 'package:crypto/crypto.dart';
 
 class LoginPage extends StatelessWidget {
   var controller = Get.find<LoginController>();
-  // double _headerHeight = 250;
-  // final _formKey = GlobalKey<FormState>();
-
-  // TextEditingController passwordController = TextEditingController();
-  // TextEditingController userController = TextEditingController();
-
-  // Future<bool> userExists(user, password) {
-  //   return FirebaseFirestore.instance
-  //       .collection('admin')
-  //       .where('email', isEqualTo: user)
-  //       .where('password',
-  //           isEqualTo: sha512.convert(utf8.encode(password + user)).toString())
-  //       .get()
-  //       .then((value) => value.size > 0 ? true : false);
-  // }
-
-  // login() async {
-  //   bool result = await userExists(
-  //       userController.text.trim(), passwordController.text.trim());
-  //   if (result == true) {
-  //     Get.offAll(TabPage());
-  //   } else {
-  //     printError(info: 'error');
-  //   }
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   userController.text = 'peter@gmail.com';
-  //   passwordController.text = 'peter@123456';
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -146,14 +110,19 @@ class LoginPage extends StatelessWidget {
                             ),
                             onPressed: () async {
                               if (controller.formKey.currentState!.validate()) {
-                                controller.login();
+                                controller.userExists(
+                                    controller.userController.text,
+                                    controller.passwordController.text);
+                                controller.getDetailAdmin(
+                                    controller.userController.text);
+                                print(controller.getDetailAdmin(
+                                    controller.userController.text));
                               }
                             },
                           ),
                         ),
                         Container(
                           margin: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-                          // child: Text('Don\'t have an account? Create'),
                           child: Text.rich(TextSpan(children: [
                             const TextSpan(text: "Don\'t have an account? "),
                             TextSpan(

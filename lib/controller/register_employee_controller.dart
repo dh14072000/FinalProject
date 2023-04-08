@@ -1,33 +1,26 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:final_project/binding/route_path.dart';
-import 'package:final_project/model/admin_model.dart';
-import 'package:final_project/ui/login/Login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:crypto/crypto.dart';
 
-class RegisterAdminController extends GetxController {
+class RegisterEmployeeController extends GetxController {
   final formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController companyController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
 
   bool checkedValue = false;
   bool checkboxValue = false;
 
-  CollectionReference admin = FirebaseFirestore.instance.collection('admin');
+  CollectionReference employees =
+      FirebaseFirestore.instance.collection('employees');
 
-  register() async {
-    // await FirebaseFirestore.instance
-    //     .collection('admin')
-    //     .add(admin.toJson())
-    //     .whenComplete(() {});
-    await admin.add({
-      'company': companyController.text.trim(),
+  addEmployee() async {
+    await employees.add({
       'name': nameController.text.trim(),
       'email': emailController.text.trim(),
       'phone': phoneController.text.trim(),
@@ -35,7 +28,8 @@ class RegisterAdminController extends GetxController {
           .convert(utf8.encode(
               passwordController.text.trim() + emailController.text.trim()))
           .toString(),
-    }).then((value) => print('${value.id}'));
-    Get.toNamed(RoutePaths.LOGIN);
+      'age': ageController.text.trim()
+      // ignore: avoid_print
+    }).then((value) => print('added'));
   }
 }

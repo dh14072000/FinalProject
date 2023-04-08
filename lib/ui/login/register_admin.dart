@@ -1,18 +1,11 @@
 import 'dart:convert';
 import 'dart:ffi';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/controller/register_admin_controller.dart';
-import 'package:final_project/ui/home/register_employee/touchID.dart';
-import 'package:final_project/ui/login/Login_screen.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/ui/login/widget/header_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:crypto/crypto.dart';
 
 class RegisterAdmin extends StatelessWidget {
   var controller = Get.find<RegisterAdminController>();

@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/controller/employee_controller.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/ui/employees/employee_detail.dart';
-import 'package:final_project/ui/home/register_employee/register_page.dart';
+import 'package:final_project/ui/employees/register_employee.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
 import 'package:final_project/widget/card/employee_card.dart';
@@ -10,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:relative_scale/relative_scale.dart';
 
 class EmployeePage extends StatelessWidget {
-  const EmployeePage({super.key});
+  var controller = Get.find<EmployeeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class EmployeePage extends StatelessWidget {
       return Scaffold(
         appBar: ProjectAppBar(
           height: sy(50),
-          text: 'GST-Global',
+          text: '${controller.argument}',
           backButton: false,
         ),
         body: Column(

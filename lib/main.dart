@@ -1,5 +1,5 @@
-import 'package:final_project/ui/home/register_employee/login_test.dart';
-import 'package:final_project/ui/login/Login_screen.dart';
+import 'package:final_project/binding/route_path.dart';
+import 'package:final_project/binding/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -29,7 +29,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey.shade100,
         primarySwatch: Colors.grey,
       ),
-      home: LoginPage(),
+      initialRoute: RoutePaths.LOGIN,
+      getPages: ProjectRouter.pages,
     );
   }
 }
