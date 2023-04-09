@@ -113,10 +113,7 @@ class LoginPage extends StatelessWidget {
                                 controller.userExists(
                                     controller.userController.text,
                                     controller.passwordController.text);
-                                controller.getDetailAdmin(
-                                    controller.userController.text);
-                                print(controller.getDetailAdmin(
-                                    controller.userController.text));
+
                               }
                             },
                           ),

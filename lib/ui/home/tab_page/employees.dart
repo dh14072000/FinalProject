@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/controller/employee_controller.dart';
+import 'package:final_project/controller/login_controller.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/ui/employees/employee_detail.dart';
 import 'package:final_project/ui/employees/register_employee.dart';
@@ -12,6 +13,7 @@ import 'package:relative_scale/relative_scale.dart';
 
 class EmployeePage extends StatelessWidget {
   var controller = Get.find<EmployeeController>();
+  var detailController = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class EmployeePage extends StatelessWidget {
       return Scaffold(
         appBar: ProjectAppBar(
           height: sy(50),
-          text: '${controller.argument}',
+          text:detailController.admin.company,
           backButton: false,
         ),
         body: Column(
@@ -51,7 +53,7 @@ class EmployeePage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      onPressed: ()=> Get.to(()=> RegisterEmployeePage()),
+                      onPressed: () => Get.to(() => RegisterEmployeePage()),
                     ),
                   ),
                 ],
@@ -67,7 +69,8 @@ class EmployeePage extends StatelessWidget {
                       child: ListView.builder(
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) => GestureDetector(
-                                onTap: () => Get.to(()=>  EmployeeDetail(),arguments: snapshot.data!.docs[index]),
+                                onTap: () => Get.to(() => EmployeeDetail(),
+                                    arguments: snapshot.data!.docs[index]),
                                 child: EmployeeCard(
                                   name: snapshot.data!.docs[index].get('name'),
                                   salary: '150.000',

@@ -25,7 +25,7 @@ class RegisterAdminController extends GetxController {
     // await FirebaseFirestore.instance
     //     .collection('admin')
     //     .add(admin.toJson())
-    //     .whenComplete(() {});
+    //     .whenComplete(() => Get.snackbar('Success', 'Your account has bean created',snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green));
     await admin.add({
       'company': companyController.text.trim(),
       'name': nameController.text.trim(),

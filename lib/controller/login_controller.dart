@@ -14,12 +14,10 @@ class LoginController extends GetxController {
   late final FirebaseAuth _auth;
   double headerHeight = 250;
   final formKey = GlobalKey<FormState>();
+  late AdminModel admin;
 
   TextEditingController passwordController = TextEditingController();
   TextEditingController userController = TextEditingController();
-
-  String myId = '';
-
   @override
   void onInit() {
     super.onInit();
@@ -28,6 +26,7 @@ class LoginController extends GetxController {
   }
 
   Future userExists(user, password) {
+    getDetailAdmin();
     return FirebaseFirestore.instance
         .collection('admin')
         .where('email', isEqualTo: user)
@@ -35,16 +34,16 @@ class LoginController extends GetxController {
             isEqualTo: sha512.convert(utf8.encode(password + user)).toString())
         .get()
         .then((value) => value.size > 0
-            ? Get.toNamed(RoutePaths.HOME_PAGE, arguments: value.docs)
+            ? Get.toNamed(RoutePaths.HOME_PAGE)
             : printError(info: 'error'));
   }
 
-  Future getDetailAdmin(String email) async {
+  getDetailAdmin() async {
     final snapShort = await FirebaseFirestore.instance
         .collection('admin')
-        .where('email', isEqualTo: email)
+        .where('email', isEqualTo: userController.text)
         .get();
-    final adminData = snapShort.docs.map((e) => AdminModel.formSnapShort(e)).single;
-    return adminData;
+     admin =
+        snapShort.docs.map((e) => AdminModel.formSnapShort(e)).single;
   }
 }

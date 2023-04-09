@@ -9,7 +9,12 @@ class AdminModel {
   final String phone;
   final String password;
 
-  AdminModel(this.company, this.name, this.email, this.phone, this.password);
+  AdminModel(
+      {required this.company,
+      required this.name,
+      required this.email,
+      required this.phone,
+      required this.password});
 
   toJson() {
     return {
@@ -23,7 +28,12 @@ class AdminModel {
 
   factory AdminModel.formSnapShort(
       DocumentSnapshot<Map<String, dynamic>> document) {
-    final data = document.data();
-    return AdminModel(data!['company'], data['name'], data['email'], data['phone'], data['password']);
+    final data = document.data()!;
+    return AdminModel(
+        company: data!['company'],
+        name: data['name'],
+        email: data['email'],
+        phone: data['phone'],
+        password: data['password']);
   }
 }
