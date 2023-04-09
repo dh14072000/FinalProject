@@ -22,7 +22,11 @@ class ProjectAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   PreferredSizeWidget build(BuildContext context) {
     return AppBar(
-      leading: backButton ? BackButton(color: Colors.black) : Container(),
+      leading: backButton ? BackButton(color: Colors.black) : Container(
+        margin: EdgeInsets.all(5),
+        child: const CircleAvatar(backgroundImage: NetworkImage(
+'https://i.pinimg.com/564x/1e/7f/85/1e7f85e354e1a11b4a439ac9d9f7e283.jpg'),),
+      ),
       backgroundColor: Colors.transparent,
       elevation: 10,
       actions: action,

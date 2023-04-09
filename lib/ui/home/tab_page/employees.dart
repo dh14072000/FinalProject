@@ -61,7 +61,7 @@ class EmployeePage extends StatelessWidget {
             ),
             StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                 stream: FirebaseFirestore.instance
-                    .collection('employees')
+                    .collection('employees').where('company',isEqualTo: detailController.admin.company)
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {

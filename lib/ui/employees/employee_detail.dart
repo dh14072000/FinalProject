@@ -1,3 +1,4 @@
+import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/ui/employees/function/bonus.dart';
 import 'package:final_project/ui/employees/function/pay.dart';
@@ -20,6 +21,7 @@ class EmployeeDetail extends StatefulWidget {
 
 class _EmployeeDetailState extends State<EmployeeDetail> {
   dynamic argument = Get.arguments;
+  var monthNow = DateTime.now().month;
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +36,6 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
             IconButton(
               onPressed: () async => await FlutterPhoneDirectCaller.callNumber('${argument.get('phone')}'),
               icon: const Icon(Icons.phone),
-              color: inProgressTextColor,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.message),
               color: inProgressTextColor,
             ),
             IconButton(
@@ -134,7 +131,7 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Lương tháng 3',
+                                    'Lương tháng ' + '${monthNow}',
                                     style: AppFonts.textDark16,
                                   ),
                                   Text(
@@ -153,7 +150,7 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
               ),
               Container(
                   margin: EdgeInsets.only(top: sy(10)),
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   height: sy(140),
                   decoration: BoxDecoration(color: whiteColor, boxShadow: [
                     BoxShadow(
@@ -167,7 +164,7 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
                       Row(
                         children: [
                           GestureDetector(
-                            onTap: () => Get.to(() => TimeKeeping()),
+                            onTap: () => Get.toNamed(RoutePaths.TIME_KEEPING,arguments: argument),
                             child: Container(
                               margin: EdgeInsets.only(
                                   top: sx(10),
@@ -188,7 +185,7 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () => Get.to(() => Pay()),
+                            onTap: () => Get.toNamed(RoutePaths.PAY_PAGE,arguments: argument),
                             child: Container(
                               margin: EdgeInsets.only(
                                   top: sx(10),
@@ -207,7 +204,7 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () => Get.to(() => Bonus()),
+                            onTap: () => Get.toNamed(RoutePaths.BONUS,arguments: argument),
                             child: Container(
                               margin: EdgeInsets.all(sx(10)),
                               padding: EdgeInsets.all(sx(10)),
@@ -229,7 +226,7 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           GestureDetector(
-                            onTap: () => Get.to(() => Reduce()),
+                            onTap: () => Get.toNamed(RoutePaths.REDUCE,arguments: argument),
                             child: Container(
                               margin: EdgeInsets.only(
                                   top: sx(10),

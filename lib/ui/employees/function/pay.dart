@@ -1,3 +1,4 @@
+import 'package:final_project/controller/pay_controller.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -5,9 +6,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:relative_scale/relative_scale.dart';
 
-class Pay extends StatelessWidget {
-  Pay({super.key});
+class PayPage extends StatelessWidget {
+  PayPage({super.key});
   dynamic argument = Get.arguments;
+      var controller = Get.find<PayController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,15 @@ class Pay extends StatelessWidget {
           text: '${argument.get('name')}',
           aligement: Alignment.centerLeft,
         ),
-        body: Container(),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.all(20),
+              child: Text('Thanh toán lương tháng ' + "${controller.monthNow}",),
+            ),
+          ],
+        ),
       );
     });
   }
