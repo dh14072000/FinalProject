@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/model/admin_model.dart';

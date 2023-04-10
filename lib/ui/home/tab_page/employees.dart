@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/employee_controller.dart';
 import 'package:final_project/controller/login_controller.dart';
 import 'package:final_project/resource/definition_color.dart';
@@ -32,7 +33,12 @@ class EmployeePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    decoration: ThemeHelper().buttonBoxDecoration(context),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                gradient:  LinearGradient(colors: [
+               Color(0xFF26CBE6),
+               Color(0xFF26CBC0),
+            ], begin: Alignment.topCenter, end: Alignment.center)),
                     child: ElevatedButton(
                       style: ThemeHelper().buttonStyle(),
                       child: Row(
@@ -69,12 +75,11 @@ class EmployeePage extends StatelessWidget {
                       child: ListView.builder(
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) => GestureDetector(
-                                onTap: () => Get.to(() => EmployeeDetail(),
+                                onTap: () => Get.toNamed(RoutePaths.DETAIL_EMPLOYEE,
                                     arguments: snapshot.data!.docs[index]),
                                 child: EmployeeCard(
                                   name: snapshot.data!.docs[index].get('name'),
                                   salary: '150.000',
-                                  // salary: snapshot.data!.docs[index].get('email')
                                 ),
                               )),
                     );

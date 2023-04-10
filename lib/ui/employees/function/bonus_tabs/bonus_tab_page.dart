@@ -1,3 +1,4 @@
+import 'package:final_project/controller/bonus_tabs_controller/bonus_tabs_controller.dart';
 import 'package:final_project/controller/reduce_controller.dart';
 import 'package:final_project/model/reduce_model.dart';
 import 'package:final_project/resource/definition_color.dart';
@@ -10,21 +11,17 @@ import 'package:get/get.dart';
 import 'package:relative_scale/relative_scale.dart';
 import 'package:intl/intl.dart';
 
-class ReducePage extends StatelessWidget {
-  var controller = Get.find<ReduceController>();
+class BonusTabPage extends StatelessWidget {
+  var controller = Get.find<BonusTabController>();
 
-  dynamic argument = Get.arguments;
+  final String email;
+
+   BonusTabPage({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
     return RelativeBuilder(builder: (_, height, width, sy, sx) {
       return Scaffold(
-        appBar: ProjectAppBar(
-          height: sy(50),
-          backButton: true,
-          text: '${argument.get('name')}',
-          aligement: Alignment.centerLeft,
-        ),
         body: Container(
           margin: EdgeInsets.all(20),
           child: Column(
@@ -60,7 +57,7 @@ class ReducePage extends StatelessWidget {
                 height: 20,
               ),
               LabelTextFormField(
-                textController: controller.reduceController,
+                textController: controller.bonusController,
                 textHint: 'Số tiền',
                 keyboardType: TextInputType.number,
               ),
@@ -69,7 +66,7 @@ class ReducePage extends StatelessWidget {
               ),
               LabelTextFormField(
                 textController: controller.noteController,
-                textHint: 'Ghi chú(vd:thuế,bảo hiểm)',
+                textHint: 'Ghi chú(vd:vượt chỉ tiêu,hoa hồng)',
               ),
               Container(
                 margin: EdgeInsets.only(top: sy(50)),
@@ -85,14 +82,14 @@ class ReducePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.money_off,
+                        Icons.person_add_alt,
                         color: whiteColor,
                       ),
                       SizedBox(
                         width: sx(10),
                       ),
                       Text(
-                        'Thêm giảm trừ'.toUpperCase(),
+                        'Thêm thưởng'.toUpperCase(),
                         style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -102,8 +99,8 @@ class ReducePage extends StatelessWidget {
                   ),
                   onPressed: () {
                     var reduce = ReduceModel(
-                        email: argument.get('email'),
-                        cashReduce: controller.reduceController.text,
+                        email: email,
+                        cashReduce: controller.bonusController.text,
                         dateReduce: controller.appointmentDateText.text,
                         note: controller.noteController.text);
                     controller.onreduce(reduce);

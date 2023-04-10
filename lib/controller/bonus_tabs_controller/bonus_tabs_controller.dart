@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:intl/intl.dart';
 
-class ReduceController extends GetxController {
+class BonusTabController extends GetxController {
   var time = DateTime.now();
   DateTime appointmentDate = DateTime.now();
   TextEditingController appointmentDateText = TextEditingController();
-  TextEditingController reduceController = TextEditingController();
+  TextEditingController bonusController = TextEditingController();
   TextEditingController noteController = TextEditingController();
   CollectionReference reduce = FirebaseFirestore.instance.collection('reduce');
 

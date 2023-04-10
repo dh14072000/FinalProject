@@ -36,7 +36,7 @@ final Color lightGreyTextColor = HexColor.fromHex('#929292');
 final Color greyBackground = HexColor.fromHex('#F2F2F2');
 
 final Color darkGreyColor = HexColor.fromHex('#575656');
-final Color greyLine = HexColor.fromHex('#E0E0E0');
+final Color colorFormTextFied = HexColor.fromHex('#d1cdcd');
 
 final Color greyBorder = HexColor.fromHex('#EEEEEE');
 

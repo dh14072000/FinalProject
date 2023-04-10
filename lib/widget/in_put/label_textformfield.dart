@@ -1,4 +1,3 @@
-
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/widget/base/app_fonts.dart';
 import 'package:final_project/widget/text/small_text.dart';
@@ -31,7 +30,7 @@ class LabelTextFormField extends StatelessWidget {
     this.textFieldBorder = const OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(5)),
       borderSide: BorderSide(color: Color(0xFFF2F2F2)),
-    ), 
+    ),
   }) : super(key: key);
 
   final TextEditingController? textController;
@@ -45,7 +44,6 @@ class LabelTextFormField extends StatelessWidget {
   final OutlineInputBorder textFieldBorder;
   final void Function(String)? onChanged;
   final TextInputType keyboardType;
-
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +74,6 @@ class LabelTextFormField extends StatelessWidget {
                   children: [
                     Stack(children: [
                       TextFormField(
-                        
                         readOnly: readOnly,
                         controller: textController,
                         validator: validate,
@@ -85,6 +82,7 @@ class LabelTextFormField extends StatelessWidget {
                         maxLines: maxLines,
                         style: TextStyle(color: greyTextColor),
                         decoration: InputDecoration(
+                          
                             hintText: textHint,
                             errorStyle: TextStyle(fontSize: sx(14)),
                             hintStyle: AppFonts.textHint,
@@ -92,7 +90,7 @@ class LabelTextFormField extends StatelessWidget {
                             focusedBorder: textFieldBorder,
                             border: textFieldBorder,
                             enabledBorder: textFieldBorder,
-                            fillColor: greyBackground,
+                            fillColor: colorFormTextFied,
                             filled: true,
                             isDense: true,
                             contentPadding: EdgeInsets.only(

@@ -1,5 +1,6 @@
 import 'package:final_project/binding/binding.dart';
 import 'package:final_project/binding/route_path.dart';
+import 'package:final_project/ui/employees/employee_detail.dart';
 import 'package:final_project/ui/employees/function/bonus.dart';
 import 'package:final_project/ui/employees/function/pay.dart';
 import 'package:final_project/ui/employees/function/reduce.dart';
@@ -38,6 +39,11 @@ class ProjectRouter {
     GetPage(
       name: RoutePaths.REDUCE,
       page: () => ReducePage(),
+      binding: SampleBind(),
+    ),
+    GetPage(
+      name: RoutePaths.DETAIL_EMPLOYEE,
+      page: () => EmployeeDetail(),
       binding: SampleBind(),
     ),
   ];

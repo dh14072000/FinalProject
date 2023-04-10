@@ -35,7 +35,7 @@ class RegisterAdminController extends GetxController {
           .convert(utf8.encode(
               passwordController.text.trim() + emailController.text.trim()))
           .toString(),
-    }).then((value) => print('${value.id}'));
+    }).then((value) => Get.snackbar('Thành công', 'Tài khoản của bạn đã được tạo thành công',snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green));
     Get.toNamed(RoutePaths.LOGIN);
   }
 }

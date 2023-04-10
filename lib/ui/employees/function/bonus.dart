@@ -1,5 +1,7 @@
 import 'package:final_project/controller/bonus_controller.dart';
 import 'package:final_project/resource/definition_color.dart';
+import 'package:final_project/ui/employees/function/bonus_tabs/allowance_tab_page.dart';
+import 'package:final_project/ui/employees/function/bonus_tabs/bonus_tab_page.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
 import 'package:final_project/widget/text/small_text.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +35,7 @@ class BonusPage extends StatelessWidget {
                           unselectedLabelColor: darkText,
                           isScrollable: false,
                           controller: controller.recommendationTab,
-                          indicator: BoxDecoration(color: background),
+                          indicator: BoxDecoration(color: Color(0xFF26CBE6)),
                           tabs: [
                             Container(
                               child: SmallText(
@@ -59,13 +61,13 @@ class BonusPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(height: 1,color: background,),
+                    Container(height: 1,color: Color(0xFF26CBE6),),
                     Expanded(
                       child: TabBarView(
                           controller: controller.recommendationTab,
                           children: [
-                            Container(),
-                            Container()
+                            BonusTabPage(email: argument.get('email'),),
+                            AllowanceTabPage(email:argument.get('email') ,)
                           ]),
                     ),
         ]),

@@ -1,4 +1,7 @@
 import 'package:final_project/controller/bonus_controller.dart';
+import 'package:final_project/controller/bonus_tabs_controller/allowance_tabs_page.dart';
+import 'package:final_project/controller/bonus_tabs_controller/bonus_tabs_controller.dart';
+import 'package:final_project/controller/detail_employee_controller.dart';
 import 'package:final_project/controller/employee_controller.dart';
 import 'package:final_project/controller/home_controller.dart';
 import 'package:final_project/controller/login_controller.dart';
@@ -24,5 +27,9 @@ class SampleBind extends Bindings {
     Get.lazyPut<TimeKeepingController>(() => TimeKeepingController());
     Get.lazyPut<BonusController>(() => BonusController());
     Get.lazyPut<ReduceController>(() => ReduceController());
+    Get.lazyPut<DetailEmployeeController>(() => DetailEmployeeController());
+    Get.lazyPut<BonusTabController>(() => BonusTabController());
+    Get.lazyPut<AllowanceController>(() => AllowanceController());
+
   }
 }
