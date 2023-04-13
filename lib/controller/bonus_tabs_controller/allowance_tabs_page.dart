@@ -12,15 +12,15 @@ class AllowanceController extends GetxController {
   TextEditingController appointmentDateText = TextEditingController();
   TextEditingController allowanceController = TextEditingController();
   TextEditingController noteController = TextEditingController();
-  CollectionReference reduce = FirebaseFirestore.instance.collection('reduce');
+  CollectionReference allowance = FirebaseFirestore.instance.collection('allowance');
 
 
-  onreduce(ReduceModel reduceModel) async {
-    await reduce.add(reduceModel.toJson()).whenComplete(() {
+  onAllowance(ReduceModel allowanceModel) async {
+    await allowance.add(allowanceModel.toJson()).whenComplete(() {
       Get.snackbar(
         'Thêm thành công', 'Giảm trừ đã được thêm cho nhân viên',
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
-        Get.offAllNamed(RoutePaths.DETAIL_EMPLOYEE);
+        Get.close(1);
     } );
     ;
   }

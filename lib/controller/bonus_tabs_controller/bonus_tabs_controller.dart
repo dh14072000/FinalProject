@@ -12,15 +12,15 @@ class BonusTabController extends GetxController {
   TextEditingController appointmentDateText = TextEditingController();
   TextEditingController bonusController = TextEditingController();
   TextEditingController noteController = TextEditingController();
-  CollectionReference reduce = FirebaseFirestore.instance.collection('reduce');
+  CollectionReference bonus = FirebaseFirestore.instance.collection('bonus');
 
 
-  onreduce(ReduceModel reduceModel) async {
-    await reduce.add(reduceModel.toJson()).whenComplete(() {
+  onBonus(ReduceModel bonusModel) async {
+    await bonus.add(bonusModel.toJson()).whenComplete(() {
       Get.snackbar(
         'Thêm thành công', 'Giảm trừ đã được thêm cho nhân viên',
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
-        Get.offAllNamed(RoutePaths.DETAIL_EMPLOYEE);
+        Get.close(1);
     } );
     ;
   }

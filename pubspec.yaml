@@ -48,6 +48,12 @@ dependencies:
   flutter_phone_direct_caller: ^2.1.1
   flutter_clean_calendar: ^1.1.0
   flutter_holo_date_picker: ^1.1.0
+  flutter_screenutil: ^5.7.0
+  line_awesome_flutter: ^2.0.0
+  animated_theme_switcher: ^2.0.8
+  cached_network_image: ^3.2.3
+  wechat_assets_picker: ^8.4.2
+  wechat_camera_picker: ^3.7.0
 
 dev_dependencies:
   flutter_test:

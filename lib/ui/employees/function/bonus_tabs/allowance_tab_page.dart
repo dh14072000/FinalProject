@@ -83,7 +83,7 @@ class AllowanceTabPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.money,
+                        Icons.attach_money,
                         color: whiteColor,
                       ),
                       SizedBox(
@@ -99,12 +99,12 @@ class AllowanceTabPage extends StatelessWidget {
                     ],
                   ),
                   onPressed: () {
-                    var reduce = ReduceModel(
+                    var allowance = ReduceModel(
                         email: email,
-                        cashReduce: controller.allowanceController.text,
-                        dateReduce: controller.appointmentDateText.text,
+                        cash: controller.allowanceController.text,
+                        date: controller.appointmentDateText.text,
                         note: controller.noteController.text);
-                    controller.onreduce(reduce);
+                    controller.onAllowance(allowance);
                   },
                 ),
               )

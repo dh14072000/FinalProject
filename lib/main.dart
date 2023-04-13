@@ -1,5 +1,7 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/binding/router.dart';
+import 'package:final_project/ui/profile/profile_admin/constains.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -21,7 +23,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return ThemeProvider(
+      initTheme: kDarkTheme,
+      child: Builder(
+        builder: (context) {
+           return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: _primaryColor,
@@ -32,5 +38,9 @@ class MyApp extends StatelessWidget {
       initialRoute: RoutePaths.LOGIN,
       getPages: ProjectRouter.pages,
     );
+        },
+      ),
+    );
+   
   }
 }

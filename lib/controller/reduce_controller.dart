@@ -20,7 +20,7 @@ class ReduceController extends GetxController {
       Get.snackbar(
         'Thêm thành công', 'Giảm trừ đã được thêm cho nhân viên',
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
-        Get.offAllNamed(RoutePaths.DETAIL_EMPLOYEE);
+        Get.close(1);
     } );
     ;
   }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,6 +34,7 @@ class RegisterEmployeeController extends GetxController {
           .toString(),
       'age': ageController.text.trim(),
       'company':controller.admin.company
-    }).then((value) => print('added'));
+    }).then((value) => Get.snackbar('Thành công', 'Nhân viên đã được tạo thành công',snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green));
+    Get.toNamed(RoutePaths.HOME_PAGE);
   }
 }

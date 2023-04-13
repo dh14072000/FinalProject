@@ -5,18 +5,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ReduceModel {
 
   final String? email;
-  final String? dateReduce;
-  final String? cashReduce;
+  final String? date;
+  final String? cash;
   final String? note;
 
-  ReduceModel({this.cashReduce,  this.email, this.dateReduce,  this.note,} 
+  ReduceModel({this.cash,  this.email, this.date,  this.note,} 
       );
 
   toJson() {
     return {
       "email": email,
-      "dateReduce": dateReduce,
-      "cashReduce": cashReduce,
+      "date": date,
+      "cash": cash,
       "note": note,
     };
   }
@@ -26,8 +26,8 @@ class ReduceModel {
     final data = document.data()!;
     return ReduceModel(
         email: data['email'],
-        dateReduce: data['dateReduce'],
-        cashReduce: data['cashReduce'],
+        date: data['date'],
+        cash: data['cash'],
         note: data['note'],
     );
   }

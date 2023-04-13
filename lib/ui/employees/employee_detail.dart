@@ -1,16 +1,14 @@
 import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/detail_employee_controller.dart';
 import 'package:final_project/resource/definition_color.dart';
-import 'package:final_project/ui/employees/function/bonus.dart';
-import 'package:final_project/ui/employees/function/pay.dart';
-import 'package:final_project/ui/employees/function/reduce.dart';
-import 'package:final_project/ui/employees/function/timekeeping.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
 import 'package:final_project/widget/base/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:relative_scale/relative_scale.dart';
+
+import '../profile/profile_employee.dart';
 
 // ignore: must_be_immutable
 class EmployeeDetail extends StatelessWidget{
@@ -24,16 +22,16 @@ class EmployeeDetail extends StatelessWidget{
         appBar: ProjectAppBar(
           height: sy(50),
           backButton: true,
-          text: '${controller.argument.get('name')}',
+          text: '${controller.employeeData.get('name')}',
           aligement: Alignment.centerLeft,
           action: [
             IconButton(
-              onPressed: () async => await FlutterPhoneDirectCaller.callNumber('${controller.argument.get('phone')}'),
+              onPressed: () async => await FlutterPhoneDirectCaller.callNumber('${controller.employeeData.get('phone')}'),
               icon: const Icon(Icons.phone),
               color: inProgressTextColor,
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => Get.to(()=> FrofileEmployeePage()),
               icon: const Icon(Icons.edit),
               color: inProgressTextColor,
             )
@@ -111,7 +109,7 @@ class EmployeeDetail extends StatelessWidget{
                       Row(
                         children: [
                           GestureDetector(
-                            onTap: () => Get.toNamed(RoutePaths.TIME_KEEPING,arguments: controller.argument),
+                            onTap: () => Get.toNamed(RoutePaths.TIME_KEEPING,arguments: controller.employeeData),
                             child: Container(
                               margin: EdgeInsets.only(
                                   top: sx(10),
@@ -132,7 +130,7 @@ class EmployeeDetail extends StatelessWidget{
                             ),
                           ),
                           GestureDetector(
-                            onTap: () => Get.toNamed(RoutePaths.PAY_PAGE,arguments: controller.argument),
+                            onTap: () => Get.toNamed(RoutePaths.PAY_PAGE,arguments: controller.employeeData),
                             child: Container(
                               margin: EdgeInsets.only(
                                   top: sx(10),
@@ -151,7 +149,7 @@ class EmployeeDetail extends StatelessWidget{
                             ),
                           ),
                           GestureDetector(
-                            onTap: () => Get.toNamed(RoutePaths.BONUS,arguments: controller.argument),
+                            onTap: () => Get.toNamed(RoutePaths.BONUS,arguments: controller.employeeData),
                             child: Container(
                               margin: EdgeInsets.all(sx(10)),
                               padding: EdgeInsets.all(sx(10)),
@@ -173,7 +171,7 @@ class EmployeeDetail extends StatelessWidget{
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           GestureDetector(
-                            onTap: () => Get.toNamed(RoutePaths.REDUCE,arguments: controller.argument),
+                            onTap: () => Get.toNamed(RoutePaths.REDUCE,arguments: controller.employeeData),
                             child: Container(
                               margin: EdgeInsets.only(
                                   top: sx(10),

@@ -1,4 +1,5 @@
 import 'package:final_project/controller/bonus_controller.dart';
+import 'package:final_project/controller/detail_employee_controller.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/ui/employees/function/bonus_tabs/allowance_tab_page.dart';
 import 'package:final_project/ui/employees/function/bonus_tabs/bonus_tab_page.dart';
@@ -11,7 +12,7 @@ import 'package:get/get.dart';
 import 'package:relative_scale/relative_scale.dart';
 
 class BonusPage extends StatelessWidget {
-  dynamic argument = Get.arguments;
+    var controllerDetail = Get.find<DetailEmployeeController>();
         var controller = Get.find<BonusController>();
 
 
@@ -22,7 +23,7 @@ class BonusPage extends StatelessWidget {
         appBar: ProjectAppBar(
           height: sy(50),
           backButton: true,
-          text: '${argument.get('name')}',
+          text: '${controllerDetail.employeeData.get('name')}',
           aligement: Alignment.centerLeft,
         ),
         body: Column(children: [
@@ -66,8 +67,8 @@ class BonusPage extends StatelessWidget {
                       child: TabBarView(
                           controller: controller.recommendationTab,
                           children: [
-                            BonusTabPage(email: argument.get('email'),),
-                            AllowanceTabPage(email:argument.get('email') ,)
+                            BonusTabPage(email: controllerDetail.employeeData.get('email'),),
+                            AllowanceTabPage(email:controllerDetail.employeeData.get('email') ,)
                           ]),
                     ),
         ]),

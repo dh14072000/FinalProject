@@ -22,10 +22,6 @@ class RegisterAdminController extends GetxController {
   CollectionReference admin = FirebaseFirestore.instance.collection('admin');
 
   register() async {
-    // await FirebaseFirestore.instance
-    //     .collection('admin')
-    //     .add(admin.toJson())
-    //     .whenComplete(() => Get.snackbar('Success', 'Your account has bean created',snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green));
     await admin.add({
       'company': companyController.text.trim(),
       'name': nameController.text.trim(),

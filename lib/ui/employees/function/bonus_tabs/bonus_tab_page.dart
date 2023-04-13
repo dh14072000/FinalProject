@@ -82,7 +82,7 @@ class BonusTabPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.person_add_alt,
+                        Icons.attach_money,
                         color: whiteColor,
                       ),
                       SizedBox(
@@ -98,12 +98,12 @@ class BonusTabPage extends StatelessWidget {
                     ],
                   ),
                   onPressed: () {
-                    var reduce = ReduceModel(
+                    var bonus = ReduceModel(
                         email: email,
-                        cashReduce: controller.bonusController.text,
-                        dateReduce: controller.appointmentDateText.text,
+                        cash: controller.bonusController.text,
+                        date: controller.appointmentDateText.text,
                         note: controller.noteController.text);
-                    controller.onreduce(reduce);
+                    controller.onBonus(bonus);
                   },
                 ),
               )

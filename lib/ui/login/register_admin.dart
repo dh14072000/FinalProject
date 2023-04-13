@@ -60,10 +60,11 @@ class RegisterAdmin extends StatelessWidget {
                               Container(
                                 padding:
                                     const EdgeInsets.fromLTRB(80, 80, 0, 0),
-                                child: Icon(
-                                  Icons.add_circle,
+                                child: IconButton(
+                                   icon: Icon(Icons.add_circle,
                                   color: Colors.grey.shade700,
-                                  size: 25.0,
+                                  size: 25.0,),
+                                   onPressed: () {},
                                 ),
                               ),
                             ],
@@ -80,7 +81,7 @@ class RegisterAdmin extends StatelessWidget {
                           child: TextFormField(
                             controller: controller.companyController,
                             decoration: ThemeHelper().textInputDecoration(
-                                'Company', 'Enter your Company'),
+                                'Công ty', 'Nhập công ty'),
                           ),
                         ),
                         const SizedBox(height: 20.0),
@@ -89,7 +90,7 @@ class RegisterAdmin extends StatelessWidget {
                           child: TextFormField(
                             controller: controller.nameController,
                             decoration: ThemeHelper()
-                                .textInputDecoration('Name', 'Enter your name'),
+                                .textInputDecoration('Quản lý', 'Nhập tên quản lý'),
                           ),
                         ),
                         const SizedBox(height: 20.0),
@@ -98,14 +99,14 @@ class RegisterAdmin extends StatelessWidget {
                           child: TextFormField(
                             controller: controller.emailController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "E-mail address", "Enter your email"),
+                                "Email", "Nhập email"),
                             keyboardType: TextInputType.emailAddress,
                             validator: (val) {
                               // ignore: prefer_is_not_empty
                               if (!(val!.isEmpty) &&
                                   !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
                                       .hasMatch(val)) {
-                                return "Enter a valid email address";
+                                return "Nhập sai định dạng Email";
                               }
                               return null;
                             },
@@ -117,13 +118,13 @@ class RegisterAdmin extends StatelessWidget {
                           child: TextFormField(
                             controller: controller.phoneController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "Mobile Number", "Enter your mobile number"),
+                                "Số điện thoại", "Nhập số điện thoại"),
                             keyboardType: TextInputType.phone,
                             validator: (val) {
                               // ignore: prefer_is_not_empty
                               if (!(val!.isEmpty) &&
                                   !RegExp(r"^(\d+)*$").hasMatch(val)) {
-                                return "Enter a valid phone number";
+                                return "Số điện thoại sai định dạng";
                               }
                               return null;
                             },
@@ -136,56 +137,16 @@ class RegisterAdmin extends StatelessWidget {
                             controller: controller.passwordController,
                             obscureText: true,
                             decoration: ThemeHelper().textInputDecoration(
-                                "Password", "Enter your password"),
+                                "Mật khẩu", "Nhập mật khẩu"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Please enter your password";
+                                return "Vui lòng nhập mật khẩu";
                               }
                               return null;
                             },
                           ),
                         ),
                         const SizedBox(height: 15.0),
-                        FormField<bool>(
-                          builder: (state) {
-                            return Column(
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Checkbox(
-                                        value: controller.checkboxValue,
-                                        onChanged: (value) {
-                                          controller.checkboxValue = value!;
-                                          state.didChange(value);
-                                        }),
-                                    const Text(
-                                      "I accept all terms and conditions.",
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    state.errorText ?? '',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      color: Theme.of(context).errorColor,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            );
-                          },
-                          validator: (value) {
-                            if (!controller.checkboxValue) {
-                              return 'You need to accept terms and conditions';
-                            } else {
-                              return null;
-                            }
-                          },
-                        ),
                         const SizedBox(height: 20.0),
                         Container(
                           decoration:
@@ -196,7 +157,7 @@ class RegisterAdmin extends StatelessWidget {
                               padding:
                                   const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
-                                "Register".toUpperCase(),
+                                "Đăng ký".toUpperCase(),
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -210,11 +171,6 @@ class RegisterAdmin extends StatelessWidget {
                               }
                             },
                           ),
-                        ),
-                        const SizedBox(height: 30.0),
-                        const Text(
-                          "Or create account using social media",
-                          style: TextStyle(color: Colors.grey),
                         ),
                       ],
                     ),

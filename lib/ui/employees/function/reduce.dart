@@ -1,3 +1,4 @@
+import 'package:final_project/controller/detail_employee_controller.dart';
 import 'package:final_project/controller/reduce_controller.dart';
 import 'package:final_project/model/reduce_model.dart';
 import 'package:final_project/resource/definition_color.dart';
@@ -12,8 +13,8 @@ import 'package:intl/intl.dart';
 
 class ReducePage extends StatelessWidget {
   var controller = Get.find<ReduceController>();
+    var controllerDetail = Get.find<DetailEmployeeController>();
 
-  dynamic argument = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class ReducePage extends StatelessWidget {
         appBar: ProjectAppBar(
           height: sy(50),
           backButton: true,
-          text: '${argument.get('name')}',
+          text: '${controllerDetail.employeeData.get('name')}',
           aligement: Alignment.centerLeft,
         ),
         body: Container(
@@ -102,10 +103,11 @@ class ReducePage extends StatelessWidget {
                   ),
                   onPressed: () {
                     var reduce = ReduceModel(
-                        email: argument.get('email'),
-                        cashReduce: controller.reduceController.text,
-                        dateReduce: controller.appointmentDateText.text,
+                        email: controllerDetail.employeeData.get('email'),
+                        cash: controller.reduceController.text,
+                        date: controller.appointmentDateText.text,
                         note: controller.noteController.text);
+                        print(controllerDetail.employeeData.get('email'),);
                     controller.onreduce(reduce);
                   },
                 ),

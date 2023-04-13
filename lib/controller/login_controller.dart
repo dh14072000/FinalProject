@@ -2,18 +2,20 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/model/admin_model.dart';
+import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/ui/home/home_page.dart';
+import 'package:final_project/widget/image/image_text_delegate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:crypto/crypto.dart';
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 class LoginController extends GetxController {
   late final FirebaseAuth _auth;
   double headerHeight = 250;
   final formKey = GlobalKey<FormState>();
   late AdminModel admin;
-
   TextEditingController passwordController = TextEditingController();
   TextEditingController userController = TextEditingController();
   @override
@@ -41,7 +43,6 @@ class LoginController extends GetxController {
         .collection('admin')
         .where('email', isEqualTo: userController.text)
         .get();
-     admin =
-        snapShort.docs.map((e) => AdminModel.formSnapShort(e)).single;
+    admin = snapShort.docs.map((e) => AdminModel.formSnapShort(e)).single;
   }
 }

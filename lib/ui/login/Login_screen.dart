@@ -53,7 +53,17 @@ class LoginPage extends StatelessWidget {
                           child: TextFormField(
                             controller: controller.userController,
                             decoration: ThemeHelper().textInputDecoration(
-                                'User Name', 'Enter your user name'),
+                                'Tài khoản', 'Nhập tài khoản'),
+                                validator: (value){
+                                  if (value!.isEmpty &&
+                                  RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                                      .hasMatch(value)) {
+                                return "Nhập sai định dạng Email";
+                              }else if (value.isEmpty) {
+                                return "Vui lòng nhập email";
+                              }
+                              return null;
+                                },
                           ),
                         ),
                         const SizedBox(height: 30.0),
@@ -63,12 +73,18 @@ class LoginPage extends StatelessWidget {
                             controller: controller.passwordController,
                             obscureText: true,
                             decoration: ThemeHelper().textInputDecoration(
-                                'Password',
-                                'Enter your password',
+                                'Mật khẩu',
+                                'Nhập mật khẩu',
                                 IconButton(
                                     onPressed: () {},
                                     icon: const Icon(
                                         Icons.fingerprint_outlined))),
+                                        validator: (value){
+                                          if (value!.isEmpty) {
+                                return "Vui lòng nhập mật khẩu";
+                              }
+                              return null;
+                                        } ,
                           ),
                         ),
                         const SizedBox(height: 15.0),
@@ -85,7 +101,7 @@ class LoginPage extends StatelessWidget {
                               );
                             },
                             child: const Text(
-                              "Forgot your password?",
+                              "Lấy lại mật khẩu?",
                               style: TextStyle(
                                 color: Colors.grey,
                               ),
@@ -101,7 +117,7 @@ class LoginPage extends StatelessWidget {
                               padding:
                                   const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
-                                'Sign In'.toUpperCase(),
+                                'Đăng nhập'.toUpperCase(),
                                 style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -121,9 +137,9 @@ class LoginPage extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.fromLTRB(10, 20, 10, 20),
                           child: Text.rich(TextSpan(children: [
-                            const TextSpan(text: "Don\'t have an account? "),
+                            const TextSpan(text: "Chưa có tài khoản? "),
                             TextSpan(
-                              text: 'Create',
+                              text: 'Đăng ký',
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   Get.to(RegisterAdmin());

@@ -1,15 +1,15 @@
+import 'package:final_project/controller/detail_employee_controller.dart';
 import 'package:final_project/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProfilePage extends StatelessWidget{
-    var detailController = Get.find<LoginController>();
-
+class FrofileEmployeePage extends StatelessWidget{
+    var detailEmployee = Get.find<DetailEmployeeController>();
+     
   @override
   Widget build(BuildContext context) {
     final _width = MediaQuery.of(context).size.width;
     final _height = MediaQuery.of(context).size.height;
-
     return  Container(
       child:  Stack(
         children: <Widget>[
@@ -42,7 +42,7 @@ class ProfilePage extends StatelessWidget{
                             height: _height / 30,
                           ),
                            Text(
-                            detailController.admin.company,
+                            detailEmployee.employeeData.get('name'),
                             style:  TextStyle(
                                 fontSize: 18.0,
                                 color: Colors.white,
@@ -79,9 +79,9 @@ class ProfilePage extends StatelessWidget{
                             child:  Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  headerChild('Photos', 114),
-                                  headerChild('Followers', 1205),
-                                  headerChild('Staff', 360),
+                                  headerChild('Số dư', 1000000),
+                                  headerChild('Thưởng', 1205),
+                                  headerChild('Giảm trừ', 360),
                                 ]),
                           ),
                         ),
@@ -90,10 +90,10 @@ class ProfilePage extends StatelessWidget{
                           child:  Column(
                             children: <Widget>[
                               infoChild(
-                                  _width, Icons.email, detailController.admin.email),
-                              infoChild(_width, Icons.call, detailController.admin.phone),
+                                  _width, Icons.email, detailEmployee.employeeData.get('email')),
+                              infoChild(_width, Icons.call, detailEmployee.employeeData.get('phone')),
                               infoChild(
-                                  _width, Icons.group_add, 'Add to group'),
+                                  _width, Icons.group_add, detailEmployee.employeeData.get('age')),
                               infoChild(_width, Icons.chat_bubble,
                                   'Show all comments'),
                                Padding(
@@ -112,7 +112,7 @@ class ProfilePage extends StatelessWidget{
                                             offset:  Offset(0.0, 1.0))
                                       ]),
                                   child:  const Center(
-                                    child:  Text('LOG OUT',
+                                    child:  Text('Sửa tài khoản',
                                         style:  TextStyle(
                                             fontSize: 12.0,
                                             color: Colors.white,
