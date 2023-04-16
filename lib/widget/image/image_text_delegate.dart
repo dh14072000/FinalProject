@@ -9,7 +9,7 @@ class CustomCameraPickerTextDelegate extends CameraPickerTextDelegate {
   String get languageCode => 'Picker_locale'.tr;
 
   @override
-  String get confirm => 'Picker_confirm'.tr;
+  String get confirm => 'Chọn ảnh'.tr;
 
   @override
   String get shootingTips => 'Picker_shoot_tip'.tr;
@@ -40,7 +40,7 @@ class CustomAssetsPickerTextDelegate extends AssetPickerTextDelegate {
   String get languageCode => 'Picker_locale'.tr;
 
   @override
-  String get confirm => 'Picker_confirm'.tr;
+  String get confirm => 'Chọn ảnh'.tr;
 
   @override
   String get cancel => 'Picker_cancel'.tr;

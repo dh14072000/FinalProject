@@ -39,7 +39,7 @@ class EmployeeCard extends StatelessWidget {
                 'Số dư',
                 style: AppFonts.textHint,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(
