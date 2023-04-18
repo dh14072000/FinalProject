@@ -46,7 +46,7 @@ class AppFonts {
       height: 19 / 16,
       color: primaryColor);
   static TextStyle textWhiteButton = GoogleFonts.roboto(
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.bold,
       fontSize: 16,
       fontStyle: FontStyle.normal,
       height: 19 / 16,

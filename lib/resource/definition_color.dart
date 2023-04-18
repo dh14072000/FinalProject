@@ -1,21 +1,6 @@
 import 'package:final_project/core/extension.dart';
 import 'package:flutter/material.dart';
 
-// MaterialColor appBarColor = const MaterialColor(
-//   0xFF5472c2,
-//   {
-//     50: Color(0xFF5472c2),
-//     100: Color(0xFF5472c2),
-//     200: Color(0xFF5472c2),
-//     300: Color(0xFF5472c2),
-//     400: Color(0xFF5472c2),
-//     500: Color(0xFF5472c2),
-//     600: Color(0xFF5472c2),
-//     700: Color(0xFF5472c2),
-//     800: Color(0xFF5472c2),
-//     900: Color(0xFF5472c2),
-//   },
-// );
 
 final Color whiteColor = Colors.white;
 final Color blueColor = Colors.blue;

@@ -10,11 +10,11 @@ class TimeKeepingModel {
   final String? timeOut;
 
   TimeKeepingModel({
-    required this.date,
-    required this.id,
-    required this.name,
-    required this.timeIn,
-    required this.timeOut,
+     this.date,
+     this.id,
+     this.name,
+     this.timeIn,
+     this.timeOut,
   });
 
   toJson() {

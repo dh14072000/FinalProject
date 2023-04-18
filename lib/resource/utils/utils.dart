@@ -13,31 +13,31 @@ class Utils {
     if (timein.compareTo(timeCheckIn1) <= 0) {
       if (timeout.compareTo(timeCurfewOut) >= 0 &&
           timeout.compareTo(timeCheckOut2) < 0) {
-        return 'Muộn';
+        return 'MU';
       } else if (timeout.compareTo(timeCurfewOut) < 0 &&
           timeout.compareTo(timeCheckOut1) > 0) {
-        return 'Nửa';
+        return 'NU';
       } else if (timeout.compareTo(timeCheckOut2) > 0) {
-        return 'Đủ';
+        return 'DU';
       }
-      return 'Vắng';
+      return 'VA';
     } else if (timein.compareTo(timeCheckIn1) > 0 &&
         timein.compareTo(timeCurfewIn) <= 0) {
       if (timeout.compareTo(timeCurfewOut) >= 0 &&
           timeout.compareTo(timeCheckOut2) < 0) {
-        return 'Nửa';
+        return 'NU';
       } else if (timeout.compareTo(timeCheckOut2) > 0) {
-        return 'Muộn';
+        return 'MU';
       }
-      return 'Vắng';
+      return 'VA';
     } else if (timein.compareTo(timeCheckIn2) < 0) {
       if (timeout.compareTo(timeCheckOut2) > 0) {
-        return 'Nửa';
+        return 'NU';
       } else {
-        return 'Vắng';
+        return 'VA';
       }
     } else if (timein.compareTo(timeCheckIn2) > 0) {
-      return 'Vắng';
+      return 'VA';
     }
     return '';
   }
