@@ -1,6 +1,8 @@
 import 'package:final_project/controller/timekeeping_controller.dart';
+import 'package:final_project/model/time_keeping_model.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/resource/definition_style.dart';
+import 'package:final_project/resource/utils/utils.dart';
 import 'package:final_project/widget/base/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
@@ -43,7 +45,6 @@ class TimeKeepingPage extends StatelessWidget {
                     fontSize: 11),
               ),
             ),
-            
             Flexible(
               flex: 1,
               child: Container(
@@ -60,18 +61,25 @@ class TimeKeepingPage extends StatelessWidget {
                   padding: const EdgeInsets.all(20),
                   child: Column(children: [
                     Padding(
-                      padding:  EdgeInsets.only(left: 20,right: 20),
+                      padding: EdgeInsets.only(left: 20, right: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Obx(() => Text('Ngày ' +
-                              '${DateFormat('MM/dd/yyyy').format(controller.selectedDay.value)}',style: AppFonts.textContent,),),
+                          Obx(
+                            () => Text(
+                              'Ngày ' +
+                                  '${DateFormat('MM/dd/yyyy').format(controller.selectedDay.value)}',
+                              style: AppFonts.textContent,
+                            ),
+                          ),
                           Obx(() => Container(
-                            height: 30,
-                            width: 30,
-                            decoration: borderAllRed,
-                            child: Center(child: Text('${controller.statusDay()}',style:AppFonts.textDark16)),
-                          ))
+                                height: 30,
+                                width: 30,
+                                decoration: borderAllRed,
+                                child: Center(
+                                    child: Text('${controller.statusDay()}',
+                                        style: AppFonts.textDark16)),
+                              ))
                         ],
                       ),
                     ),
@@ -123,10 +131,15 @@ class TimeKeepingPage extends StatelessWidget {
                                   ),
                                   height: 80,
                                   child: Center(
-                                     child:  Obx(() => Text( controller.timeData.value.id != null ?
-                                    '${controller.timeData.value.timeIn}' : '00:00',
-                                    style: AppFonts.textContent,
-                                  ))  ),
+                                      child: Obx(() => Text(
+                                            controller.timeData.value.timeIn !=
+                                                        null &&
+                                                    controller.timeData.value
+                                                        .timeIn!.isNotEmpty
+                                                ? '${controller.timeData.value.timeIn}'
+                                                : '00:00',
+                                            style: AppFonts.textContent,
+                                          ))),
                                 )),
                             Container(
                               width: 2,
@@ -141,10 +154,15 @@ class TimeKeepingPage extends StatelessWidget {
                                   ),
                                   height: 80,
                                   child: Center(
-                                     child:  Obx(() => Text( controller.timeData.value.id != null ?
-                                    '${controller.timeData.value.timeOut}' : '00:00',
-                                    style: AppFonts.textContent,
-                                  ))  ),
+                                      child: Obx(() => Text(
+                                            controller.timeData.value.timeOut !=
+                                                        null &&
+                                                    controller.timeData.value
+                                                        .timeOut!.isNotEmpty
+                                                ? '${controller.timeData.value.timeOut}'
+                                                : '00:00',
+                                            style: AppFonts.textContent,
+                                          ))),
                                 ))
                           ],
                         )

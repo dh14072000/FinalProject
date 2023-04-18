@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:intl/intl.dart';
 
 class Utils {
@@ -46,5 +48,11 @@ class Utils {
     String dateTimeString = '$date ' + '$time';
     DateTime tempDate = DateFormat("MM/dd/yyy hh:mm").parse(dateTimeString);
     return tempDate;
+  }
+
+  static bool checkNull(String? data){
+    if(data == null || data == ''){
+      return true;
+    } else return false;
   }
 }

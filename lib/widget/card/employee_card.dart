@@ -20,13 +20,14 @@ class EmployeeCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10)),
       height: 80,
       padding: const EdgeInsets.only(top: 20, left: 20),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+       children: [
         Expanded(
           flex: 5,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('$name',overflow: TextOverflow.ellipsis,style: AppFonts.textHeadline,),
+              Text('$name',overflow: TextOverflow.ellipsis,style: AppFonts.textContent,),
             ],
           ),
         ),

@@ -1,12 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/home_controller.dart';
 import 'package:final_project/controller/schadule_month_controller.dart';
 import 'package:final_project/resource/definition_color.dart';
+import 'package:final_project/widget/card/time_keeping_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class SchedulePage extends StatelessWidget {
   var controller = Get.find<ScheduleController>();
@@ -18,14 +22,17 @@ class SchedulePage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(
-            flex: 1,
+            flex: 5,
             child: Calendar(
               startOnMonday: true,
               weekDays: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
               events: controller.supportEvent.value,
               onRangeSelected: (range) =>
                   print('Range is ${range.from}, ${range.to}'),
-              onDateSelected: (date) => controller.handleNewDate(date),
+              onDateSelected: (date) {
+                controller.handleNewDate(date);
+                controller.getTimeEmployeeData();
+              },
               isExpandable: true,
               eventDoneColor: Colors.green,
               selectedColor: background,
@@ -41,47 +48,15 @@ class SchedulePage extends StatelessWidget {
             ),
           ),
           Flexible(
-            flex: 1,
-            child: Container(
-              margin: EdgeInsets.all(20),
-              height: 100,
-              decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-                BoxShadow(
-                    color: Colors.black45,
-                    blurRadius: 2.0,
-                    offset: Offset(0.0, 2.0))
-              ]),
-              child: Padding(
-                padding: EdgeInsets.all(20),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      headerChild('Đúng giờ', 100),
-                      headerChild('Muộn', 20),
-                      headerChild('Vắng', 5),
-                    ]),
-              ),
-            ),
-          ),
+              flex: 4,
+              child: Obx(() => ListView.builder(
+                  itemCount: controller.timeData.length,
+                  itemBuilder: (context, index) => TimeKeepingCarrd(
+                        timeKeeping: controller.timeData[index],
+                        status: controller.statusDay(index),
+                      )))),
         ],
       ),
     );
   }
 }
-
-Widget headerChild(String header, int value) => Expanded(
-        child: Column(
-      children: <Widget>[
-        Text(header),
-        SizedBox(
-          height: 8.0,
-        ),
-        Text(
-          '$value',
-          style: TextStyle(
-              fontSize: 14.0,
-              color: const Color(0xFF26CBE6),
-              fontWeight: FontWeight.bold),
-        )
-      ],
-    ));

@@ -23,29 +23,14 @@ class ProfileAdminPage extends StatelessWidget {
     var profileInfo = Expanded(
       child: Column(
         children: <Widget>[
-          Obx(
-            () => Container(
+          Container(
+            height: 150,
               margin: EdgeInsets.only(top: kSpacingUnit.w * 3),
               child: Stack(children: [
-                controller.assets.isEmpty
-                    ? Container(
-                        child: const CircleImage(
-                          widthImg: 100,
-                          heightImg: 100,
-                          urlImg:
-                              'https://www.google.com/imgres?imgurl=https%3A%2F%2Fpcf.gallery%2Fassets%2Fimages%2Furlimagecontrol.jpg&tbnid=kveoWEoZJdFUZM&vet=12ahUKEwjo2PnHrKf-AhVosVYBHc8pACYQMygAegQIARBE..i&imgrefurl=https%3A%2F%2Fpcf.gallery%2Furl-image-control%2F&docid=Ug_ggqWfq3K9YM&w=659&h=696&q=urlImage&ved=2ahUKEwjo2PnHrKf-AhVosVYBHc8pACYQMygAegQIARBE',
-                          borderRadius: 100,
-                        ),
-                      )
-                    : ClipRRect(
+                     ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: Image(
-                          image:
-                              AssetEntityImageProvider(controller.assets.first),
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
+                        child:  Image.asset('images/image_default.jpg')
+                       
                       ),
                 // Positioned(
                 //   bottom: 0,
@@ -69,7 +54,6 @@ class ProfileAdminPage extends StatelessWidget {
                 // )
               ]),
             ),
-          ),
           SizedBox(height: kSpacingUnit.w * 2),
           Text(
             detailController.admin.company,

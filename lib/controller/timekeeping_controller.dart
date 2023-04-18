@@ -12,8 +12,8 @@ class TimeKeepingController extends GetxController {
 
 // month data
   RxInt currentMonth = DateTime.now().month.obs;
-    Rx<DateTime> selectedDay = DateTime.now().obs;
-    var supportEvent = Rxn<Map<DateTime, List<CleanCalendarEvent>>>({});
+  Rx<DateTime> selectedDay = DateTime.now().obs;
+  var supportEvent = Rxn<Map<DateTime, List<CleanCalendarEvent>>>({});
 
   var daysOfWeek = <String>[
     "Monday".tr,
@@ -32,30 +32,34 @@ class TimeKeepingController extends GetxController {
     currentMonth.value = date.month;
   }
 
-
   //employee data
-  Rx<TimeKeepingModel> timeData = TimeKeepingModel().obs ;
+  Rx<TimeKeepingModel> timeData = TimeKeepingModel().obs;
   getTimeEmployeeData() async {
-    timeData.value = TimeKeepingModel() ;
-    print(DateFormat('MM/dd/yyyy').format(selectedDay.value));
-    print(employee.employeeData.get('id').runtimeType);
+    timeData.value = TimeKeepingModel();
     final snapShort = await FirebaseFirestore.instance
-          .collection('timeData')
-          .where('id',isEqualTo:int.parse(employee.employeeData.get('id')))
-        .where('day',isEqualTo: DateFormat('MM/dd/yyyy').format(selectedDay.value))
+        .collection('timeData')
+        .where('id', isEqualTo: int.parse(employee.employeeData.get('id')))
+        .where('day',
+            isEqualTo: DateFormat('MM/dd/yyyy').format(selectedDay.value))
         .get();
-        if(snapShort.docs.isNotEmpty){
-          timeData.value = snapShort.docs.map((e) => TimeKeepingModel.formSnapShort(e)).single;
-          print(timeData.value.toString());
-        } 
-    
+    if (snapShort.docs.isNotEmpty) {
+      timeData.value =
+          snapShort.docs.map((e) => TimeKeepingModel.formSnapShort(e)).single;
+      print(timeData.value.toString());
+    }
     print(timeData.value.toString());
   }
 
   // handle status day
-  RxString statusDay(){
-    if(timeData.value.id != null){return Utils.checkTimeKeeping(timeData.value.date!, timeData.value.timeIn!, timeData.value.timeOut!).obs;}
+  RxString statusDay() {
+    if (timeData.value.timeIn != null &&
+        timeData.value.timeIn!.isNotEmpty &&
+        timeData.value.timeOut != null &&
+        timeData.value.timeOut!.isNotEmpty) {
+      return Utils.checkTimeKeeping(timeData.value.date!,
+              timeData.value.timeIn!, timeData.value.timeOut!)
+          .obs;
+    }
     return 'VA'.obs;
-    
   }
 }
