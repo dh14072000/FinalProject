@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,10 +13,11 @@ class RegisterEmployeeController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   TextEditingController ageController = TextEditingController();
-        var controller = Get.find<LoginController>();
+  TextEditingController employeeCode = TextEditingController();
 
+        var controller = Get.find<LoginController>();
+  Rxn<String> idEmployee = Rxn();
 
   bool checkedValue = false;
   bool checkboxValue = false;
@@ -28,13 +30,15 @@ class RegisterEmployeeController extends GetxController {
       'name': nameController.text.trim(),
       'email': emailController.text.trim(),
       'phone': phoneController.text.trim(),
-      'password': sha512
-          .convert(utf8.encode(
-              passwordController.text.trim() + emailController.text.trim()))
-          .toString(),
+      'employeeCode':employeeCode.text.trim(),
+      'id': idEmployee.value,
       'age': ageController.text.trim(),
-      'company':controller.admin.company
-    }).then((value) => Get.snackbar('Thành công', 'Nhân viên đã được tạo thành công',snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green));
-    Get.toNamed(RoutePaths.HOME_PAGE);
+      'idCompany':controller.admin.id
+    }).then((value) {
+      idEmployee.value = value.id;
+      Get.snackbar('Thành công', 'Nhân viên đã được tạo thành công',snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);} );
+    Timer(Duration(seconds: 2), () {
+      Get.offAllNamed(RoutePaths.HOME_PAGE);
+    });
   }
 }

@@ -1,12 +1,13 @@
 import 'package:final_project/binding/binding.dart';
 import 'package:final_project/binding/route_path.dart';
-import 'package:final_project/ui/employees/employee_detail.dart';
 import 'package:final_project/ui/employees/function/bonus.dart';
 import 'package:final_project/ui/employees/function/pay.dart';
 import 'package:final_project/ui/employees/function/reduce.dart';
 import 'package:final_project/ui/employees/function/timekeeping.dart';
 import 'package:final_project/ui/home/home_page.dart';
 import 'package:final_project/ui/login/Login_screen.dart';
+import 'package:final_project/ui/profile/edit_info/edit_info_admin.dart';
+import 'package:final_project/ui/profile/profile_employee.dart';
 import 'package:get/get.dart';
 
 class ProjectRouter {
@@ -41,9 +42,15 @@ class ProjectRouter {
       page: () => ReducePage(),
       binding: SampleBind(),
     ),
+
     GetPage(
-      name: RoutePaths.DETAIL_EMPLOYEE,
-      page: () => EmployeeDetail(),
+      name: RoutePaths.PROFILE_EMPLOYEE,
+      page: () => FrofileEmployeePage(),
+      binding: SampleBind(),
+    ),
+    GetPage(
+      name: RoutePaths.EDIT_INFO_ADMIN,
+      page: () => EditInfoAdmin(),
       binding: SampleBind(),
     ),
   ];

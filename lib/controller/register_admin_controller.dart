@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,6 +16,7 @@ class RegisterAdminController extends GetxController {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController companyController = TextEditingController();
+  Rxn<String> userID = Rxn();
 
   bool checkedValue = false;
   bool checkboxValue = false;
@@ -32,6 +34,8 @@ class RegisterAdminController extends GetxController {
               passwordController.text.trim() + emailController.text.trim()))
           .toString(),
     }).then((value) => Get.snackbar('Thành công', 'Tài khoản của bạn đã được tạo thành công',snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green));
-    Get.toNamed(RoutePaths.LOGIN);
+    Timer(Duration(seconds: 2), () {
+      Get.offAllNamed(RoutePaths.LOGIN);
+    });
   }
 }

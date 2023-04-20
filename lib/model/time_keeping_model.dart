@@ -43,24 +43,4 @@ class TimeKeepingModel {
     return 'date: $date , id : $id , name : $name, timeIn : $timeIn, timeOut : $timeOut';
   }
 
-  // Map<String, dynamic> toMap() {
-  //   final result = <String, dynamic>{};
-  //   result.addAll({'date': date});
-  //   result.addAll({'id': id});
-  //   result.addAll({'name': name});
-  //   result.addAll({'timeIn': timeIn});
-  //   result.addAll({'timeOut': timeOut});
-  //   return result;
-  // }
-
-  // factory TimeKeepingModel.fromMap(DocumentSnapshot<Map<String, dynamic>> map) {
-  //   return TimeKeepingModel(
-  //     date: map['date'] ?? '',
-  //     id: map['id'] ?? '',
-  //     name: map['name'] ?? '',
-  //     timeIn: map['timeIn'] ?? '',
-  //     timeOut: map['timeOut'] ?? '',
-  //   );
-  // }
-  // factory TimeKeepingModel.fromJson(String source) => TimeKeepingModel.fromMap(json.decode(source));
 }

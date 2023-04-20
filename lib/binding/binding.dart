@@ -2,6 +2,7 @@ import 'package:final_project/controller/bonus_controller.dart';
 import 'package:final_project/controller/bonus_tabs_controller/allowance_tabs_page.dart';
 import 'package:final_project/controller/bonus_tabs_controller/bonus_tabs_controller.dart';
 import 'package:final_project/controller/detail_employee_controller.dart';
+import 'package:final_project/controller/edit_info_controller/edit_info_admin_controller.dart';
 import 'package:final_project/controller/employee_controller.dart';
 import 'package:final_project/controller/home_controller.dart';
 import 'package:final_project/controller/login_controller.dart';
@@ -12,6 +13,7 @@ import 'package:final_project/controller/register_admin_controller.dart';
 import 'package:final_project/controller/register_employee_controller.dart';
 import 'package:final_project/controller/schadule_month_controller.dart';
 import 'package:final_project/controller/timekeeping_controller.dart';
+import 'package:final_project/ui/profile/edit_info/edit_info_admin.dart';
 import 'package:get/get.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
 
@@ -32,5 +34,6 @@ class SampleBind extends Bindings {
     Get.lazyPut<BonusTabController>(() => BonusTabController());
     Get.lazyPut<AllowanceController>(() => AllowanceController());
     Get.lazyPut<ProfileAdminController>(() => ProfileAdminController());
+    Get.lazyPut<EditInfoAdminController>(() => EditInfoAdminController());
   }
 }

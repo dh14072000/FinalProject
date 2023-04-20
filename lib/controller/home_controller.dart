@@ -9,6 +9,6 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   RxInt currentTabIndex = 0.obs;
 
-  List<Widget> pages = [EmployeePage(), SchedulePage(), Container(), ProfileAdminPage()];
+  List<Widget> pages = [EmployeePage(), SchedulePage(), ProfileAdminPage()];
   Widget get currentPage => pages[currentTabIndex.value];
 }

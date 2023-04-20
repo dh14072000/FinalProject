@@ -8,13 +8,15 @@ class AdminModel {
   final String email;
   final String phone;
   final String password;
+  final String id;
 
   AdminModel(
       {required this.company,
       required this.name,
       required this.email,
       required this.phone,
-      required this.password});
+      required this.password,
+      required this.id});
 
   toJson() {
     return {
@@ -23,6 +25,7 @@ class AdminModel {
       "email": email,
       "phone": phone,
       "password": sha512.convert(utf8.encode(email + password)).toString(),
+      "id": id,
     };
   }
 
@@ -30,10 +33,12 @@ class AdminModel {
       DocumentSnapshot<Map<String, dynamic>> document) {
     final data = document.data()!;
     return AdminModel(
-        company: data!['company'],
-        name: data['name'],
-        email: data['email'],
-        phone: data['phone'],
-        password: data['password']);
+      company: data['company'],
+      name: data['name'],
+      email: data['email'],
+      phone: data['phone'],
+      password: data['password'],
+      id: data['id'],
+    );
   }
 }

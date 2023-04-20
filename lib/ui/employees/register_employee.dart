@@ -80,7 +80,7 @@ class RegisterEmployeePage extends StatelessWidget {
                           child: TextFormField(
                             controller: controller.nameController,
                             decoration: ThemeHelper()
-                                .textInputDecoration('Name', 'Enter your name'),
+                                .textInputDecoration('Họ tên', 'Nhập họ tên'),
                           ),
                         ),
                         const SizedBox(height: 20.0),
@@ -89,14 +89,14 @@ class RegisterEmployeePage extends StatelessWidget {
                           child: TextFormField(
                             controller: controller.emailController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "E-mail address", "Enter your email"),
+                                "Email", "Nhập email"),
                             keyboardType: TextInputType.emailAddress,
                             validator: (val) {
                               // ignore: prefer_is_not_empty
-                              if (!(val!.isEmpty) &&
-                                  !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                              if ((val!.isEmpty) &&
+                                  RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
                                       .hasMatch(val)) {
-                                return "Enter a valid email address";
+                                return "Email sai định dạng";
                               }
                               return null;
                             },
@@ -108,13 +108,13 @@ class RegisterEmployeePage extends StatelessWidget {
                           child: TextFormField(
                             controller: controller.phoneController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "Mobile Number", "Enter your mobile number"),
+                                "Số điện thoại", "Nhập số điện thoại"),
                             keyboardType: TextInputType.phone,
                             validator: (val) {
                               // ignore: prefer_is_not_empty
-                              if (!(val!.isEmpty) &&
-                                  !RegExp(r"^(\d+)*$").hasMatch(val)) {
-                                return "Enter a valid phone number";
+                              if ((val!.isEmpty) &&
+                                  RegExp(r"^(\d+)*$").hasMatch(val)) {
+                                return "Số điện thoại sai định dạng";
                               }
                               return null;
                             },
@@ -124,13 +124,13 @@ class RegisterEmployeePage extends StatelessWidget {
                         Container(
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                           child: TextFormField(
-                            controller: controller.passwordController,
+                            controller: controller.employeeCode,
                             obscureText: true,
                             decoration: ThemeHelper().textInputDecoration(
-                                "Password", "Enter your password"),
+                                "Mã nhân viên", "Nhập mã nhân viên"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Please enter your password";
+                                return "vui lòng nhập mã nhân viên";
                               }
                               return null;
                             },
@@ -142,56 +142,56 @@ class RegisterEmployeePage extends StatelessWidget {
                           child: TextFormField(
                             controller: controller.ageController,
                             decoration: ThemeHelper()
-                                .textInputDecoration("Age", "Enter your age"),
+                                .textInputDecoration("Tuổi", "Nhập tuổi"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Please enter your age";
+                                return "Vui lòng nhập";
                               }
                               return null;
                             },
                           ),
                         ),
                         const SizedBox(height: 15.0),
-                        FormField<bool>(
-                          builder: (state) {
-                            return Column(
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Checkbox(
-                                        value: controller.checkboxValue,
-                                        onChanged: (value) {
-                                          controller.checkboxValue = value!;
-                                          state.didChange(value);
-                                        }),
-                                    const Text(
-                                      "I accept all terms and conditions.",
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    state.errorText ?? '',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      color: Theme.of(context).errorColor,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            );
-                          },
-                          validator: (value) {
-                            if (!controller.checkboxValue) {
-                              return 'You need to accept terms and conditions';
-                            } else {
-                              return null;
-                            }
-                          },
-                        ),
+                        // FormField<bool>(
+                        //   builder: (state) {
+                        //     return Column(
+                        //       children: <Widget>[
+                        //         Row(
+                        //           children: <Widget>[
+                        //             Checkbox(
+                        //                 value: controller.checkboxValue,
+                        //                 onChanged: (value) {
+                        //                   controller.checkboxValue = value!;
+                        //                   state.didChange(value);
+                        //                 }),
+                        //             const Text(
+                        //               "I accept all terms and conditions.",
+                        //               style: TextStyle(color: Colors.grey),
+                        //             ),
+                        //           ],
+                        //         ),
+                        //         Container(
+                        //           alignment: Alignment.centerLeft,
+                        //           child: Text(
+                        //             state.errorText ?? '',
+                        //             textAlign: TextAlign.left,
+                        //             style: TextStyle(
+                        //               color: Theme.of(context).errorColor,
+                        //               fontSize: 12,
+                        //             ),
+                        //           ),
+                        //         )
+                        //       ],
+                        //     );
+                        //   },
+                        //   validator: (value) {
+                        //     if (!controller.checkboxValue) {
+                        //       return 'You need to accept terms and conditions';
+                        //     } else {
+                        //       return null;
+                        //     }
+                        //   },
+                        // ),
                         const SizedBox(height: 20.0),
                         Container(
                           decoration:
@@ -202,7 +202,7 @@ class RegisterEmployeePage extends StatelessWidget {
                               padding:
                                   const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
-                                "Register".toUpperCase(),
+                                "Đăng ký".toUpperCase(),
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -218,11 +218,11 @@ class RegisterEmployeePage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 30.0),
-                        const Text(
-                          "Or create account using social media",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        const SizedBox(height: 25.0),
+                        // const Text(
+                        //   "Or create account using social media",
+                        //   style: TextStyle(color: Colors.grey),
+                        // ),
+                        // const SizedBox(height: 25.0),
                       ],
                     ),
                   ),

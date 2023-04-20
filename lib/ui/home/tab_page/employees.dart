@@ -3,7 +3,6 @@ import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/employee_controller.dart';
 import 'package:final_project/controller/login_controller.dart';
 import 'package:final_project/resource/definition_color.dart';
-import 'package:final_project/ui/employees/employee_detail.dart';
 import 'package:final_project/ui/employees/register_employee.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
@@ -67,7 +66,7 @@ class EmployeePage extends StatelessWidget {
             ),
             StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                 stream: FirebaseFirestore.instance
-                    .collection('employees').where('company',isEqualTo: detailController.admin.company)
+                    .collection('employees').where('idCompany',isEqualTo: detailController.admin.id)
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
@@ -75,8 +74,8 @@ class EmployeePage extends StatelessWidget {
                       child: ListView.builder(
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) => GestureDetector(
-                                onTap: () => Get.toNamed(RoutePaths.DETAIL_EMPLOYEE,
-                                    arguments: snapshot.data!.docs[index]),
+                                onTap: () { Get.toNamed(RoutePaths.PROFILE_EMPLOYEE,
+                                    arguments: snapshot.data!.docs[index]);},
                                 child: EmployeeCard(
                                   name: snapshot.data!.docs[index].get('name'),
                                   salary: '150.000',

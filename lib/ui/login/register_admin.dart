@@ -103,8 +103,8 @@ class RegisterAdmin extends StatelessWidget {
                             keyboardType: TextInputType.emailAddress,
                             validator: (val) {
                               // ignore: prefer_is_not_empty
-                              if (!(val!.isEmpty) &&
-                                  !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                              if ((val!.isEmpty) &&
+                                  RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
                                       .hasMatch(val)) {
                                 return "Nhập sai định dạng Email";
                               }
@@ -122,8 +122,8 @@ class RegisterAdmin extends StatelessWidget {
                             keyboardType: TextInputType.phone,
                             validator: (val) {
                               // ignore: prefer_is_not_empty
-                              if (!(val!.isEmpty) &&
-                                  !RegExp(r"^(\d+)*$").hasMatch(val)) {
+                              if ((val!.isEmpty) &&
+                                  RegExp(r"^(\d+)*$").hasMatch(val)) {
                                 return "Số điện thoại sai định dạng";
                               }
                               return null;

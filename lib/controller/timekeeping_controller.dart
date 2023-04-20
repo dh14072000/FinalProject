@@ -38,7 +38,7 @@ class TimeKeepingController extends GetxController {
     timeData.value = TimeKeepingModel();
     final snapShort = await FirebaseFirestore.instance
         .collection('timeData')
-        .where('id', isEqualTo: int.parse(employee.employeeData.get('id')))
+        .where('id', isEqualTo: int.parse(employee.employeeData.get('employeeCode')))
         .where('day',
             isEqualTo: DateFormat('MM/dd/yyyy').format(selectedDay.value))
         .get();
