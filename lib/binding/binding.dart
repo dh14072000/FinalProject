@@ -3,6 +3,7 @@ import 'package:final_project/controller/bonus_tabs_controller/allowance_tabs_pa
 import 'package:final_project/controller/bonus_tabs_controller/bonus_tabs_controller.dart';
 import 'package:final_project/controller/detail_employee_controller.dart';
 import 'package:final_project/controller/edit_info_controller/edit_info_admin_controller.dart';
+import 'package:final_project/controller/edit_info_controller/edit_info_employee_controller.dart';
 import 'package:final_project/controller/employee_controller.dart';
 import 'package:final_project/controller/home_controller.dart';
 import 'package:final_project/controller/login_controller.dart';
@@ -35,5 +36,6 @@ class SampleBind extends Bindings {
     Get.lazyPut<AllowanceController>(() => AllowanceController());
     Get.lazyPut<ProfileAdminController>(() => ProfileAdminController());
     Get.lazyPut<EditInfoAdminController>(() => EditInfoAdminController());
+    Get.lazyPut<EditInfoEmployeeController>(() => EditInfoEmployeeController());
   }
 }

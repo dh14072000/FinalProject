@@ -91,19 +91,17 @@ class FrofileEmployeePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 headerChild(
-                                    Icons.alarm_on_outlined,
-                                    'Bảng công',
-                                    () { Get.toNamed(RoutePaths.TIME_KEEPING,
-                                        arguments:
-                                            detailEmployee.employeeData);
-                                            detailEmployee.getTimeData();
-                                            }),
-                                headerChild(
-                                    Icons.credit_card,
-                                    'Thanh toán',
-                                    () => Get.toNamed(RoutePaths.PAY_PAGE,
-                                        arguments:
-                                            detailEmployee.employeeData)),
+                                    Icons.alarm_on_outlined, 'Bảng công', () {
+                                  Get.toNamed(RoutePaths.TIME_KEEPING,
+                                      arguments: detailEmployee.employeeData);
+                                  detailEmployee.getSarlayMonth();
+                                }),
+                                headerChild(Icons.credit_card, 'Thanh toán',
+                                    () {
+                                  Get.toNamed(RoutePaths.PAY_PAGE,
+                                      arguments: detailEmployee.employeeData);
+                                  detailEmployee.getSarlayMonth();
+                                }),
                                 headerChild(
                                     Icons.attach_money,
                                     'Thưởng',
@@ -138,28 +136,32 @@ class FrofileEmployeePage extends StatelessWidget {
                             infoChild(
                                 width: _width,
                                 icon: Icons.group_add,
-                                data: detailEmployee.employeeData.get('age')),                          
+                                data: detailEmployee.employeeData.get('age')),
                             Padding(
                               padding: EdgeInsets.only(top: _height / 30),
-                              child: Container(
-                                width: _width / 3,
-                                height: _height / 20,
-                                decoration: BoxDecoration(
-                                    color: const Color(0xFF26CBE6),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(_height / 40)),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Colors.black87,
-                                          blurRadius: 2.0,
-                                          offset: Offset(0.0, 1.0))
-                                    ]),
-                                child: const Center(
-                                  child: Text('Sửa tài khoản',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold)),
+                              child: GestureDetector(
+                                onTap: () =>
+                                    Get.toNamed(RoutePaths.EDIT_INFO_EMPLOYEE),
+                                child: Container(
+                                  width: _width / 3,
+                                  height: _height / 20,
+                                  decoration: BoxDecoration(
+                                      color: const Color(0xFF26CBE6),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(_height / 40)),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                            color: Colors.black87,
+                                            blurRadius: 2.0,
+                                            offset: Offset(0.0, 1.0))
+                                      ]),
+                                  child: const Center(
+                                    child: Text('Sửa tài khoản',
+                                        style: TextStyle(
+                                            fontSize: 12.0,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold)),
+                                  ),
                                 ),
                               ),
                             )

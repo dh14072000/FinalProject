@@ -8,7 +8,6 @@ import 'package:relative_scale/relative_scale.dart';
 
 class PayPage extends StatelessWidget {
   PayPage({super.key});
-  dynamic argument = Get.arguments;
       var controller = Get.find<PayController>();
 
 
@@ -19,7 +18,7 @@ class PayPage extends StatelessWidget {
         appBar: ProjectAppBar(
           height: sy(50),
           backButton: true,
-          text: '${argument.get('name')}',
+          text: '${controller.employee.employeeData.get('name')}',
           aligement: Alignment.centerLeft,
         ),
         body: Column(
@@ -28,6 +27,10 @@ class PayPage extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(20),
               child: Text('Thanh toán lương tháng ' + "${controller.monthNow}",),
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: Text("${controller.employee.sarlayMonth}",),
             ),
           ],
         ),
