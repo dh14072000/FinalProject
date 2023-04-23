@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:crypto/crypto.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TimeKeepingModel {
@@ -31,8 +29,8 @@ class TimeKeepingModel {
       DocumentSnapshot<Map<String, dynamic>> document) {
     final data = document.data()!;
     return TimeKeepingModel(
-        date: data['day'],
-        id: data['id'],
+        date: data['id'] == 'Mã NV' ? "04/22/2023" : data['day'],
+        id: data['id'] == 'Mã NV' ? -1 : data['id'],
         name: data['name'],
         timeIn: data['timeIn'],
         timeOut: data['timeOut']);
@@ -42,5 +40,4 @@ class TimeKeepingModel {
   String toString() {
     return 'date: $date , id : $id , name : $name, timeIn : $timeIn, timeOut : $timeOut';
   }
-
 }

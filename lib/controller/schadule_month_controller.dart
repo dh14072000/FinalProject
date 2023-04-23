@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 class ScheduleController extends GetxController {
   RxInt currentMonth = DateTime.now().month.obs;
   Rx<DateTime> selectedDay = DateTime.now().obs;
-  var supportEvent = Rxn<Map<DateTime, List<CleanCalendarEvent>>>({});
+  var listEvent = <DateTime, List<CleanCalendarEvent>>{};
 
   var daysOfWeek = <String>[
     "Monday".tr,
@@ -19,6 +19,37 @@ class ScheduleController extends GetxController {
     "Saturday".tr,
     "Sunday".tr
   ];
+
+  @override
+  onInit() async {
+    super.onInit();
+    await getUserTimeDataColl();
+  }
+
+  getUserTimeDataColl() async {
+    final snapShot =
+        await FirebaseFirestore.instance.collection('timeData').get();
+
+    var listTimeData =
+        snapShot.docs.map((e) => TimeKeepingModel.formSnapShort(e)).toList();
+
+    for (var timeData in listTimeData) {
+      var date = timeDataDateToDateTime(timeData.date);
+      var event = CleanCalendarEvent("summary",
+          startTime: date, endTime: date, isDone: true);
+
+      listEvent.update(date, (value) => [event], ifAbsent: () => [event]);
+    }
+  }
+
+  DateTime timeDataDateToDateTime(String? date) {
+    var dateArr = date!.split('/');
+    var month = int.parse(dateArr.first);
+    var year = int.parse(dateArr.last);
+    var day = int.parse(dateArr.elementAt(1));
+
+    return DateTime(year, month, day);
+  }
 
   handleNewDate(date) => selectedDay.value = date;
 
@@ -38,6 +69,8 @@ class ScheduleController extends GetxController {
       timeData.value =
           snapShort.docs.map((e) => TimeKeepingModel.formSnapShort(e)).toList();
       print(timeData.toString());
+    } else {
+      timeData.value = [];
     }
   }
 
