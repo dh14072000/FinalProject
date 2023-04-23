@@ -15,9 +15,9 @@ import 'package:intl/intl.dart';
 class AllowanceTabPage extends StatelessWidget {
   var controller = Get.find<AllowanceController>();
 
-  final String email;
+  final String id;
 
-   AllowanceTabPage({super.key, required this.email});
+   AllowanceTabPage({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class AllowanceTabPage extends StatelessWidget {
                   ),
                   onPressed: () {
                     var allowance = ReduceModel(
-                        email: email,
+                        id: id,
                         cash: controller.allowanceController.text,
                         date: controller.appointmentDateText.text,
                         note: controller.noteController.text);

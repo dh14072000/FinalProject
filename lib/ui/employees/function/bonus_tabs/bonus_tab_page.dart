@@ -14,9 +14,9 @@ import 'package:intl/intl.dart';
 class BonusTabPage extends StatelessWidget {
   var controller = Get.find<BonusTabController>();
 
-  final String email;
+  final String id;
 
-   BonusTabPage({super.key, required this.email});
+   BonusTabPage({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class BonusTabPage extends StatelessWidget {
                   ),
                   onPressed: () {
                     var bonus = ReduceModel(
-                        email: email,
+                        id: id,
                         cash: controller.bonusController.text,
                         date: controller.appointmentDateText.text,
                         note: controller.noteController.text);

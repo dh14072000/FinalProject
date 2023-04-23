@@ -67,8 +67,8 @@ class BonusPage extends StatelessWidget {
                       child: TabBarView(
                           controller: controller.recommendationTab,
                           children: [
-                            BonusTabPage(email: controllerDetail.employeeData.get('email'),),
-                            AllowanceTabPage(email:controllerDetail.employeeData.get('email') ,)
+                            BonusTabPage(id: controllerDetail.employeeData.get('id'),),
+                            AllowanceTabPage(id:controllerDetail.employeeData.get('id') ,)
                           ]),
                     ),
         ]),

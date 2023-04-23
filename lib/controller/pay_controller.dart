@@ -1,15 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/controller/detail_employee_controller.dart';
+import 'package:final_project/model/reduce_model.dart';
 import 'package:final_project/model/time_keeping_model.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:intl/intl.dart';
 
 class PayController extends GetxController {
   var employee = Get.find<DetailEmployeeController>();
 
   var monthNow = DateTime.now().month;
-
+ 
+  
+  //get list  timedata employee
   List<TimeKeepingModel> timeData = [];
   getTimeEmployeeData() async {
     final snapShort = await FirebaseFirestore.instance

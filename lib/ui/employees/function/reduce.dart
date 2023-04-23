@@ -102,12 +102,12 @@ class ReducePage extends StatelessWidget {
                   ),
                   onPressed: () {
                     var reduce = ReduceModel(
-                        email: controllerDetail.employeeData.get('email'),
+                        id: controllerDetail.employeeData.get('id'),
                         cash: controller.reduceController.text,
                         date: controller.appointmentDateText.text,
                         note: controller.noteController.text);
                     print(
-                      controllerDetail.employeeData.get('email'),
+                      controllerDetail.employeeData.get('id'),
                     );
                     controller.onreduce(reduce);
                   },

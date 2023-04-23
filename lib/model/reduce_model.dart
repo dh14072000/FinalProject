@@ -4,17 +4,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ReduceModel {
 
-  final String? email;
+  final String? id;
   final String? date;
   final String? cash;
   final String? note;
 
-  ReduceModel({this.cash,  this.email, this.date,  this.note,} 
+  ReduceModel({this.cash,  this.id, this.date,  this.note,} 
       );
 
   toJson() {
     return {
-      "email": email,
+      "id": id,
       "date": date,
       "cash": cash,
       "note": note,
@@ -25,10 +25,14 @@ class ReduceModel {
       DocumentSnapshot<Map<String, dynamic>> document) {
     final data = document.data()!;
     return ReduceModel(
-        email: data['email'],
+        id: data['id'],
         date: data['date'],
         cash: data['cash'],
         note: data['note'],
     );
+  }
+   @override
+  String toString() {
+    return 'id: $id , date : $date , cash : $cash, note : $note';
   }
 }

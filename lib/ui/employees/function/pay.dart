@@ -24,7 +24,10 @@ class PayPage extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
               margin: EdgeInsets.all(20),
               child: Text('Thanh toán lương tháng ' + "${controller.monthNow}",),
             ),
@@ -32,6 +35,34 @@ class PayPage extends StatelessWidget {
               margin: EdgeInsets.all(20),
               child: Text("${controller.employee.sarlayMonth}",),
             ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+              margin: EdgeInsets.all(20),
+              child: Text('Thưởng tháng' + "${controller.monthNow}",),
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: Text("${controller.employee.sarlayMonth}",),
+            ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+              margin: EdgeInsets.all(20),
+              child: Text('Giảm trừ tháng ' + "${controller.monthNow}",),
+            ),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: Text("${controller.employee.sarlayMonth}",),
+            ),
+              ],
+            )
           ],
         ),
       );

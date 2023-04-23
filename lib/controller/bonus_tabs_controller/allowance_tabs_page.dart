@@ -18,7 +18,7 @@ class AllowanceController extends GetxController {
   onAllowance(ReduceModel allowanceModel) async {
     await allowance.add(allowanceModel.toJson()).whenComplete(() {
       Get.snackbar(
-        'Thêm thành công', 'Giảm trừ đã được thêm cho nhân viên',
+        'Thêm thành công', 'Phụ cấp đã được thêm cho nhân viên',
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
         Get.close(1);
     } );

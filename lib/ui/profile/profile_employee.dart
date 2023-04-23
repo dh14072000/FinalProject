@@ -97,10 +97,13 @@ class FrofileEmployeePage extends StatelessWidget {
                                   detailEmployee.getSarlayMonth();
                                 }),
                                 headerChild(Icons.credit_card, 'Thanh toán',
-                                    () {
+                                    () async {
                                   Get.toNamed(RoutePaths.PAY_PAGE,
                                       arguments: detailEmployee.employeeData);
-                                  detailEmployee.getSarlayMonth();
+                                  await detailEmployee.getBonusCash();
+                                  await detailEmployee.getAllowanceCash();
+                                  await detailEmployee.getReduceCash();
+                                  await detailEmployee.getSarlayMonth();
                                 }),
                                 headerChild(
                                     Icons.attach_money,
