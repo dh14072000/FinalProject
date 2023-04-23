@@ -41,7 +41,7 @@ class ProfileAdminPage extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: whiteColor,
                           border: Border.all(width: 1, color: greyBackground),
-                          borderRadius: BorderRadius.all(Radius.circular(100))),
+                          borderRadius: const BorderRadius.all(Radius.circular(100))),
                       child: Icon(
                         Icons.edit,
                         size: 18,

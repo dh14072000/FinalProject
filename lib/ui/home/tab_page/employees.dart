@@ -21,7 +21,7 @@ class EmployeePage extends StatelessWidget {
       return Scaffold(
         appBar: ProjectAppBar(
           height: sy(50),
-          text:detailController.admin.company,
+          text: detailController.admin.company,
           backButton: false,
         ),
         body: Column(
@@ -33,11 +33,11 @@ class EmployeePage extends StatelessWidget {
                 children: [
                   Container(
                     decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                gradient:  LinearGradient(colors: [
-               Color(0xFF26CBE6),
-               Color(0xFF26CBC0),
-            ], begin: Alignment.topCenter, end: Alignment.center)),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        gradient: LinearGradient(colors: [
+                          Color(0xFF26CBE6),
+                          Color(0xFF26CBC0),
+                        ], begin: Alignment.topCenter, end: Alignment.center)),
                     child: ElevatedButton(
                       style: ThemeHelper().buttonStyle(),
                       child: Row(
@@ -66,7 +66,8 @@ class EmployeePage extends StatelessWidget {
             ),
             StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                 stream: FirebaseFirestore.instance
-                    .collection('employees').where('idCompany',isEqualTo: detailController.admin.id)
+                    .collection('employees')
+                    .where('idCompany', isEqualTo: detailController.admin.id)
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
@@ -74,11 +75,14 @@ class EmployeePage extends StatelessWidget {
                       child: ListView.builder(
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) => GestureDetector(
-                                onTap: () { Get.toNamed(RoutePaths.PROFILE_EMPLOYEE,
-                                    arguments: snapshot.data!.docs[index]);},
+                                onTap: () {
+                                  Get.toNamed(RoutePaths.PROFILE_EMPLOYEE,
+                                      arguments: snapshot.data!.docs[index]);
+                                },
                                 child: EmployeeCard(
                                   name: snapshot.data!.docs[index].get('name'),
-                                  salary: '150.000',
+                                  phone:
+                                      snapshot.data!.docs[index].get('phone'),
                                 ),
                               )),
                     );

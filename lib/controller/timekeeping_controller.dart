@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/controller/detail_employee_controller.dart';
 import 'package:final_project/model/time_keeping_model.dart';
@@ -14,6 +16,8 @@ class TimeKeepingController extends GetxController {
   RxInt currentMonth = DateTime.now().month.obs;
   Rx<DateTime> selectedDay = DateTime.now().obs;
   var supportEvent = Rxn<Map<DateTime, List<CleanCalendarEvent>>>({});
+
+
 
   var daysOfWeek = <String>[
     "Monday".tr,
@@ -38,7 +42,8 @@ class TimeKeepingController extends GetxController {
     timeData.value = TimeKeepingModel();
     final snapShort = await FirebaseFirestore.instance
         .collection('timeData')
-        .where('id', isEqualTo: int.parse(employee.employeeData.get('employeeCode')))
+        .where('id',
+            isEqualTo: int.parse(employee.employeeData.get('employeeCode')))
         .where('day',
             isEqualTo: DateFormat('MM/dd/yyyy').format(selectedDay.value))
         .get();
@@ -61,5 +66,17 @@ class TimeKeepingController extends GetxController {
           .obs;
     }
     return 'VA'.obs;
+  }
+
+  RxString handleSarlay() {
+    if (timeData.value.timeIn != null &&
+        timeData.value.timeIn!.isNotEmpty &&
+        timeData.value.timeOut != null &&
+        timeData.value.timeOut!.isNotEmpty) {
+      return Utils.checkSarrlay(timeData.value.date!,
+              timeData.value.timeIn!, timeData.value.timeOut!)
+          .obs;
+    }
+    return '0'.obs;
   }
 }

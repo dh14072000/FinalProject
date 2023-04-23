@@ -3,6 +3,7 @@ import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/home_controller.dart';
 import 'package:final_project/controller/schadule_month_controller.dart';
 import 'package:final_project/resource/definition_color.dart';
+import 'package:final_project/widget/base/app_fonts.dart';
 import 'package:final_project/widget/card/time_keeping_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,14 +34,16 @@ class SchedulePage extends StatelessWidget {
                 controller.handleNewDate(date);
                 controller.getTimeEmployeeData();
               },
-              isExpandable: true,
-              eventDoneColor: Colors.green,
-              selectedColor: background,
-              todayColor: Colors.blue,
-              eventColor: Colors.grey,
-              locale: 'vi_VN',
-              todayButtonText: 'Hà Nội',
-              expandableDateFormat: 'EEEE, dd. MMMM yyyy',
+              bottomBarColor: Colors.blue.shade300,
+                isExpandable: true,
+                eventDoneColor: Colors.green,
+                bottomBarTextStyle: AppFonts.textContent,
+                selectedColor: background,
+                todayColor: Colors.blue,
+                eventColor: Colors.red,
+                locale: 'vi_VN',
+                todayButtonText: 'Hà Nội',
+                expandableDateFormat: 'EEEE, dd MMMM yyyy',
               dayOfWeekStyle: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w800,

@@ -31,14 +31,16 @@ class TimeKeepingPage extends StatelessWidget {
                   controller.handleNewDate(date);
                   controller.getTimeEmployeeData();
                 },
+                bottomBarColor: Colors.blue.shade300,
                 isExpandable: true,
                 eventDoneColor: Colors.green,
+                bottomBarTextStyle: AppFonts.textContent,
                 selectedColor: background,
                 todayColor: Colors.blue,
-                eventColor: Colors.grey,
+                eventColor: Colors.red,
                 locale: 'vi_VN',
                 todayButtonText: 'Hà Nội',
-                expandableDateFormat: 'EEEE, dd. MMMM yyyy',
+                expandableDateFormat: 'EEEE, dd MMMM yyyy',
                 dayOfWeekStyle: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w800,
@@ -95,13 +97,14 @@ class TimeKeepingPage extends StatelessWidget {
                                 flex: 1,
                                 child: Container(
                                   height: 50,
-                                  color: blueColor,
+                                  color: Colors.blue.shade300,
                                   child: Center(
                                       child: Text(
                                     'Giờ vào',
                                     style: AppFonts.textWhiteButton,
                                   )),
-                                )),
+                                )
+                                ),
                             Container(
                               width: 2,
                               color: whiteColor,
@@ -110,7 +113,7 @@ class TimeKeepingPage extends StatelessWidget {
                                 flex: 1,
                                 child: Container(
                                   height: 50,
-                                  color: blueColor,
+                                  color: Colors.blue.shade300,
                                   child: Center(
                                       child: Text(
                                     'Giờ ra',
@@ -143,7 +146,7 @@ class TimeKeepingPage extends StatelessWidget {
                                 )),
                             Container(
                               width: 2,
-                              color: whiteColor,
+                              color: Colors.blue.shade300,
                             ),
                             Expanded(
                                 flex: 1,
@@ -165,9 +168,17 @@ class TimeKeepingPage extends StatelessWidget {
                                           ))),
                                 ))
                           ],
-                        )
+                        ),
                       ],
-                    )
+                    ),
+                    Obx(() => Container(
+                      padding:EdgeInsets.all(20),
+                      child: Row(children: [
+                        Text ('Thu nhập ngày : ',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: darkText),),
+                        Text('${controller.handleSarlay()} ',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w400,color: Colors.green)),
+                        Text ('VNĐ',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: darkText),),
+                      ]),
+                    ))
                   ]),
                 ),
               ),

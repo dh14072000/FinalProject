@@ -81,6 +81,13 @@ class RegisterEmployeePage extends StatelessWidget {
                             controller: controller.nameController,
                             decoration: ThemeHelper()
                                 .textInputDecoration('Họ tên', 'Nhập họ tên'),
+                                validator: (val) {
+                              // ignore: prefer_is_not_empty
+                              if (val!.isEmpty ) {
+                                return "Vui lòng nhập họ tên nhân viên";
+                              }
+                              return null;
+                            },
                           ),
                         ),
                         const SizedBox(height: 20.0),
@@ -93,10 +100,12 @@ class RegisterEmployeePage extends StatelessWidget {
                             keyboardType: TextInputType.emailAddress,
                             validator: (val) {
                               // ignore: prefer_is_not_empty
-                              if ((val!.isEmpty) &&
+                              if (
                                   RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
-                                      .hasMatch(val)) {
+                                      .hasMatch(val!)) {
                                 return "Email sai định dạng";
+                              } if(val.isEmpty ){
+                                return 'Vui lòng nhập email';
                               }
                               return null;
                             },
@@ -112,9 +121,11 @@ class RegisterEmployeePage extends StatelessWidget {
                             keyboardType: TextInputType.phone,
                             validator: (val) {
                               // ignore: prefer_is_not_empty
-                              if ((val!.isEmpty) &&
-                                  RegExp(r"^(\d+)*$").hasMatch(val)) {
+                              if (
+                                  RegExp(r"^(\d+)*$").hasMatch(val!)) {
                                 return "Số điện thoại sai định dạng";
+                              } if(val.isEmpty ){
+                                return 'Vui lòng nhập số điện thoại';
                               }
                               return null;
                             },
@@ -145,7 +156,7 @@ class RegisterEmployeePage extends StatelessWidget {
                                 .textInputDecoration("Tuổi", "Nhập tuổi"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Vui lòng nhập";
+                                return "Vui lòng nhập tuổi";
                               }
                               return null;
                             },

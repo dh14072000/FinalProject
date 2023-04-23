@@ -1,8 +1,5 @@
 import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/detail_employee_controller.dart';
-import 'package:final_project/controller/login_controller.dart';
-import 'package:final_project/resource/definition_color.dart';
-import 'package:final_project/resource/utils/utils.dart';
 import 'package:final_project/widget/base/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,7 +43,7 @@ class FrofileEmployeePage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        CircleAvatar(
+                        const CircleAvatar(
                           backgroundImage: NetworkImage(
                               'https://i.pinimg.com/564x/1e/7f/85/1e7f85e354e1a11b4a439ac9d9f7e283.jpg'),
                           radius: 60,
@@ -56,7 +53,7 @@ class FrofileEmployeePage extends StatelessWidget {
                         ),
                         Text(
                           detailEmployee.employeeData.get('name'),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18.0,
                               color: Colors.white,
                               fontWeight: FontWeight.bold),
@@ -96,9 +93,11 @@ class FrofileEmployeePage extends StatelessWidget {
                                 headerChild(
                                     Icons.alarm_on_outlined,
                                     'Bảng công',
-                                    () => Get.toNamed(RoutePaths.TIME_KEEPING,
+                                    () { Get.toNamed(RoutePaths.TIME_KEEPING,
                                         arguments:
-                                            detailEmployee.employeeData)),
+                                            detailEmployee.employeeData);
+                                            detailEmployee.getTimeData();
+                                            }),
                                 headerChild(
                                     Icons.credit_card,
                                     'Thanh toán',
@@ -139,11 +138,7 @@ class FrofileEmployeePage extends StatelessWidget {
                             infoChild(
                                 width: _width,
                                 icon: Icons.group_add,
-                                data: detailEmployee.employeeData.get('age')),
-                            // infoChild(
-                            //     width: _width,
-                            //     icon: Icons.chat_bubble,
-                            //     data: 'Show all comments'),
+                                data: detailEmployee.employeeData.get('age')),                          
                             Padding(
                               padding: EdgeInsets.only(top: _height / 30),
                               child: Container(
@@ -215,6 +210,7 @@ class FrofileEmployeePage extends StatelessWidget {
       Padding(
         padding: EdgeInsets.only(bottom: 8.0),
         child: InkWell(
+          onTap: ontap,
           child: Row(
             children: <Widget>[
               SizedBox(
@@ -234,7 +230,6 @@ class FrofileEmployeePage extends StatelessWidget {
               )
             ],
           ),
-          onTap: ontap,
         ),
       );
 }

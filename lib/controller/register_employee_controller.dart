@@ -16,12 +16,9 @@ class RegisterEmployeeController extends GetxController {
   TextEditingController ageController = TextEditingController();
   TextEditingController employeeCode = TextEditingController();
 
-        var controller = Get.find<LoginController>();
-  Rxn<String> idEmployee = Rxn();
-
+  var controller = Get.find<LoginController>();
   bool checkedValue = false;
   bool checkboxValue = false;
-
   CollectionReference employees =
       FirebaseFirestore.instance.collection('employees');
 
@@ -30,15 +27,17 @@ class RegisterEmployeeController extends GetxController {
       'name': nameController.text.trim(),
       'email': emailController.text.trim(),
       'phone': phoneController.text.trim(),
-      'employeeCode':employeeCode.text.trim(),
-      'id': idEmployee.value,
+      'employeeCode': employeeCode.text.trim(),
+      'id':employeeCode.text.trim(),
       'age': ageController.text.trim(),
-      'idCompany':controller.admin.id
+      'idCompany': controller.admin.id
     }).then((value) {
-      idEmployee.value = value.id;
-      Get.snackbar('Thành công', 'Nhân viên đã được tạo thành công',snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green);} );
+      employees.doc(value.id).update({'id': value.id});
+      Get.snackbar('Thành công', 'Nhân viên đã được tạo thành công',
+          snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+    });
     Timer(Duration(seconds: 2), () {
-      Get.offAllNamed(RoutePaths.HOME_PAGE);
+      Get.offNamed(RoutePaths.HOME_PAGE);
     });
   }
 }
