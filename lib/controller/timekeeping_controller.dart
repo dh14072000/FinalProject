@@ -1,12 +1,9 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/controller/detail_employee_controller.dart';
 import 'package:final_project/model/time_keeping_model.dart';
 import 'package:final_project/resource/utils/utils.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:intl/intl.dart';
 
 class TimeKeepingController extends GetxController {
@@ -15,9 +12,41 @@ class TimeKeepingController extends GetxController {
 // month data
   RxInt currentMonth = DateTime.now().month.obs;
   Rx<DateTime> selectedDay = DateTime.now().obs;
-  var supportEvent = Rxn<Map<DateTime, List<CleanCalendarEvent>>>({});
+  var listEvent = <DateTime, List<CleanCalendarEvent>>{};
 
+  @override
+  onInit() async {
+    super.onInit();
+    await getUserTimeDataColl();
+  }
 
+  getUserTimeDataColl() async {
+    final snapShot = await FirebaseFirestore.instance
+        .collection('timeData')
+        .where('id',
+            isEqualTo: int.parse(employee.employeeData.get('employeeCode')))
+        .get();
+
+    var listTimeData =
+        snapShot.docs.map((e) => TimeKeepingModel.formSnapShort(e)).toList();
+
+    for (var timeData in listTimeData) {
+      var date = timeDataDateToDateTime(timeData.date);
+      var event = CleanCalendarEvent("summary",
+          startTime: date, endTime: date, isDone: true);
+
+      listEvent.update(date, (value) => [event], ifAbsent: () => [event]);
+    }
+  }
+
+  DateTime timeDataDateToDateTime(String? date) {
+    var dateArr = date!.split('/');
+    var month = int.parse(dateArr.first);
+    var year = int.parse(dateArr.last);
+    var day = int.parse(dateArr.elementAt(1));
+
+    return DateTime(year, month, day);
+  }
 
   var daysOfWeek = <String>[
     "Monday".tr,
@@ -73,8 +102,8 @@ class TimeKeepingController extends GetxController {
         timeData.value.timeIn!.isNotEmpty &&
         timeData.value.timeOut != null &&
         timeData.value.timeOut!.isNotEmpty) {
-      return Utils.checkSarrlay(timeData.value.date!,
-              timeData.value.timeIn!, timeData.value.timeOut!)
+      return Utils.checkSarrlay(timeData.value.date!, timeData.value.timeIn!,
+              timeData.value.timeOut!)
           .obs;
     }
     return '0'.obs;

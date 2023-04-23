@@ -13,8 +13,7 @@ import 'package:intl/intl.dart';
 
 class ReducePage extends StatelessWidget {
   var controller = Get.find<ReduceController>();
-    var controllerDetail = Get.find<DetailEmployeeController>();
-
+  var controllerDetail = Get.find<DetailEmployeeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class ReducePage extends StatelessWidget {
           aligement: Alignment.centerLeft,
         ),
         body: Container(
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           child: Column(
             children: [
               LabelTextFormField(
@@ -107,7 +106,9 @@ class ReducePage extends StatelessWidget {
                         cash: controller.reduceController.text,
                         date: controller.appointmentDateText.text,
                         note: controller.noteController.text);
-                        print(controllerDetail.employeeData.get('email'),);
+                    print(
+                      controllerDetail.employeeData.get('email'),
+                    );
                     controller.onreduce(reduce);
                   },
                 ),

@@ -23,14 +23,15 @@ class TimeKeepingPage extends StatelessWidget {
               flex: 1,
               child: Calendar(
                 startOnMonday: true,
-                weekDays: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
-                events: controller.supportEvent.value,
+                weekDays: const ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+                events: controller.listEvent,
                 onRangeSelected: (range) =>
                     print('Range is ${range.from}, ${range.to}'),
                 onDateSelected: (date) {
                   controller.handleNewDate(date);
                   controller.getTimeEmployeeData();
                 },
+                eventListBuilder: (context, events) => const SizedBox.shrink(),
                 bottomBarColor: Colors.blue.shade300,
                 isExpandable: true,
                 eventDoneColor: Colors.green,
@@ -63,14 +64,13 @@ class TimeKeepingPage extends StatelessWidget {
                   padding: const EdgeInsets.all(20),
                   child: Column(children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Obx(
                             () => Text(
-                              'Ngày ' +
-                                  '${DateFormat('MM/dd/yyyy').format(controller.selectedDay.value)}',
+                              'Ngày ${DateFormat('MM/dd/yyyy').format(controller.selectedDay.value)}',
                               style: AppFonts.textContent,
                             ),
                           ),
@@ -85,7 +85,7 @@ class TimeKeepingPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Column(
@@ -103,8 +103,7 @@ class TimeKeepingPage extends StatelessWidget {
                                     'Giờ vào',
                                     style: AppFonts.textWhiteButton,
                                   )),
-                                )
-                                ),
+                                )),
                             Container(
                               width: 2,
                               color: whiteColor,
@@ -172,13 +171,29 @@ class TimeKeepingPage extends StatelessWidget {
                       ],
                     ),
                     Obx(() => Container(
-                      padding:EdgeInsets.all(20),
-                      child: Row(children: [
-                        Text ('Thu nhập ngày : ',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: darkText),),
-                        Text('${controller.handleSarlay()} ',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w400,color: Colors.green)),
-                        Text ('VNĐ',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: darkText),),
-                      ]),
-                    ))
+                          padding: const EdgeInsets.all(20),
+                          child: Row(children: [
+                            Text(
+                              'Thu nhập ngày : ',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: darkText),
+                            ),
+                            Text('${controller.handleSarlay()} ',
+                                style: const TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.green)),
+                            Text(
+                              'VNĐ',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: darkText),
+                            ),
+                          ]),
+                        ))
                   ]),
                 ),
               ),

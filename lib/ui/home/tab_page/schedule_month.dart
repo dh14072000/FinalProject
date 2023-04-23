@@ -26,8 +26,8 @@ class SchedulePage extends StatelessWidget {
             flex: 5,
             child: Calendar(
               startOnMonday: true,
-              weekDays: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
-              events: controller.supportEvent.value,
+              weekDays: const ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+              events: controller.listEvent,
               onRangeSelected: (range) =>
                   print('Range is ${range.from}, ${range.to}'),
               onDateSelected: (date) {
@@ -35,16 +35,16 @@ class SchedulePage extends StatelessWidget {
                 controller.getTimeEmployeeData();
               },
               bottomBarColor: Colors.blue.shade300,
-                isExpandable: true,
-                eventDoneColor: Colors.green,
-                bottomBarTextStyle: AppFonts.textContent,
-                selectedColor: background,
-                todayColor: Colors.blue,
-                eventColor: Colors.red,
-                locale: 'vi_VN',
-                todayButtonText: 'Hà Nội',
-                expandableDateFormat: 'EEEE, dd MMMM yyyy',
-              dayOfWeekStyle: TextStyle(
+              isExpandable: true,
+              eventDoneColor: Colors.green,
+              bottomBarTextStyle: AppFonts.textContent,
+              selectedColor: background,
+              todayColor: Colors.blue,
+              eventColor: Colors.red,
+              locale: 'vi_VN',
+              todayButtonText: 'Hà Nội',
+              expandableDateFormat: 'EEEE, dd MMMM yyyy',
+              dayOfWeekStyle: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w800,
                   fontSize: 11),
