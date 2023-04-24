@@ -3,10 +3,9 @@ import 'package:final_project/widget/image/image_text_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
-import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 
-mixin UploadImage{
-    RxList<AssetEntity> assets = <AssetEntity>[].obs;
+mixin UploadImage {
+  RxList<AssetEntity> assets = <AssetEntity>[].obs;
 
   Future<void> selectAssets(BuildContext context) async {
     try {
@@ -27,5 +26,4 @@ mixin UploadImage{
       print(e);
     }
   }
-
 }

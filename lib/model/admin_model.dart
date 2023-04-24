@@ -9,10 +9,12 @@ class AdminModel {
   final String phone;
   final String password;
   final String id;
+  final String? avatar;
 
   AdminModel(
       {required this.company,
       required this.name,
+      required this.avatar,
       required this.email,
       required this.phone,
       required this.password,
@@ -26,6 +28,7 @@ class AdminModel {
       "phone": phone,
       "password": sha512.convert(utf8.encode(email + password)).toString(),
       "id": id,
+      "avatar": avatar
     };
   }
 
@@ -34,6 +37,7 @@ class AdminModel {
     final data = document.data()!;
     return AdminModel(
       company: data['company'],
+      avatar: data['avatar'],
       name: data['name'],
       email: data['email'],
       phone: data['phone'],

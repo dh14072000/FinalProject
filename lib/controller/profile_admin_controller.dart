@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/binding/route_path.dart';
+import 'package:final_project/controller/fire_storage.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/widget/image/image_text_delegate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,9 +9,8 @@ import 'package:get/get.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:csv/csv.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'dart:async' as future;
 
-class ProfileAdminController extends GetxController {
+class ProfileAdminController extends GetxController with FireStorage {
   // get asset
   RxList<AssetEntity> assets = <AssetEntity>[].obs;
 
