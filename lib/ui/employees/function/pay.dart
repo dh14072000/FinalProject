@@ -1,15 +1,12 @@
 import 'package:final_project/controller/pay_controller.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:relative_scale/relative_scale.dart';
 
 class PayPage extends StatelessWidget {
   PayPage({super.key});
-      var controller = Get.find<PayController>();
-
+  var controller = Get.find<PayController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,45 +21,104 @@ class PayPage extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-              margin: EdgeInsets.all(20),
-              child: Text('Thanh toán lương tháng ' + "${controller.monthNow}",),
+            Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Text(
+                      'Thanh toán lương tháng ' + "${controller.monthNow}",
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Text(
+                      "${controller.employee.sarlayMonth}",
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Container(
-              margin: EdgeInsets.all(20),
-              child: Text("${controller.employee.sarlayMonth}",),
+            Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Text(
+                      'Thưởng tháng' + "${controller.monthNow}",
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      print(controller.employee.bonusCash);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(20),
+                      child: Text(
+                        "${controller.employee.bonusCash}",
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-              ],
+            Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Text(
+                      'Phụ cấp tháng ' + "${controller.monthNow}",
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Text(
+                      "${controller.employee.allowanceCash}",
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-              margin: EdgeInsets.all(20),
-              child: Text('Thưởng tháng' + "${controller.monthNow}",),
+            Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Text(
+                      'Giảm trừ tháng' + "${controller.monthNow}",
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Text(
+                      "${controller.employee.reduceCash}",
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Container(
-              margin: EdgeInsets.all(20),
-              child: Text("${controller.employee.sarlayMonth}",),
-            ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-              margin: EdgeInsets.all(20),
-              child: Text('Giảm trừ tháng ' + "${controller.monthNow}",),
-            ),
-            Container(
-              margin: EdgeInsets.all(20),
-              child: Text("${controller.employee.sarlayMonth}",),
-            ),
-              ],
-            )
+            Obx(() => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Text(
+                      'Quyết toán tháng' + "${controller.monthNow}",
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Text(
+                      controller.employee.getTotalSarlay().toString(),
+                    ),
+                  ),
+                ],
+              ),)
           ],
         ),
       );

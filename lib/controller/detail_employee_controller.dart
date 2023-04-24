@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/model/reduce_model.dart';
 import 'package:final_project/model/time_keeping_model.dart';
@@ -10,9 +12,28 @@ class DetailEmployeeController extends GetxController {
   var monthNow = DateTime.now().month;
   List<TimeKeepingModel> dataTimer = [];
   RxInt sarlayMonth = RxInt(0);
+  RxInt totalSarlay = RxInt(0);
   RxInt bonusCash = RxInt(0);
   RxInt allowanceCash = RxInt(0);
   RxInt reduceCash = RxInt(0);
+
+  void getData() {
+    sarlayMonth.value = 0;
+    bonusCash.value = 0;
+    allowanceCash.value = 0;
+    reduceCash.value = 0;
+    getSarlayMonth();
+    getBonusCash();
+    getAllowanceCash();
+    getReduceCash();
+  }
+
+   getTotalSarlay() {
+    return sarlayMonth.value +
+        bonusCash.value +
+        allowanceCash.value -
+        reduceCash.value;
+  }
 
   getSarlayMonth() async {
     List<TimeKeepingModel> dataTimer = [];
@@ -40,7 +61,7 @@ class DetailEmployeeController extends GetxController {
   getReduceCash() async {
     final snapShort = await FirebaseFirestore.instance
         .collection('reduce')
-        .where('id', isEqualTo: int.parse(employeeData.get('employeeCode')))
+        .where('id', isEqualTo: employeeData.get('id'))
         .get();
     if (snapShort.docs.isNotEmpty) {
       listReduceCash =
@@ -50,7 +71,7 @@ class DetailEmployeeController extends GetxController {
     for (var e in listReduceCash) {
       reduceCash = reduceCash + int.parse(e.cash!);
     }
-    print(reduceCash);
+    print('giảm trừ $reduceCash');
   }
 
 // get reduce data employee
@@ -58,7 +79,7 @@ class DetailEmployeeController extends GetxController {
   getBonusCash() async {
     final snapShort = await FirebaseFirestore.instance
         .collection('bonus')
-        .where('id', isEqualTo: int.parse(employeeData.get('employeeCode')))
+        .where('id', isEqualTo: employeeData.get('id'))
         .get();
     if (snapShort.docs.isNotEmpty) {
       listBonusCash =
@@ -68,7 +89,7 @@ class DetailEmployeeController extends GetxController {
     for (var e in listBonusCash) {
       bonusCash = bonusCash + int.parse(e.cash!);
     }
-    print(bonusCash);
+    print('thưởng $bonusCash');
   }
 
 // get reduce data employee
@@ -76,7 +97,7 @@ class DetailEmployeeController extends GetxController {
   getAllowanceCash() async {
     final snapShort = await FirebaseFirestore.instance
         .collection('allowance')
-        .where('id', isEqualTo: int.parse(employeeData.get('employeeCode')))
+        .where('id', isEqualTo: employeeData.get('id'))
         .get();
     if (snapShort.docs.isNotEmpty) {
       listAllowanceCash =
@@ -86,6 +107,6 @@ class DetailEmployeeController extends GetxController {
     for (var e in listAllowanceCash) {
       allowanceCash = allowanceCash + int.parse(e.cash!);
     }
-    print(allowanceCash);
+    print('phụ cấp $allowanceCash');
   }
 }

@@ -91,19 +91,16 @@ class FrofileEmployeePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 headerChild(
-                                    Icons.alarm_on_outlined, 'Bảng công', () {
+                                    Icons.alarm_on_outlined, 'Bảng công',
+                                    () async {
                                   Get.toNamed(RoutePaths.TIME_KEEPING,
                                       arguments: detailEmployee.employeeData);
-                                  detailEmployee.getSarlayMonth();
                                 }),
                                 headerChild(Icons.credit_card, 'Thanh toán',
                                     () async {
+                                  detailEmployee.getData();
                                   Get.toNamed(RoutePaths.PAY_PAGE,
                                       arguments: detailEmployee.employeeData);
-                                  await detailEmployee.getBonusCash();
-                                  await detailEmployee.getAllowanceCash();
-                                  await detailEmployee.getReduceCash();
-                                  await detailEmployee.getSarlayMonth();
                                 }),
                                 headerChild(
                                     Icons.attach_money,
