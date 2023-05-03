@@ -9,6 +9,7 @@ class ScheduleController extends GetxController {
   RxInt currentMonth = DateTime.now().month.obs;
   Rx<DateTime> selectedDay = DateTime.now().obs;
   var listEvent = <DateTime, List<CleanCalendarEvent>>{};
+  late String urlImage;
 
   var daysOfWeek = <String>[
     "Monday".tr,
@@ -37,7 +38,6 @@ class ScheduleController extends GetxController {
       var date = timeDataDateToDateTime(timeData.date);
       var event = CleanCalendarEvent("summary",
           startTime: date, endTime: date, isDone: true);
-
       listEvent.update(date, (value) => [event], ifAbsent: () => [event]);
     }
   }
@@ -85,4 +85,6 @@ class ScheduleController extends GetxController {
     }
     return 'VA';
   }
+
+
 }

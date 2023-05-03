@@ -7,6 +7,7 @@ import 'package:final_project/ui/profile/edit_info/edit_info_admin.dart';
 import 'package:final_project/ui/profile/profile_admin/constains.dart';
 import 'package:final_project/ui/profile/profile_admin/profile_list-item.dart';
 import 'package:final_project/ui/profile/profile_admin/view_csv.dart';
+import 'package:final_project/widget/image/circle_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -27,29 +28,19 @@ class ProfileAdminPage extends StatelessWidget {
             height: 150,
             margin: EdgeInsets.only(top: kSpacingUnit.w * 3),
             child: Stack(children: [
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image.asset('images/image_default.jpg')),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: GestureDetector(
-                    onTap: () => controller.selectAssets(context),
-                    child: Container(
-                      width: 25,
-                      height: 25,
-                      decoration: BoxDecoration(
-                          color: whiteColor,
-                          border: Border.all(width: 1, color: greyBackground),
-                          borderRadius: const BorderRadius.all(Radius.circular(100))),
-                      child: Icon(
-                        Icons.edit,
-                        size: 18,
-                        color: greyTextColor,
-                      ),
-                    )),
-              )
-            ]),
+              Container(
+              margin: EdgeInsets.all(5),
+              child: Container(
+                child: CircleImage(
+                  widthImg: 150,
+                  heightImg: 150,
+                  urlImg: detailController.admin.avatar,
+                  borderRadius: 100,
+                ),
+              ),
+            ),
+            ]
+            ),
           ),
           SizedBox(height: kSpacingUnit.w * 2),
           Text(

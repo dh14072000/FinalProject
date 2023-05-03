@@ -23,6 +23,7 @@ class EmployeePage extends StatelessWidget {
           height: sy(50),
           text: detailController.admin.company,
           backButton: false,
+          urlImage: detailController.admin.avatar,
         ),
         body: Column(
           children: [
@@ -83,6 +84,7 @@ class EmployeePage extends StatelessWidget {
                                   name: snapshot.data!.docs[index].get('name'),
                                   phone:
                                       snapshot.data!.docs[index].get('phone'),
+                                      urlImage: snapshot.data!.docs[index].get('avatar'),
                                 ),
                               )),
                     );

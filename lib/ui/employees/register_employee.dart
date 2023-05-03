@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:final_project/controller/register_employee_controller.dart';
+import 'package:final_project/resource/definition_color.dart';
+import 'package:final_project/resource/definition_style.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/ui/login/widget/header_widget.dart';
+import 'package:final_project/widget/image/circle_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:crypto/crypto.dart';
+import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 
 class RegisterEmployeePage extends StatelessWidget {
   var controller = Get.find<RegisterEmployeeController>();
@@ -35,35 +39,45 @@ class RegisterEmployeePage extends StatelessWidget {
                         GestureDetector(
                           child: Stack(
                             children: [
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  border:
-                                      Border.all(width: 5, color: Colors.white),
-                                  color: Colors.white,
-                                  // ignore: prefer_const_literals_to_create_immutables
-                                  boxShadow: [
-                                    const BoxShadow(
-                                      color: Colors.black12,
-                                      blurRadius: 20,
-                                      offset: Offset(5, 5),
+                              controller.assets.isEmpty
+                                  ? const CircleImage(
+                                      widthImg: 150,
+                                      heightImg: 150,
+                                      urlImg:
+                                          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fen%2Fsearch%3Fq%3Davatar&psig=AOvVaw1TmNhAHoyuVRL348oy0Q27&ust=1682501381731000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLizhp3cxP4CFQAAAAAdAAAAABAE',
+                                      borderRadius: 100,
+                                    )
+                                  : ClipRRect(
+                                      borderRadius: BorderRadius.circular(100),
+                                      child: Image(
+                                        image: AssetEntityImageProvider(
+                                            controller.assets.first),
+                                        width: 150,
+                                        height: 150,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                                  ],
-                                ),
-                                child: Icon(
-                                  Icons.person,
-                                  color: Colors.grey.shade300,
-                                  size: 80.0,
-                                ),
-                              ),
-                              Container(
-                                padding:
-                                    const EdgeInsets.fromLTRB(80, 80, 0, 0),
-                                child: Icon(
-                                  Icons.add_circle,
-                                  color: Colors.grey.shade700,
-                                  size: 25.0,
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: GestureDetector(
+                                  onTap: () => controller.selectAssets(context),
+                                  child: Container(
+                                    width: 35,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                        color: whiteColor,
+                                        boxShadow: [greyBoxShadow],
+                                        border: Border.all(
+                                            width: 1, color: greyBackground),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(100))),
+                                    child: Icon(
+                                      Icons.edit,
+                                      size: 20,
+                                      color: greyTextColor,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],

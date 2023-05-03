@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/model/time_keeping_model.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/resource/definition_style.dart';
 import 'package:final_project/widget/base/app_fonts.dart';
+import 'package:final_project/widget/image/circle_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -12,11 +14,13 @@ import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 class TimeKeepingCarrd extends StatelessWidget {
   final TimeKeepingModel timeKeeping;
   final String? status;
+  final String? urlImg;
 
-  const TimeKeepingCarrd({super.key, required this.timeKeeping, this.status});
+  const TimeKeepingCarrd({super.key, required this.timeKeeping, this.status, this.urlImg});
 
   @override
   Widget build(BuildContext context) {
+     
     return Container(
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -26,9 +30,11 @@ class TimeKeepingCarrd extends StatelessWidget {
       height: 80,
       padding: const EdgeInsets.only(top:15, bottom: 15,left: 30,right: 30),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(100),
-          child: Image.asset('images/image_default.jpg'),
+        CircleImage(
+          widthImg: 50,
+          heightImg: 50,
+          urlImg: urlImg ?? 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fen%2Fsearch%3Fq%3Davatar&psig=AOvVaw1TmNhAHoyuVRL348oy0Q27&ust=1682501381731000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLizhp3cxP4CFQAAAAAdAAAAABAE' ,
+          borderRadius: 100,
         ),
         Expanded(
           flex: 5,

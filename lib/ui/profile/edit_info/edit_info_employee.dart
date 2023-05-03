@@ -40,7 +40,7 @@ class EditInfoEmployee extends StatelessWidget {
                                   widthImg: 150,
                                   heightImg: 150,
                                   urlImg:
-                                      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elle.vn%2Fthe-gioi-van-hoa%2F26-hinh-anh-dep-den-nghet-tho-du-khong-chinh-sua-photoshop&psig=AOvVaw3mESPOOZTNFDkuQMeL37IJ&ust=1682087016663000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLDI-srUuP4CFQAAAAAdAAAAABAJ',
+                                     controller.employeeData.employeeData.get('avatar') ,
                                   borderRadius: 100,
                                 ),
                               )

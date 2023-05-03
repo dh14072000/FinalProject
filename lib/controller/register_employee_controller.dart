@@ -1,14 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/binding/route_path.dart';
+import 'package:final_project/controller/fire_storage.dart';
 import 'package:final_project/controller/login_controller.dart';
+import 'package:final_project/widget/base/mixin_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:crypto/crypto.dart';
 
-class RegisterEmployeeController extends GetxController {
+class RegisterEmployeeController extends GetxController with UploadImage, FireStorage {
   final formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -22,8 +25,31 @@ class RegisterEmployeeController extends GetxController {
   CollectionReference employees =
       FirebaseFirestore.instance.collection('employees');
 
+      Future<String?> setAvatar() async {
+    String? fileName;
+    List<File?> file =
+        await Future.wait(assets.value.map((e) => e.file).toList());
+    if (file.single == null) return null;
+
+    var filePath = file.single!.path;
+    fileName = filePath.split("/").last;
+
+    await uploadImage(file.single!, fileName);
+
+    return fileName;
+  }
+
+
   addEmployee() async {
+              String? avatarRef;
+    var str = await setAvatar();
+
+    if (str != null) {
+      avatarRef = await storageRef.child("avatar/$str").getDownloadURL();
+    }
+
     await employees.add({
+      'avatar': avatarRef,
       'name': nameController.text.trim(),
       'email': emailController.text.trim(),
       'phone': phoneController.text.trim(),

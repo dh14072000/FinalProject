@@ -9,7 +9,7 @@ import 'package:final_project/widget/base/mixin_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class EditInfoEmployeeController extends GetxController with UploadImage {
+class EditInfoEmployeeController extends GetxController with UploadImage,FireStorage {
   var employeeData = Get.find<DetailEmployeeController>();
 
   TextEditingController nameController = TextEditingController();
@@ -30,8 +30,29 @@ class EditInfoEmployeeController extends GetxController with UploadImage {
     ageController.text = employeeData.employeeData.get('age');
   }
 
+    Future<String?> setAvatar() async {
+    String? fileName;
+    List<File?> file =
+        await Future.wait(assets.value.map((e) => e.file).toList());
+    if (file.single == null) return null;
+
+    var filePath = file.single!.path;
+    fileName = filePath.split("/").last;
+
+    await uploadImage(file.single!, fileName);
+
+    return fileName;
+  }
+
   void setEmployeeData() async {
+          String? avatarRef;
+    var str = await setAvatar();
+    if (str != null) {
+      avatarRef = await storageRef.child("avatar/$str").getDownloadURL();
+    }
+
     ref.doc(employeeData.employeeData.get('id')).update({
+      'avatar': avatarRef,
       'name': nameController.text,
       'email': emailController.text,
       'phone': phoneController.text,
@@ -40,7 +61,7 @@ class EditInfoEmployeeController extends GetxController with UploadImage {
         'Thành công', 'Thông tin nhân viên đã cập nhật!',
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green));
     Timer(const Duration(seconds: 2), () {
-      Get.offNamed(RoutePaths.HOME_PAGE);
+      Get.close(2);
     });
   }
 

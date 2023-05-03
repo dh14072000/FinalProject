@@ -1,5 +1,6 @@
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/widget/base/app_fonts.dart';
+import 'package:final_project/widget/image/circle_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,7 +12,8 @@ class ProjectAppBar extends StatelessWidget with PreferredSizeWidget {
       required this.height,
       required this.backButton,
       this.aligement,
-      this.action})
+      this.action,
+      this.urlImage})
       : super(key: key);
   final Image? image;
   final String? text;
@@ -19,14 +21,23 @@ class ProjectAppBar extends StatelessWidget with PreferredSizeWidget {
   final bool backButton;
   final Alignment? aligement;
   final List<Widget>? action;
+  final String? urlImage;
   @override
   PreferredSizeWidget build(BuildContext context) {
     return AppBar(
-      leading: backButton ? BackButton(color: Colors.black) : Container(
-        margin: EdgeInsets.all(5),
-        child: const CircleAvatar(backgroundImage: NetworkImage(
-'https://i.pinimg.com/564x/1e/7f/85/1e7f85e354e1a11b4a439ac9d9f7e283.jpg'),),
-      ),
+      leading: backButton
+          ? BackButton(color: Colors.black)
+          : Container(
+              margin: EdgeInsets.all(5),
+              child: Container(
+                child: CircleImage(
+                  widthImg: 50,
+                  heightImg: 50,
+                  urlImg: urlImage,
+                  borderRadius: 100,
+                ),
+              ),
+            ),
       backgroundColor: Colors.transparent,
       elevation: 10,
       actions: action,

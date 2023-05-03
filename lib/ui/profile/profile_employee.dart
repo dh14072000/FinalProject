@@ -1,6 +1,7 @@
 import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/detail_employee_controller.dart';
 import 'package:final_project/widget/base/app_fonts.dart';
+import 'package:final_project/widget/image/circle_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -43,11 +44,14 @@ class FrofileEmployeePage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        const CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              'https://i.pinimg.com/564x/1e/7f/85/1e7f85e354e1a11b4a439ac9d9f7e283.jpg'),
-                          radius: 60,
-                        ),
+                        Container(
+                child: CircleImage(
+                  widthImg: 150,
+                  heightImg: 150,
+                  urlImg: detailEmployee.employeeData.get('avatar'),
+                  borderRadius: 100,
+                ),
+              ),
                         SizedBox(
                           height: _height / 30,
                         ),

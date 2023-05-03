@@ -51,13 +51,17 @@ class SchedulePage extends StatelessWidget {
             ),
           ),
           Flexible(
-              flex: 4,
-              child: Obx(() => ListView.builder(
-                  itemCount: controller.timeData.length,
-                  itemBuilder: (context, index) => TimeKeepingCarrd(
-                        timeKeeping: controller.timeData[index],
-                        status: controller.statusDay(index),
-                      )))),
+            flex: 4,
+            child: Obx(
+              () => ListView.builder(
+                itemCount: controller.timeData.length,
+                itemBuilder: (context, index) => TimeKeepingCarrd(
+                  timeKeeping: controller.timeData[index],
+                  status: controller.statusDay(index),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:final_project/controller/pay_controller.dart';
+import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,9 +34,11 @@ class PayPage extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.all(20),
-                    child: Text(
-                      "${controller.employee.sarlayMonth}",
-                    ),
+                    child: Text("${controller.employee.sarlayMonth}",
+                        style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.green)),
                   ),
                 ],
               ),
@@ -51,14 +54,16 @@ class PayPage extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       print(controller.employee.bonusCash);
                     },
                     child: Container(
                       margin: EdgeInsets.all(20),
-                      child: Text(
-                        "${controller.employee.bonusCash}",
-                      ),
+                      child: Text("${controller.employee.bonusCash}",
+                          style: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green)),
                     ),
                   ),
                 ],
@@ -76,9 +81,11 @@ class PayPage extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.all(20),
-                    child: Text(
-                      "${controller.employee.allowanceCash}",
-                    ),
+                    child: Text("${controller.employee.allowanceCash}",
+                        style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.green)),
                   ),
                 ],
               ),
@@ -95,14 +102,17 @@ class PayPage extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.all(20),
-                    child: Text(
-                      "${controller.employee.reduceCash}",
-                    ),
+                    child: Text("${controller.employee.reduceCash}",
+                        style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.green)),
                   ),
                 ],
               ),
             ),
-            Obx(() => Row(
+            Obx(
+              () => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
@@ -113,12 +123,33 @@ class PayPage extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.all(20),
-                    child: Text(
-                      controller.employee.getTotalSarlay().toString(),
-                    ),
+                    child: Text(controller.employee.getTotalSarlay().toString(),
+                        style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.green)),
                   ),
                 ],
-              ),)
+              ),
+            ),
+            Container(
+              decoration: ThemeHelper().buttonBoxDecoration(context),
+              child: ElevatedButton(
+                style: ThemeHelper().buttonStyle(),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
+                  child: Text(
+                    "thanh toán".toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                onPressed: () {},
+              ),
+            ),
           ],
         ),
       );
