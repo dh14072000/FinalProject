@@ -10,6 +10,7 @@ class ScheduleController extends GetxController {
   Rx<DateTime> selectedDay = DateTime.now().obs;
   var listEvent = <DateTime, List<CleanCalendarEvent>>{};
   late String urlImage;
+  RxString avatar = RxString('');
 
   var daysOfWeek = <String>[
     "Monday".tr,
@@ -33,7 +34,6 @@ class ScheduleController extends GetxController {
 
     var listTimeData =
         snapShot.docs.map((e) => TimeKeepingModel.formSnapShort(e)).toList();
-
     for (var timeData in listTimeData) {
       var date = timeDataDateToDateTime(timeData.date);
       var event = CleanCalendarEvent("summary",
@@ -60,6 +60,7 @@ class ScheduleController extends GetxController {
 
   RxList<TimeKeepingModel> timeData = <TimeKeepingModel>[].obs;
   getTimeEmployeeData() async {
+         timeData.clear();
     final snapShort = await FirebaseFirestore.instance
         .collection('timeData')
         .where('day',
@@ -69,10 +70,22 @@ class ScheduleController extends GetxController {
       timeData.value =
           snapShort.docs.map((e) => TimeKeepingModel.formSnapShort(e)).toList();
       print(timeData.toString());
+      print(timeData.length);
     } else {
       timeData.value = [];
     }
+    for (var element in timeData) {
+      var employee = await FirebaseFirestore.instance
+        .collection('employees')
+        .where('employeeCode',
+            isEqualTo: element.id.toString())
+        .get();
+        element.avatar!.value = employee.docs.map((e) => e.get('avatar')).single;
+     }
+    return;
   }
+    
+
 
   // handle status day
   String statusDay(int index) {
@@ -85,6 +98,4 @@ class ScheduleController extends GetxController {
     }
     return 'VA';
   }
-
-
 }

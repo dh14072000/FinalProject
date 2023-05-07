@@ -34,7 +34,7 @@ class PayPage extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.all(20),
-                    child: Text("${controller.employee.sarlayMonth}",
+                    child: Text("${controller.employee.sarlayMonthDouble}",
                         style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w400,

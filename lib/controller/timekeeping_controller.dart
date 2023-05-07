@@ -78,10 +78,9 @@ class TimeKeepingController extends GetxController {
         .get();
     if (snapShort.docs.isNotEmpty) {
       timeData.value =
-          snapShort.docs.map((e) => TimeKeepingModel.formSnapShort(e)).single;
+          snapShort.docs.map((e) => TimeKeepingModel.formSnapShort(e)).first;
       print(timeData.value.toString());
     }
-    print(timeData.value.toString());
   }
 
   // handle status day
@@ -102,9 +101,17 @@ class TimeKeepingController extends GetxController {
         timeData.value.timeIn!.isNotEmpty &&
         timeData.value.timeOut != null &&
         timeData.value.timeOut!.isNotEmpty) {
-      return Utils.checkSarrlay(timeData.value.date!, timeData.value.timeIn!,
-              timeData.value.timeOut!)
-          .obs;
+          if (employee.employeeData.get('position') == 'Nhân viên') {
+          return
+              int.parse(Utils.checkSarrlay(timeData.value.date!, timeData.value.timeIn!,
+              timeData.value.timeOut!)).toString().obs;
+          
+        } else {
+           return
+              (int.parse(Utils.checkSarrlay(timeData.value.date!, timeData.value.timeIn!,
+              timeData.value.timeOut!))*1.4).toString().obs;
+        }
+      
     }
     return '0'.obs;
   }

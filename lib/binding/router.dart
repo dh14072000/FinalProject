@@ -1,5 +1,6 @@
 import 'package:final_project/binding/binding.dart';
 import 'package:final_project/binding/route_path.dart';
+import 'package:final_project/ui/department/department.dart';
 import 'package:final_project/ui/employees/function/bonus.dart';
 import 'package:final_project/ui/employees/function/pay.dart';
 import 'package:final_project/ui/employees/function/reduce.dart';
@@ -57,6 +58,11 @@ class ProjectRouter {
     GetPage(
       name: RoutePaths.EDIT_INFO_EMPLOYEE,
       page: () => EditInfoEmployee(),
+      binding: SampleBind(),
+    ),
+    GetPage(
+      name: RoutePaths.DEPARTMENT,
+      page: () => DepartmentPage(),
       binding: SampleBind(),
     ),
   ];

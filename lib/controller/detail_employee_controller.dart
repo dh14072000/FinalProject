@@ -11,14 +11,14 @@ class DetailEmployeeController extends GetxController {
   var employeeData = Get.arguments;
   var monthNow = DateTime.now().month;
   List<TimeKeepingModel> dataTimer = [];
-  RxInt sarlayMonth = RxInt(0);
+  RxDouble sarlayMonthDouble = RxDouble(0.0);
   RxInt totalSarlay = RxInt(0);
   RxInt bonusCash = RxInt(0);
   RxInt allowanceCash = RxInt(0);
   RxInt reduceCash = RxInt(0);
 
   void getData() {
-    sarlayMonth.value = 0;
+    sarlayMonthDouble.value = 0.0;
     bonusCash.value = 0;
     allowanceCash.value = 0;
     reduceCash.value = 0;
@@ -28,15 +28,15 @@ class DetailEmployeeController extends GetxController {
     getReduceCash();
   }
 
-   getTotalSarlay() {
-    return sarlayMonth.value +
+  getTotalSarlay() {
+    return sarlayMonthDouble.value +
         bonusCash.value +
         allowanceCash.value -
         reduceCash.value;
   }
 
   getSarlayMonth() async {
-    List<TimeKeepingModel> dataTimer = [];
+    dataTimer.clear();
     final snapShort = await FirebaseFirestore.instance
         .collection('timeData')
         .where('id', isEqualTo: int.parse(employeeData.get('employeeCode')))
@@ -50,8 +50,15 @@ class DetailEmployeeController extends GetxController {
           e.timeIn!.isNotEmpty &&
           e.timeOut != null &&
           e.timeOut!.isNotEmpty) {
-        var sarlayDay = Utils.checkSarrlay(e.date!, e.timeIn!, e.timeOut!);
-        sarlayMonth = sarlayMonth + int.parse(sarlayDay);
+        if (employeeData.get('position') == 'Nhân viên') {
+          var sarlayDay =
+              int.parse(Utils.checkSarrlay(e.date!, e.timeIn!, e.timeOut!));
+          sarlayMonthDouble.value = sarlayMonthDouble.value + sarlayDay;
+        } else {
+          var sarlayDay =
+              int.parse(Utils.checkSarrlay(e.date!, e.timeIn!, e.timeOut!));
+          sarlayMonthDouble.value = sarlayMonthDouble.value + sarlayDay * 1.4;
+        }
       }
     });
   }

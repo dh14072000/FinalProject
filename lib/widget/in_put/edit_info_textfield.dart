@@ -15,7 +15,7 @@ class RoundTextField extends StatelessWidget {
       this.readOnly = false,
       this.hint,
       this.isObscureText = false,
-      this.maxLength})
+      this.maxLength, this.textInputType})
       : super(key: key);
   final Key? formKey;
   final String? Function(String?)? validator;
@@ -26,6 +26,7 @@ class RoundTextField extends StatelessWidget {
   final String? hint;
   final bool isObscureText;
   final int? maxLength;
+  final TextInputType? textInputType;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,7 @@ class RoundTextField extends StatelessWidget {
         textAlignVertical: TextAlignVertical.center,
         controller: controller,
         validator: validator,
+        keyboardType: textInputType,
         style: AppFonts.textGreyNotification,
         readOnly: readOnly,
         onChanged: onChange,

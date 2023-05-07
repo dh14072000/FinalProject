@@ -2,6 +2,13 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+enum Position {MANAGER , EMPLOYEE}
+
+Map<Position,String> position  ={
+Position.MANAGER : 'Quản lý',
+Position.EMPLOYEE: 'Nhân viên',
+};
+
 class AdminModel {
   final String company;
   final String name;

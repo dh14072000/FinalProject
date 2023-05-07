@@ -9,4 +9,5 @@ class RoutePaths {
   static const String PROFILE_EMPLOYEE = '/profile_employee';
   static const String EDIT_INFO_ADMIN = '/edit_info_admin';
   static const String EDIT_INFO_EMPLOYEE = '/edit_info_employee';
+  static const String DEPARTMENT = '/department';
 }

@@ -8,21 +8,6 @@ import 'package:intl/intl.dart';
 
 class PayController extends GetxController {
   var employee = Get.find<DetailEmployeeController>();
-
   var monthNow = DateTime.now().month;
-  List<TimeKeepingModel> timeData = [];
-  getTimeEmployeeData() async {
-    final snapShort = await FirebaseFirestore.instance
-        .collection('timeData')
-        .where('id',
-            isEqualTo: int.parse(employee.employeeData.get('employeeCode')))
-        .get();
-    if (snapShort.docs.isNotEmpty) {
-      timeData =
-          snapShort.docs.map((e) => TimeKeepingModel.formSnapShort(e)).toList();
-      print(timeData.toString());
-    }
-    print(timeData.toString());
-  }
 }
 

@@ -30,9 +30,9 @@ class SchedulePage extends StatelessWidget {
               events: controller.listEvent,
               onRangeSelected: (range) =>
                   print('Range is ${range.from}, ${range.to}'),
-              onDateSelected: (date) {
-                controller.handleNewDate(date);
-                controller.getTimeEmployeeData();
+              onDateSelected: (date) async {
+                await controller.handleNewDate(date);
+                await controller.getTimeEmployeeData();
               },
               bottomBarColor: Colors.blue.shade300,
               isExpandable: true,
@@ -58,6 +58,7 @@ class SchedulePage extends StatelessWidget {
                 itemBuilder: (context, index) => TimeKeepingCarrd(
                   timeKeeping: controller.timeData[index],
                   status: controller.statusDay(index),
+                  urlImg: controller.timeData[index].avatar?.value,
                 ),
               ),
             ),

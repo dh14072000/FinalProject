@@ -131,6 +131,11 @@ class ProfileAdminPage extends StatelessWidget {
                         text: 'Báo cáo file(Excel)',
                       ),
                       ProfileListItem(
+                        onTap: () => Get.toNamed(RoutePaths.DEPARTMENT),
+                        icon: LineAwesomeIcons.calendar,
+                        text: 'Thêm phòng ban',
+                      ),
+                      ProfileListItem(
                         onTap: () {
                           controller.signOut();
                         },

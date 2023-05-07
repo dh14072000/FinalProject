@@ -6,18 +6,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/fire_storage.dart';
 import 'package:final_project/controller/login_controller.dart';
+import 'package:final_project/model/admin_model.dart';
+import 'package:final_project/model/department_model.dart';
 import 'package:final_project/widget/base/mixin_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:crypto/crypto.dart';
 
-class RegisterEmployeeController extends GetxController with UploadImage, FireStorage {
+class RegisterEmployeeController extends GetxController
+    with UploadImage, FireStorage {
   final formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController ageController = TextEditingController();
   TextEditingController employeeCode = TextEditingController();
+  Rx<Position> selectedPosition = Position.MANAGER.obs;
+  Rxn<DepartmentModel> selectedDepartment = Rxn<DepartmentModel>();
 
   var controller = Get.find<LoginController>();
   bool checkedValue = false;
@@ -25,7 +30,13 @@ class RegisterEmployeeController extends GetxController with UploadImage, FireSt
   CollectionReference employees =
       FirebaseFirestore.instance.collection('employees');
 
-      Future<String?> setAvatar() async {
+  @override
+  onInit() async {
+    super.onInit();
+    await getListDepartment();
+  }
+
+  Future<String?> setAvatar() async {
     String? fileName;
     List<File?> file =
         await Future.wait(assets.value.map((e) => e.file).toList());
@@ -39,9 +50,8 @@ class RegisterEmployeeController extends GetxController with UploadImage, FireSt
     return fileName;
   }
 
-
   addEmployee() async {
-              String? avatarRef;
+    String? avatarRef;
     var str = await setAvatar();
 
     if (str != null) {
@@ -54,7 +64,9 @@ class RegisterEmployeeController extends GetxController with UploadImage, FireSt
       'email': emailController.text.trim(),
       'phone': phoneController.text.trim(),
       'employeeCode': employeeCode.text.trim(),
-      'id':employeeCode.text.trim(),
+      'id': employeeCode.text.trim(),
+      'position': position[selectedPosition.value],
+      'department': selectedDepartment.value?.name,
       'age': ageController.text.trim(),
       'idCompany': controller.admin.id
     }).then((value) {
@@ -65,5 +77,20 @@ class RegisterEmployeeController extends GetxController with UploadImage, FireSt
     Timer(Duration(seconds: 2), () {
       Get.offNamed(RoutePaths.HOME_PAGE);
     });
+  }
+
+  RxList<DepartmentModel> listDepartment = <DepartmentModel>[].obs;
+  getListDepartment() async {
+    final snapShort = await FirebaseFirestore.instance
+        .collection('department')
+        .where('idCompany', isEqualTo: controller.admin.id)
+        .get();
+    if (snapShort.docs.isNotEmpty) {
+      listDepartment.value =
+          snapShort.docs.map((e) => DepartmentModel.formSnapShort(e)).toList();
+      print(listDepartment.toString());
+    } else {
+      listDepartment.value = [];
+    }
   }
 }
