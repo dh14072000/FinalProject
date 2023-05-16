@@ -84,6 +84,7 @@ class EmployeePage extends StatelessWidget {
                                   name: snapshot.data!.docs[index].get('name'),
                                   phone:
                                       snapshot.data!.docs[index].get('phone'),
+                                      department:  snapshot.data!.docs[index].get('department'),
                                       urlImage: snapshot.data!.docs[index].get('avatar'),
                                 ),
                               )),

@@ -39,7 +39,7 @@ class RegisterAdmin extends StatelessWidget {
                         GestureDetector(
                           child: Stack(
                             children: [
-                              controller.assets.isEmpty
+                              Obx(() => controller.assets.isEmpty
                                   ? Container(
                                       child: CircleImage(
                                         widthImg: 150,
@@ -58,7 +58,7 @@ class RegisterAdmin extends StatelessWidget {
                                         height: 150,
                                         fit: BoxFit.cover,
                                       ),
-                                    ),
+                                    ),),
                               Positioned(
                                 bottom: 0,
                                 right: 0,

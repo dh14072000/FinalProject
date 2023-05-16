@@ -70,7 +70,7 @@ class EditInfoEmployeeController extends GetxController with UploadImage,FireSto
     Get.snackbar('Thành công', 'Nhân viên đã được xoá khỏi hệ thống!',
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
     Timer(const Duration(seconds: 2), () {
-      Get.offNamed(RoutePaths.HOME_PAGE);
+      Get.close(2);
     });
   }
 }

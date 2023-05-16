@@ -37,6 +37,10 @@ class TabPage extends StatelessWidget {
                       label: 'Tháng'.tr,
                       backgroundColor: Colors.red),
                   BottomNavigationBarItem(
+                      icon: const Icon(Icons.show_chart_outlined),
+                      label: 'Thống kê'.tr,
+                      backgroundColor: Colors.red),
+                  BottomNavigationBarItem(
                       icon: const Icon(Icons.settings),
                       label: 'Tài khoản'.tr,
                       backgroundColor: Colors.red),

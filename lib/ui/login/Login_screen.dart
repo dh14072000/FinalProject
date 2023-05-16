@@ -75,10 +75,11 @@ class LoginPage extends StatelessWidget {
                             decoration: ThemeHelper().textInputDecoration(
                                 'Mật khẩu',
                                 'Nhập mật khẩu',
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                        Icons.fingerprint_outlined))),
+                                // IconButton(
+                                //     onPressed: () {},
+                                //     icon: const Icon(
+                                //         Icons.fingerprint_outlined))
+                                        ),
                                         validator: (value){
                                           if (value!.isEmpty) {
                                 return "Vui lòng nhập mật khẩu";
@@ -88,26 +89,6 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15.0),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(10, 0, 10, 20),
-                          alignment: Alignment.topRight,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ForgotPasswordPage()),
-                              );
-                            },
-                            child: const Text(
-                              "Lấy lại mật khẩu?",
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                        ),
                         Container(
                           decoration:
                               ThemeHelper().buttonBoxDecoration(context),

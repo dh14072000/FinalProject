@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/model/admin_model.dart';
+import 'package:final_project/widget/base/app_fonts.dart';
+import 'package:final_project/widget/btn_component/btn_primary.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +17,8 @@ class LoginController extends GetxController {
   late AdminModel admin;
   TextEditingController passwordController = TextEditingController();
   TextEditingController userController = TextEditingController();
+  
+  late BuildContext context;
   @override
   void onInit() {
     super.onInit();
@@ -32,7 +36,15 @@ class LoginController extends GetxController {
         .get()
         .then((value) => value.size > 0
             ? Get.toNamed(RoutePaths.HOME_PAGE)
-            : printError(info: 'error'));
+            : Get.defaultDialog(title: 'Đăng nhập thất bại!',
+            middleText: 'Vui lòng kiểm tra lại thông tin tài khoản mật khẩu.',
+            titleStyle: AppFonts.textRedButton,
+            middleTextStyle: AppFonts.textGreyNotification,
+            cancel: GestureDetector(
+              onTap: ()=>Get.back(),
+              child: Text('OK',style: AppFonts.red16Green,),
+            )
+            ));
   }
 
   getDetailAdmin() async {

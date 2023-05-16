@@ -1,3 +1,4 @@
+import 'package:final_project/ui/home/tab_page/chart.dart';
 import 'package:final_project/ui/home/tab_page/employees.dart';
 import 'package:final_project/ui/home/tab_page/schedule_month.dart';
 import 'package:final_project/ui/profile/profile_admin.dart';
@@ -9,6 +10,11 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   RxInt currentTabIndex = 0.obs;
 
-  List<Widget> pages = [EmployeePage(), SchedulePage(), ProfileAdminPage()];
+  List<Widget> pages = [
+    EmployeePage(),
+    SchedulePage(),
+    ChartPage(),
+    ProfileAdminPage()
+  ];
   Widget get currentPage => pages[currentTabIndex.value];
 }

@@ -58,7 +58,7 @@ class SchedulePage extends StatelessWidget {
                 itemBuilder: (context, index) => TimeKeepingCarrd(
                   timeKeeping: controller.timeData[index],
                   status: controller.statusDay(index),
-                  urlImg: controller.timeData[index].avatar?.value,
+                  urlImg: controller.timeData[index].avatar,
                 ),
               ),
             ),

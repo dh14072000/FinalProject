@@ -119,7 +119,6 @@ class RegisterEmployeePage extends StatelessWidget {
                             decoration: ThemeHelper()
                                 .textInputDecoration('Họ tên', 'Nhập họ tên'),
                             validator: (val) {
-                              // ignore: prefer_is_not_empty
                               if (val!.isEmpty) {
                                 return "Vui lòng nhập họ tên nhân viên";
                               }
@@ -247,7 +246,7 @@ class RegisterEmployeePage extends StatelessWidget {
                               padding:
                                   const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
-                                "Đăng ký".toUpperCase(),
+                                "Tạo nhân viên".toUpperCase(),
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,

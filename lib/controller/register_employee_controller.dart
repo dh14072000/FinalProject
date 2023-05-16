@@ -67,6 +67,7 @@ class RegisterEmployeeController extends GetxController
       'id': employeeCode.text.trim(),
       'position': position[selectedPosition.value],
       'department': selectedDepartment.value?.name,
+      'coefficients':selectedDepartment.value?.coefficients,
       'age': ageController.text.trim(),
       'idCompany': controller.admin.id
     }).then((value) {

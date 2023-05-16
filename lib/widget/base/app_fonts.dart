@@ -93,4 +93,10 @@ class AppFonts {
       fontStyle: FontStyle.normal,
       height: 17 / 14,
       color: lightGreyTextColor);
+  static TextStyle red16Green = GoogleFonts.roboto(
+      fontWeight: FontWeight.w500,
+      fontSize: 16,
+      fontStyle: FontStyle.normal,
+      height: 19 / 16,
+      color: Colors.green.shade300);
 }

@@ -103,13 +103,13 @@ class TimeKeepingController extends GetxController {
         timeData.value.timeOut!.isNotEmpty) {
           if (employee.employeeData.get('position') == 'Nhân viên') {
           return
-              int.parse(Utils.checkSarrlay(timeData.value.date!, timeData.value.timeIn!,
-              timeData.value.timeOut!)).toString().obs;
+              (int.parse(Utils.checkSarrlay(timeData.value.date!, timeData.value.timeIn!,
+              timeData.value.timeOut!))*double.parse(employee.employeeData.get('coefficients'))).toString().obs;
           
         } else {
            return
               (int.parse(Utils.checkSarrlay(timeData.value.date!, timeData.value.timeIn!,
-              timeData.value.timeOut!))*1.4).toString().obs;
+              timeData.value.timeOut!))*1.2*double.parse(employee.employeeData.get('coefficients'))).toString().obs;
         }
       
     }

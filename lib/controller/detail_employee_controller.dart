@@ -52,12 +52,12 @@ class DetailEmployeeController extends GetxController {
           e.timeOut!.isNotEmpty) {
         if (employeeData.get('position') == 'Nhân viên') {
           var sarlayDay =
-              int.parse(Utils.checkSarrlay(e.date!, e.timeIn!, e.timeOut!));
+              int.parse(Utils.checkSarrlay(e.date!, e.timeIn!, e.timeOut!))*double.parse(employeeData.get('coefficients'));
           sarlayMonthDouble.value = sarlayMonthDouble.value + sarlayDay;
         } else {
           var sarlayDay =
-              int.parse(Utils.checkSarrlay(e.date!, e.timeIn!, e.timeOut!));
-          sarlayMonthDouble.value = sarlayMonthDouble.value + sarlayDay * 1.4;
+              int.parse(Utils.checkSarrlay(e.date!, e.timeIn!, e.timeOut!))*double.parse(employeeData.get('coefficients'));
+          sarlayMonthDouble.value = sarlayMonthDouble.value + sarlayDay*1.2;
         }
       }
     });
