@@ -4,14 +4,14 @@ import 'package:final_project/controller/login_controller.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
 import 'package:final_project/widget/card/employee_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:relative_scale/relative_scale.dart';
 
 class ChartPage extends StatelessWidget {
   var controller = Get.find<ChartController>();
   var detailController = Get.find<LoginController>();
+
+  ChartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +32,18 @@ class ChartPage extends StatelessWidget {
                       child: ListView.builder(
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) {
-                            controller.getSarlayMonth(int.parse(snapshot
-                                .data!.docs[index]
-                                .get('employeeCode')));
                             return GestureDetector(
                               // onTap: () {
                               //   Get.toNamed(RoutePaths.PROFILE_EMPLOYEE,
                               //       arguments: snapshot.data!.docs[index]);
                               // },
+
                               child: EmployeeCard(
                                 name: snapshot.data!.docs[index].get('name'),
-                                phone: controller.listTimeDu.length.toString(),
-                                department: controller.listTimeVa.length.toString(),
+                                phone:
+                                    "Time-data: ${controller.listEmpDayInfo.elementAt(index)["working-day"]}",
+                                department:
+                                    "Ngày làm đủ: ${controller.listEmpDayInfo.elementAt(index)["full"]} Ngày nghỉ làm: ${controller.listEmpDayInfo.elementAt(index)["off"]}\nNgày làm nửa: ${controller.listEmpDayInfo.elementAt(index)["half"]} Ngày đến muộn: ${controller.listEmpDayInfo.elementAt(index)["late"]}",
                                 urlImage:
                                     snapshot.data!.docs[index].get('avatar'),
                               ),
@@ -52,9 +52,10 @@ class ChartPage extends StatelessWidget {
                     );
                   }
                   if (snapshot.hasError) {
-                    return Text('Error');
-                  } else
-                    return CircularProgressIndicator();
+                    return const Text('Error');
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
                 })
           ],
         ),
