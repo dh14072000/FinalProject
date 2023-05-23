@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/controller/chart_controller.dart';
 import 'package:final_project/controller/login_controller.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
+import 'package:final_project/widget/card/chart_card.dart';
 import 'package:final_project/widget/card/employee_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,20 +34,29 @@ class ChartPage extends StatelessWidget {
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
-                              // onTap: () {
-                              //   Get.toNamed(RoutePaths.PROFILE_EMPLOYEE,
-                              //       arguments: snapshot.data!.docs[index]);
-                              // },
-
-                              child: EmployeeCard(
+                              child: ChartCard(
                                 name: snapshot.data!.docs[index].get('name'),
-                                phone:
-                                    "Time-data: ${controller.listEmpDayInfo.elementAt(index)["working-day"]}",
-                                department:
-                                    "Ngày làm đủ: ${controller.listEmpDayInfo.elementAt(index)["full"]} Ngày nghỉ làm: ${controller.listEmpDayInfo.elementAt(index)["off"]}\nNgày làm nửa: ${controller.listEmpDayInfo.elementAt(index)["half"]} Ngày đến muộn: ${controller.listEmpDayInfo.elementAt(index)["late"]}",
+                                phone: snapshot.data!.docs[index].get('phone'),
+                                department: snapshot.data!.docs[index]
+                                    .get('department'),
                                 urlImage:
                                     snapshot.data!.docs[index].get('avatar'),
+                                listDU:
+                                     '${controller.listEmpDayInfo.elementAt(index)["full"]}',
+                                listMU: '${controller.listEmpDayInfo.elementAt(index)["late"]}',
+                                listNU: '${controller.listEmpDayInfo.elementAt(index)["half"]}',
+                                listVA: '${controller.listEmpDayInfo.elementAt(index)["off"]}',
                               ),
+
+                              // child: ChartCard(
+                              //   name: snapshot.data!.docs[index].get('name'),
+                              //   phone:
+                              //       "Time-data: ${controller.listEmpDayInfo.elementAt(index)["working-day"]}",
+                              //   department:
+                              //       "Ngày làm đủ: ${controller.listEmpDayInfo.elementAt(index)["full"]} Ngày nghỉ làm: ${controller.listEmpDayInfo.elementAt(index)["off"]}\nNgày làm nửa: ${controller.listEmpDayInfo.elementAt(index)["half"]} Ngày đến muộn: ${controller.listEmpDayInfo.elementAt(index)["late"]}",
+                              //   urlImage:
+                              //       snapshot.data!.docs[index].get('avatar'),
+                              // ),
                             );
                           }),
                     );

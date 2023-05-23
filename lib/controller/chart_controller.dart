@@ -19,6 +19,7 @@ class ChartController extends GetxController {
 
   @override
   onInit() async {
+    super.onInit();
     await FirebaseFirestore.instance
         .collection('employees')
         .where('idCompany', isEqualTo: detailController.admin.id)
