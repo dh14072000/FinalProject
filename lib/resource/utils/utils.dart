@@ -17,9 +17,9 @@ class Utils {
           timeout.compareTo(timeCheckOut2) < 0) {
         return 'MU';
       } else if (timeout.compareTo(timeCurfewOut) < 0 &&
-          timeout.compareTo(timeCheckOut1) > 0) {
+          timeout.compareTo(timeCheckOut1) >= 0) {
         return 'NU';
-      } else if (timeout.compareTo(timeCheckOut2) > 0) {
+      } else if (timeout.compareTo(timeCheckOut2) >= 0) {
         return 'DU';
       }
       return 'VA';
@@ -28,7 +28,7 @@ class Utils {
       if (timeout.compareTo(timeCurfewOut) >= 0 &&
           timeout.compareTo(timeCheckOut2) < 0) {
         return 'NU';
-      } else if (timeout.compareTo(timeCheckOut2) > 0) {
+      } else if (timeout.compareTo(timeCheckOut2) >= 0) {
         return 'MU';
       }
       return 'VA';
@@ -60,7 +60,7 @@ class Utils {
       } else if (timeout.compareTo(timeCurfewOut) < 0 &&
           timeout.compareTo(timeCheckOut1) > 0) {
         return '150000';
-      } else if (timeout.compareTo(timeCheckOut2) > 0) {
+      } else if (timeout.compareTo(timeCheckOut2) >= 0) {
         return '300000';
       }
       return '0';
@@ -69,17 +69,17 @@ class Utils {
       if (timeout.compareTo(timeCurfewOut) >= 0 &&
           timeout.compareTo(timeCheckOut2) < 0) {
         return '150000';
-      } else if (timeout.compareTo(timeCheckOut2) > 0) {
+      } else if (timeout.compareTo(timeCheckOut2) >= 0) {
         return '250000';
       }
       return '0';
     } else if (timein.compareTo(timeCheckIn2) < 0) {
-      if (timeout.compareTo(timeCheckOut2) > 0) {
+      if (timeout.compareTo(timeCheckOut2) >= 0) {
         return '150000';
       } else {
         return '0';
       }
-    } else if (timein.compareTo(timeCheckIn2) > 0) {
+    } else if (timein.compareTo(timeCheckIn2) >= 0) {
       return '0';
     }
     return '0';

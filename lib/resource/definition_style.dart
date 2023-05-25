@@ -39,3 +39,9 @@ final BoxDecoration borderAllRed = BoxDecoration(
     Radius.circular(5),
   ),
 );
+final BoxDecoration borderAll = BoxDecoration(
+  border: Border.all(color: greyBorder),
+  borderRadius: BorderRadius.all(
+    Radius.circular(15),
+  ),
+);

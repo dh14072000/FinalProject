@@ -6,13 +6,14 @@ class PrimaryButton extends StatelessWidget {
   final Color backgroundColor;
   final double borderRadius;
   final Color borderColor;
-  final double width;
+  final double? width;
   final bool hasShadow;
   final String? title;
   final EdgeInsets margin;
   final EdgeInsets? padding;
   final Widget? prefixIcon;
   final style;
+
   final Widget? renderLabel;
 
   PrimaryButton(
@@ -22,7 +23,7 @@ class PrimaryButton extends StatelessWidget {
       this.backgroundColor = Colors.white,
       this.borderRadius = 10,
       this.borderColor = Colors.transparent,
-      this.width = 0,
+      this.width ,
       this.prefixIcon,
       this.margin = const EdgeInsets.all(15),
       this.padding,
@@ -34,7 +35,8 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45,
+      height:40 ,
+      width: width,
       child: ElevatedButton(
           onPressed: onPressed,
           style: ButtonStyle(

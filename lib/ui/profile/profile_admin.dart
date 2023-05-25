@@ -121,7 +121,7 @@ class ProfileAdminPage extends StatelessWidget {
                   child: ListView(
                     children: <Widget>[
                       ProfileListItem(
-                        onTap: () => controller.exportData(),
+                        onTap: () => controller.exportData(context),
                         icon: LineAwesomeIcons.fingerprint,
                         text: 'Tải file dữ liệu',
                       ),

@@ -34,19 +34,26 @@ class ChartPage extends StatelessWidget {
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
-                              child: ChartCard(
+                              child: Obx(() => ChartCard(
                                 name: snapshot.data!.docs[index].get('name'),
                                 phone: snapshot.data!.docs[index].get('phone'),
                                 department: snapshot.data!.docs[index]
                                     .get('department'),
                                 urlImage:
                                     snapshot.data!.docs[index].get('avatar'),
-                                listDU:
-                                     '${controller.listEmpDayInfo.elementAt(index)["full"]}',
-                                listMU: '${controller.listEmpDayInfo.elementAt(index)["late"]}',
-                                listNU: '${controller.listEmpDayInfo.elementAt(index)["half"]}',
-                                listVA: '${controller.listEmpDayInfo.elementAt(index)["off"]}',
-                              ),
+                                listDU: controller.listEmpDayInfo != []
+                                    ? '${controller.listEmpDayInfo.elementAt(index)["full"]}'
+                                    : '0',
+                                listMU: controller.listEmpDayInfo != []
+                                    ? '${controller.listEmpDayInfo.elementAt(index)["late"]}'
+                                    : '0',
+                                listNU: controller.listEmpDayInfo != []
+                                    ? '${controller.listEmpDayInfo.elementAt(index)["half"]}'
+                                    : '0',
+                                listVA: controller.listEmpDayInfo != []
+                                    ? '${controller.listEmpDayInfo.elementAt(index)["off"]}'
+                                    : '0',
+                              ),)
 
                               // child: ChartCard(
                               //   name: snapshot.data!.docs[index].get('name'),

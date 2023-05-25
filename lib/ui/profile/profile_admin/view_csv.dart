@@ -14,7 +14,7 @@ class _ViewCsvPageState extends State<ViewCsvPage> {
 
   Future<List<List<dynamic>>> processCsv() async {
     var result = await DefaultAssetBundle.of(context).loadString(
-      "images/dataproject.csv",
+      "images/data.csv",
     );
     return const CsvToListConverter().convert(result, eol: "\n");
   }

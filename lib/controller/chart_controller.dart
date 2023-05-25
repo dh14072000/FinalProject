@@ -8,7 +8,7 @@ import '../resource/utils/utils.dart';
 class ChartController extends GetxController {
   var detailController = Get.find<LoginController>();
   var listEmp = <int>[];
-  var listEmpDayInfo = <Map<String, int>>[];
+  var listEmpDayInfo = <Map<String, int>>[].obs;
   List<Map<String, int>> dayInfo = [];
 
   List<TimeKeepingModel> dataTimer = [];
@@ -29,7 +29,7 @@ class ChartController extends GetxController {
           value.docs.map((e) => int.parse(e.get('employeeCode'))).toList();
     });
 
-    listEmpDayInfo = await Future.wait(
+    listEmpDayInfo.value = await Future.wait(
         listEmp.map((e) async => await getSarlayMonth(e)).toList());
   }
 
