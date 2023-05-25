@@ -2,8 +2,6 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/login_controller.dart';
 import 'package:final_project/controller/profile_admin_controller.dart';
-import 'package:final_project/resource/definition_color.dart';
-import 'package:final_project/ui/profile/edit_info/edit_info_admin.dart';
 import 'package:final_project/ui/profile/profile_admin/constains.dart';
 import 'package:final_project/ui/profile/profile_admin/profile_list-item.dart';
 import 'package:final_project/ui/profile/profile_admin/view_csv.dart';
@@ -132,8 +130,13 @@ class ProfileAdminPage extends StatelessWidget {
                       ),
                       ProfileListItem(
                         onTap: () => Get.toNamed(RoutePaths.DEPARTMENT),
-                        icon: LineAwesomeIcons.calendar,
+                        icon: LineAwesomeIcons.address_book,
                         text: 'Thêm phòng ban',
+                      ),
+                      ProfileListItem(
+                        onTap: () => Get.toNamed(RoutePaths.PAY_ADMIN),
+                        icon: LineAwesomeIcons.paypal_credit_card,
+                        text: 'Thanh toán',
                       ),
                       ProfileListItem(
                         onTap: () {

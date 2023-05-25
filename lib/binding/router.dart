@@ -7,6 +7,7 @@ import 'package:final_project/ui/employees/function/reduce.dart';
 import 'package:final_project/ui/employees/function/timekeeping.dart';
 import 'package:final_project/ui/home/home_page.dart';
 import 'package:final_project/ui/login/Login_screen.dart';
+import 'package:final_project/ui/pay_admin/pay_admin.dart';
 import 'package:final_project/ui/profile/edit_info/edit_info_admin.dart';
 import 'package:final_project/ui/profile/edit_info/edit_info_employee.dart';
 import 'package:final_project/ui/profile/profile_employee.dart';
@@ -63,6 +64,11 @@ class ProjectRouter {
     GetPage(
       name: RoutePaths.DEPARTMENT,
       page: () => DepartmentPage(),
+      binding: SampleBind(),
+    ),
+    GetPage(
+      name: RoutePaths.PAY_ADMIN,
+      page: () => PayAdminPage(),
       binding: SampleBind(),
     ),
   ];

@@ -74,12 +74,11 @@ class TimeKeepingController extends GetxController {
         .where('id',
             isEqualTo: int.parse(employee.employeeData.get('employeeCode')))
         .where('day',
-            isEqualTo: DateFormat('MM/dd/yyyy').format(selectedDay.value))
+            isEqualTo: DateFormat('M/d/yyyy').format(selectedDay.value))
         .get();
     if (snapShort.docs.isNotEmpty) {
       timeData.value =
           snapShort.docs.map((e) => TimeKeepingModel.formSnapShort(e)).first;
-      print(timeData.value.toString());
     }
   }
 
@@ -111,7 +110,6 @@ class TimeKeepingController extends GetxController {
               (int.parse(Utils.checkSarrlay(timeData.value.date!, timeData.value.timeIn!,
               timeData.value.timeOut!))*1.2*double.parse(employee.employeeData.get('coefficients'))).toString().obs;
         }
-      
     }
     return '0'.obs;
   }

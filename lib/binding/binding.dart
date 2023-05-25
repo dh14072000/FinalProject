@@ -9,6 +9,7 @@ import 'package:final_project/controller/edit_info_controller/edit_info_employee
 import 'package:final_project/controller/employee_controller.dart';
 import 'package:final_project/controller/home_controller.dart';
 import 'package:final_project/controller/login_controller.dart';
+import 'package:final_project/controller/pay_admin_controller.dart';
 import 'package:final_project/controller/pay_controller.dart';
 import 'package:final_project/controller/profile_admin_controller.dart';
 import 'package:final_project/controller/reduce_controller.dart';
@@ -41,5 +42,6 @@ class SampleBind extends Bindings {
     Get.lazyPut<EditInfoEmployeeController>(() => EditInfoEmployeeController());
     Get.lazyPut<DepartmentController>(() => DepartmentController());
     Get.lazyPut<ChartController>(() => ChartController());
+    Get.lazyPut<PayAdminController>(() => PayAdminController());
   }
 }

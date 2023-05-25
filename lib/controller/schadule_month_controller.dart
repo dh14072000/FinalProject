@@ -64,13 +64,11 @@ class ScheduleController extends GetxController {
     final snapShort = await FirebaseFirestore.instance
         .collection('timeData')
         .where('day',
-            isEqualTo: DateFormat('MM/dd/yyyy').format(selectedDay.value))
+            isEqualTo: DateFormat('M/d/yyyy').format(selectedDay.value))
         .get();
     if (snapShort.docs.isNotEmpty) {
       timeData.value =
           snapShort.docs.map((e) => TimeKeepingModel.formSnapShort(e)).toList();
-      print(timeData.toString());
-      print(timeData.length);
     } else {
       timeData.value = [];
     }

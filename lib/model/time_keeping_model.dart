@@ -33,7 +33,7 @@ class TimeKeepingModel {
       DocumentSnapshot<Map<String, dynamic>> document) {
     final data = document.data()!;
     return TimeKeepingModel(
-        date: data['id'] == 'Mã NV' ? "04/22/2023" : data['day'],
+        date: data['day'],
         id: data['id'] == 'Mã NV' ? -1 : data['id'],
         name: data['name'],
         timeIn: data['timeIn'],

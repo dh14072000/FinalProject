@@ -1,3 +1,4 @@
+import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/pay_controller.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
@@ -139,7 +140,7 @@ class PayPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
                   child: Text(
-                    "thanh toán".toUpperCase(),
+                    "Lưu thanh toán".toUpperCase(),
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -147,7 +148,7 @@ class PayPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () => Get.toNamed(RoutePaths.PAY_ADMIN,arguments: controller.employee.getTotalSarlay()),
               ),
             ),
           ],
