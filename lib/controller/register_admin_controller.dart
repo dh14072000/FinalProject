@@ -3,14 +3,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypto/crypto.dart';
 import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/fire_storage.dart';
-import 'package:final_project/model/admin_model.dart';
-import 'package:final_project/ui/login/Login_screen.dart';
 import 'package:final_project/widget/base/mixin_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:crypto/crypto.dart';
 
 class RegisterAdminController extends GetxController
     with UploadImage, FireStorage {
@@ -65,7 +63,7 @@ class RegisterAdminController extends GetxController
           snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
     });
     Timer(Duration(seconds: 2), () {
-      Get.offAllNamed(RoutePaths.LOGIN);
+      Get.toNamed(RoutePaths.LOGIN);
     });
   }
 }

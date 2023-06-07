@@ -41,6 +41,7 @@ class PayAdminPage extends StatelessWidget {
                           padding: const EdgeInsets.only(right :20.0),
                           child: SmallText(text: '(-${controller.total.toString()})',style: TextStyle(color: primaryColor,fontSize: 20),),
                         )])),
+                        SizedBox(height: (30),),
                       ProfileListItem(
                         onTap: () {
                           Get.toNamed(RoutePaths.HOME_PAGE);

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/model/time_keeping_model.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/resource/definition_style.dart';
@@ -6,11 +5,7 @@ import 'package:final_project/widget/base/app_fonts.dart';
 import 'package:final_project/widget/image/circle_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
 import 'package:get/state_manager.dart';
-import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 
 class TimeKeepingCarrd extends StatelessWidget {
   final TimeKeepingModel timeKeeping;

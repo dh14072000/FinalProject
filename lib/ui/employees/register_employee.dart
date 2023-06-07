@@ -4,6 +4,7 @@ import 'package:final_project/model/admin_model.dart';
 import 'package:final_project/model/department_model.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/resource/definition_style.dart';
+import 'package:final_project/resource/utils/utils.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/ui/login/widget/header_widget.dart';
 import 'package:final_project/widget/btn_component/btn_drop_down.dart';
@@ -40,7 +41,6 @@ class RegisterEmployeePage extends StatelessWidget {
                     controller.phoneController.text = '';
                     controller.employeeCode.text = '';
                     controller.ageController.text = '';
-
                     Get.back();
                   },
                   icon: const Icon(Icons.arrow_back),
@@ -235,7 +235,6 @@ class RegisterEmployeePage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15.0),
-
                         const SizedBox(height: 20.0),
                         Container(
                           decoration:
@@ -256,17 +255,13 @@ class RegisterEmployeePage extends StatelessWidget {
                             ),
                             onPressed: () async {
                               if (controller.formKey.currentState!.validate()) {
-                                controller.addEmployee();
+                                Utils.onloading(
+                                    context, controller.addEmployee());
                               }
                             },
                           ),
                         ),
                         const SizedBox(height: 30.0),
-                        // const Text(
-                        //   "Or create account using social media",
-                        //   style: TextStyle(color: Colors.grey),
-                        // ),
-                        // const SizedBox(height: 25.0),
                       ],
                     ),
                   ),

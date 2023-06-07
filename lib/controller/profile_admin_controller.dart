@@ -3,7 +3,6 @@ import 'package:csv/csv.dart';
 import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/fire_storage.dart';
 import 'package:final_project/resource/definition_color.dart';
-import 'package:final_project/widget/btn_component/btn_primary.dart';
 import 'package:final_project/widget/image/image_text_delegate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +42,7 @@ class ProfileAdminController extends GetxController with FireStorage {
 
   //export data form csv file
   void exportData(BuildContext context) async {
-    onLoading(context, true.obs);
+    onLoading(context);
     try {
       await delete();
       final CollectionReference timeKeeping =
@@ -69,7 +68,8 @@ class ProfileAdminController extends GetxController with FireStorage {
       Get.snackbar('Không thành công', 'Vui lòng kiểm tra lại kết nối của bạn',
           snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red);
     }
-    onLoading(context, false.obs);
+    Get.close(1);
+    // onLoading(context, false.obs);
   }
 
   Future<void> delete() async {
@@ -80,32 +80,29 @@ class ProfileAdminController extends GetxController with FireStorage {
     }
   }
 
-  void onLoading(BuildContext context, RxBool loading) {
+  void onLoading(BuildContext context) {
     showDialog(
       context: context,
-      barrierDismissible: false,
       builder: (BuildContext context) {
         return Dialog(
-          child: Obx(() => Container(
+          backgroundColor: Colors.transparent,
+          child: Container(
+            color: Colors.transparent,
             height: 200,
             width: 200,
             child: Center(
                 child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [
-                loading.value == true ? Text("Loading....",style: TextStyle(fontSize: 30),) : Text('Thành công',style: TextStyle(fontSize: 30,color: Colors.green.shade500),),
-                SizedBox(
-                  height: 40,
-                ),
-                loading.value != true ? PrimaryButton(
-                  width: 80,
-                  backgroundColor: whiteColor,
-                  onPressed: () => Get.close(2),
-                  renderLabel: Text('Ok',style: TextStyle(color: Colors.green.shade500),),
-                ) : SizedBox.shrink()
+              children: const [
+                 Center(
+            child: CircularProgressIndicator(),
+          ),
+          Text("Đang tải dữ liệu,\n Vui lòng chờ ...",style: TextStyle(fontSize: 30),)
+                
               ],
-            )),
-          ),)
+            )
+            ),
+          ),
         );
       },
     );

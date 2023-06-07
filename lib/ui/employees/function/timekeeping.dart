@@ -1,8 +1,6 @@
 import 'package:final_project/controller/timekeeping_controller.dart';
-import 'package:final_project/model/time_keeping_model.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/resource/definition_style.dart';
-import 'package:final_project/resource/utils/utils.dart';
 import 'package:final_project/widget/base/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
@@ -61,7 +59,8 @@ class TimeKeepingPage extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.only(
+                      top: 20, bottom: 20, left: 10, right: 10),
                   child: Column(children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
@@ -180,11 +179,15 @@ class TimeKeepingPage extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                   color: darkText),
                             ),
-                            Text('${controller.handleSarlay()} ',
-                                style: const TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.green)),
+                            Container(
+                              width: 110,
+                              child: Text('${controller.handleSarlay()} ',
+                                  style: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w400,
+                                      overflow: TextOverflow.ellipsis,
+                                      color: Colors.green)),
+                            ),
                             Text(
                               'VNĐ',
                               style: TextStyle(

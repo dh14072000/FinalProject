@@ -3,8 +3,8 @@ import 'package:final_project/controller/detail_employee_controller.dart';
 import 'package:final_project/widget/base/app_fonts.dart';
 import 'package:final_project/widget/image/circle_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:get/get.dart';
 
 class FrofileEmployeePage extends StatelessWidget {
   var detailEmployee = Get.find<DetailEmployeeController>();
@@ -45,13 +45,13 @@ class FrofileEmployeePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                child: CircleImage(
-                  widthImg: 150,
-                  heightImg: 150,
-                  urlImg: detailEmployee.employeeData.get('avatar'),
-                  borderRadius: 100,
-                ),
-              ),
+                          child: CircleImage(
+                            widthImg: 150,
+                            heightImg: 150,
+                            urlImg: detailEmployee.employeeData.get('avatar'),
+                            borderRadius: 100,
+                          ),
+                        ),
                         SizedBox(
                           height: _height / 30,
                         ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:final_project/controller/home_controller.dart';
 import 'package:final_project/controller/login_controller.dart';
+import 'package:final_project/resource/utils/utils.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/ui/login/forgot_password.dart';
 import 'package:final_project/ui/login/register_admin.dart';
@@ -107,9 +108,10 @@ class LoginPage extends StatelessWidget {
                             ),
                             onPressed: () async {
                               if (controller.formKey.currentState!.validate()) {
-                                controller.userExists(
+                                Utils.onloading(context, controller.userExists(
                                     controller.userController.text,
-                                    controller.passwordController.text);
+                                    controller.passwordController.text));
+                                
 
                               }
                             },

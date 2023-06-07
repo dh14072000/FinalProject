@@ -1,39 +1,44 @@
 import 'dart:ffi';
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class Utils {
   static String checkTimeKeeping(String date, String timeIn, String timeOut) {
-    final DateTime timeCheckIn1 = handleDate(date, '8:00');
-    final DateTime timeCheckIn2 = handleDate(date, '13:00');
-    final DateTime timeCurfewIn = handleDate(date, '8:30');
-    final DateTime timeCheckOut1 = handleDate(date, '12:00');
-    final DateTime timeCheckOut2 = handleDate(date, '17:00');
-    final DateTime timeCurfewOut = handleDate(date, '16:30');
-    final DateTime timein = handleDate(date, timeIn);
-    final DateTime timeout = handleDate(date, timeOut);
-    if (timein.compareTo(timeCheckIn1) <= 0) {
-      if (timeout.compareTo(timeCurfewOut) >= 0 &&
-          timeout.compareTo(timeCheckOut2) < 0) {
+    final DateTime? timeCheckIn1 = handleDate(date, '8:00');
+    final DateTime? timeCheckIn2 = handleDate(date, '13:00');
+    final DateTime? timeCurfewIn = handleDate(date, '8:30');
+    final DateTime? timeCheckOut1 = handleDate(date, '12:00');
+    final DateTime? timeCheckOut2 = handleDate(date, '17:00');
+    final DateTime? timeCurfewOut = handleDate(date, '16:30');
+    final DateTime? timein = handleDate(date, timeIn);
+    final DateTime? timeout = handleDate(date, timeOut);
+    if (timein == null || timeout == null) {
+      return 'VA';
+    }
+    if (timein.compareTo(timeCheckIn1!) <= 0) {
+      if (timeout.compareTo(timeCurfewOut!) >= 0 &&
+          timeout.compareTo(timeCheckOut2!) < 0) {
         return 'MU';
       } else if (timeout.compareTo(timeCurfewOut) < 0 &&
-          timeout.compareTo(timeCheckOut1) >= 0) {
+          timeout.compareTo(timeCheckOut1!) >= 0) {
         return 'NU';
-      } else if (timeout.compareTo(timeCheckOut2) >= 0) {
+      } else if (timeout.compareTo(timeCheckOut2!) >= 0) {
         return 'DU';
       }
       return 'VA';
     } else if (timein.compareTo(timeCheckIn1) > 0 &&
-        timein.compareTo(timeCurfewIn) <= 0) {
-      if (timeout.compareTo(timeCurfewOut) >= 0 &&
-          timeout.compareTo(timeCheckOut2) < 0) {
+        timein.compareTo(timeCurfewIn!) <= 0) {
+      if (timeout.compareTo(timeCurfewOut!) >= 0 &&
+          timeout.compareTo(timeCheckOut2!) < 0) {
         return 'NU';
-      } else if (timeout.compareTo(timeCheckOut2) >= 0) {
+      } else if (timeout.compareTo(timeCheckOut2!) >= 0) {
         return 'MU';
       }
       return 'VA';
-    } else if (timein.compareTo(timeCheckIn2) < 0) {
-      if (timeout.compareTo(timeCheckOut2) > 0) {
+    } else if (timein.compareTo(timeCheckIn2!) < 0) {
+      if (timeout.compareTo(timeCheckOut2!) > 0) {
         return 'NU';
       } else {
         return 'VA';
@@ -41,40 +46,43 @@ class Utils {
     } else if (timein.compareTo(timeCheckIn2) > 0) {
       return 'VA';
     }
-    return '';
+    return 'VA';
   }
 
   static String checkSarrlay(String date, String timeIn, String timeOut) {
-    final DateTime timeCheckIn1 = handleDate(date, '8:00');
-    final DateTime timeCheckIn2 = handleDate(date, '13:00');
-    final DateTime timeCurfewIn = handleDate(date, '8:30');
-    final DateTime timeCheckOut1 = handleDate(date, '12:00');
-    final DateTime timeCheckOut2 = handleDate(date, '17:00');
-    final DateTime timeCurfewOut = handleDate(date, '16:30');
-    final DateTime timein = handleDate(date, timeIn);
-    final DateTime timeout = handleDate(date, timeOut);
-    if (timein.compareTo(timeCheckIn1) <= 0) {
-      if (timeout.compareTo(timeCurfewOut) >= 0 &&
-          timeout.compareTo(timeCheckOut2) < 0) {
+    final DateTime? timeCheckIn1 = handleDate(date, '8:00');
+    final DateTime? timeCheckIn2 = handleDate(date, '13:00');
+    final DateTime? timeCurfewIn = handleDate(date, '8:30');
+    final DateTime? timeCheckOut1 = handleDate(date, '12:00');
+    final DateTime? timeCheckOut2 = handleDate(date, '17:00');
+    final DateTime? timeCurfewOut = handleDate(date, '16:30');
+    final DateTime? timein = handleDate(date, timeIn);
+    final DateTime? timeout = handleDate(date, timeOut);
+    if (timein == null || timeout == null) {
+      return '0';
+    }
+    if (timein.compareTo(timeCheckIn1!) <= 0) {
+      if (timeout.compareTo(timeCurfewOut!) >= 0 &&
+          timeout.compareTo(timeCheckOut2!) < 0) {
         return '250000';
       } else if (timeout.compareTo(timeCurfewOut) < 0 &&
-          timeout.compareTo(timeCheckOut1) > 0) {
+          timeout.compareTo(timeCheckOut1!) > 0) {
         return '150000';
-      } else if (timeout.compareTo(timeCheckOut2) >= 0) {
+      } else if (timeout.compareTo(timeCheckOut2!) >= 0) {
         return '300000';
       }
       return '0';
     } else if (timein.compareTo(timeCheckIn1) > 0 &&
-        timein.compareTo(timeCurfewIn) <= 0) {
-      if (timeout.compareTo(timeCurfewOut) >= 0 &&
-          timeout.compareTo(timeCheckOut2) < 0) {
+        timein.compareTo(timeCurfewIn!) <= 0) {
+      if (timeout.compareTo(timeCurfewOut!) >= 0 &&
+          timeout.compareTo(timeCheckOut2!) < 0) {
         return '150000';
-      } else if (timeout.compareTo(timeCheckOut2) >= 0) {
+      } else if (timeout.compareTo(timeCheckOut2!) >= 0) {
         return '250000';
       }
       return '0';
-    } else if (timein.compareTo(timeCheckIn2) < 0) {
-      if (timeout.compareTo(timeCheckOut2) >= 0) {
+    } else if (timein.compareTo(timeCheckIn2!) < 0) {
+      if (timeout.compareTo(timeCheckOut2!) >= 0) {
         return '150000';
       } else {
         return '0';
@@ -85,15 +93,30 @@ class Utils {
     return '0';
   }
 
-  static DateTime handleDate(String date, String time) {
+  static DateTime? handleDate(String date, String? time) {
     String dateTimeString = '$date ' + '$time';
-    DateTime tempDate = DateFormat("MM/dd/yyy hh:mm").parse(dateTimeString);
+    DateTime? tempDate = time == 'Bỏ lỡ'
+        ? null
+        : DateFormat("MM/dd/yyy hh:mm").parse(dateTimeString);
     return tempDate;
   }
 
-  static bool checkNull(String? data){
-    if(data == null || data == ''){
+  static bool checkNull(String? data) {
+    if (data == null || data == '') {
       return true;
-    } else return false;
+    } else
+      return false;
+  }
+
+  static onloading(BuildContext context, fun) async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+    await fun;
+    Get.back();
   }
 }

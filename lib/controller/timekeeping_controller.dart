@@ -87,7 +87,9 @@ class TimeKeepingController extends GetxController {
     if (timeData.value.timeIn != null &&
         timeData.value.timeIn!.isNotEmpty &&
         timeData.value.timeOut != null &&
-        timeData.value.timeOut!.isNotEmpty) {
+        timeData.value.timeOut!.isNotEmpty &&
+        timeData.value.timeIn != 'Bỏ lỡ' &&
+        timeData.value.timeOut != 'Bỏ lỡ') {
       return Utils.checkTimeKeeping(timeData.value.date!,
               timeData.value.timeIn!, timeData.value.timeOut!)
           .obs;
@@ -100,16 +102,20 @@ class TimeKeepingController extends GetxController {
         timeData.value.timeIn!.isNotEmpty &&
         timeData.value.timeOut != null &&
         timeData.value.timeOut!.isNotEmpty) {
-          if (employee.employeeData.get('position') == 'Nhân viên') {
-          return
-              (int.parse(Utils.checkSarrlay(timeData.value.date!, timeData.value.timeIn!,
-              timeData.value.timeOut!))*double.parse(employee.employeeData.get('coefficients'))).toString().obs;
-          
-        } else {
-           return
-              (int.parse(Utils.checkSarrlay(timeData.value.date!, timeData.value.timeIn!,
-              timeData.value.timeOut!))*1.2*double.parse(employee.employeeData.get('coefficients'))).toString().obs;
-        }
+      if (employee.employeeData.get('position') == 'Nhân viên') {
+        return (int.parse(Utils.checkSarrlay(timeData.value.date!,
+                    timeData.value.timeIn!, timeData.value.timeOut!)) *
+                double.parse(employee.employeeData.get('coefficients')))
+            .toString()
+            .obs;
+      } else {
+        return (int.parse(Utils.checkSarrlay(timeData.value.date!,
+                    timeData.value.timeIn!, timeData.value.timeOut!)) *
+                1.2 *
+                double.parse(employee.employeeData.get('coefficients')))
+            .toString()
+            .obs;
+      }
     }
     return '0'.obs;
   }

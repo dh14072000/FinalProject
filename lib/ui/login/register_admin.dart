@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:final_project/controller/register_admin_controller.dart';
 import 'package:final_project/resource/definition_color.dart';
 import 'package:final_project/resource/definition_style.dart';
+import 'package:final_project/resource/utils/utils.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/ui/login/widget/header_widget.dart';
 import 'package:final_project/widget/image/circle_image.dart';
@@ -182,7 +183,8 @@ class RegisterAdmin extends StatelessWidget {
                             ),
                             onPressed: () async {
                               if (controller.formKey.currentState!.validate()) {
-                                controller.register();
+                                Utils.onloading(context,  controller.register());
+                               
                               }
                             },
                           ),

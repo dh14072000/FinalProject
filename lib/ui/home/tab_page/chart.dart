@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/binding/route_path.dart';
 import 'package:final_project/controller/chart_controller.dart';
 import 'package:final_project/controller/login_controller.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
@@ -34,6 +35,8 @@ class ChartPage extends StatelessWidget {
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
+                              onTap: () =>  Get.toNamed(RoutePaths.TIME_KEEPING,
+                                      arguments: snapshot.data!.docs[index]),
                               child: Obx(() => ChartCard(
                                 name: snapshot.data!.docs[index].get('name'),
                                 phone: snapshot.data!.docs[index].get('phone'),
