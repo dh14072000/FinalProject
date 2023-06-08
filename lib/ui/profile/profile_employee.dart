@@ -33,7 +33,7 @@ class FrofileEmployeePage extends StatelessWidget {
                         padding: EdgeInsets.only(top: 30),
                         child: IconButton(
                           icon: Icon(Icons.arrow_back),
-                          onPressed: () => Get.back(),
+                          onPressed: () => Get.offNamed(RoutePaths.HOME_PAGE),
                         ))
                   ],
                 ),

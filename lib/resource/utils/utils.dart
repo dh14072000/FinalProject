@@ -119,4 +119,30 @@ class Utils {
     await fun;
     Get.back();
   }
+  static void onLoading(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          child: Container(
+            color: Colors.transparent,
+            height: 200,
+            width: 200,
+            child: Center(
+                child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                 Center(
+            child: CircularProgressIndicator(),
+          ),
+          Text("Đang tải dữ liệu,\n Vui lòng chờ ...",style: TextStyle(fontSize: 30),)
+                
+              ],
+            )
+            ),
+          ),
+        );
+      },
+    );}
 }

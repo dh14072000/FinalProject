@@ -1,4 +1,5 @@
 import 'package:final_project/binding/route_path.dart';
+import 'package:final_project/controller/detail_employee_controller.dart';
 import 'package:final_project/controller/pay_controller.dart';
 import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
@@ -9,6 +10,7 @@ import 'package:relative_scale/relative_scale.dart';
 class PayPage extends StatelessWidget {
   PayPage({super.key});
   var controller = Get.find<PayController>();
+  var detailEmployee = Get.find<DetailEmployeeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +150,10 @@ class PayPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                onPressed: () => Get.toNamed(RoutePaths.PAY_ADMIN,arguments: controller.employee.getTotalSarlay()),
+                onPressed: () async {
+                 await detailEmployee.addSarlay();
+                  Get.toNamed(RoutePaths.PAY_ADMIN);
+                },
               ),
             ),
           ],
