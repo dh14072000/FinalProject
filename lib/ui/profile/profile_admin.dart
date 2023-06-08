@@ -133,11 +133,11 @@ class ProfileAdminPage extends StatelessWidget {
                         icon: LineAwesomeIcons.address_book,
                         text: 'Thêm phòng ban',
                       ),
-                      ProfileListItem(
-                        onTap: () => Get.toNamed(RoutePaths.PAY_ADMIN),
-                        icon: LineAwesomeIcons.paypal_credit_card,
-                        text: 'Thanh toán',
-                      ),
+                      // ProfileListItem(
+                      //   onTap: () => Get.toNamed(RoutePaths.PAY_ADMIN),
+                      //   icon: LineAwesomeIcons.paypal_credit_card,
+                      //   text: 'Thanh toán',
+                      // ),
                       ProfileListItem(
                         onTap: () {
                           controller.signOut();

@@ -5,7 +5,9 @@ import 'package:final_project/ui/login/common/theme_helper.dart';
 import 'package:final_project/widget/app_bar/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:relative_scale/relative_scale.dart';
+
 
 class PayPage extends StatelessWidget {
   PayPage({super.key});
@@ -32,16 +34,16 @@ class PayPage extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.all(20),
                     child: Text(
-                      'Thanh toán lương tháng ' + "${controller.monthNow}",
+                      'Lương tháng ' + "${controller.monthNow}",
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.all(20),
-                    child: Text("${controller.employee.sarlayMonthDouble}",
-                        style: const TextStyle(
+                    child: 
+                    Text(NumberFormat.currency(locale: 'vi_VN').format(controller.employee.sarlayMonthDouble.value),style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w400,
-                            color: Colors.green)),
+                            color: Colors.green),)
                   ),
                 ],
               ),
@@ -53,7 +55,7 @@ class PayPage extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.all(20),
                     child: Text(
-                      'Thưởng tháng' + "${controller.monthNow}",
+                      'Thưởng tháng ' + "${controller.monthNow}",
                     ),
                   ),
                   GestureDetector(
@@ -62,7 +64,7 @@ class PayPage extends StatelessWidget {
                     },
                     child: Container(
                       margin: EdgeInsets.all(20),
-                      child: Text("${controller.employee.bonusCash}",
+                      child: Text(NumberFormat.currency(locale: 'vi_VN').format(controller.employee.bonusCash.value),
                           style: const TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.w400,
@@ -84,7 +86,7 @@ class PayPage extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.all(20),
-                    child: Text("${controller.employee.allowanceCash}",
+                    child: Text(NumberFormat.currency(locale: 'vi_VN').format(controller.employee.allowanceCash.value),
                         style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w400,
@@ -100,12 +102,12 @@ class PayPage extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.all(20),
                     child: Text(
-                      'Giảm trừ tháng' + "${controller.monthNow}",
+                      'Giảm trừ tháng ' + "${controller.monthNow}",
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.all(20),
-                    child: Text("${controller.employee.reduceCash}",
+                    child: Text(NumberFormat.currency(locale: 'vi_VN').format(controller.employee.reduceCash.value),
                         style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w400,
@@ -121,12 +123,12 @@ class PayPage extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.all(20),
                     child: Text(
-                      'Quyết toán tháng' + "${controller.monthNow}",
+                      'Quyết toán tháng ' + "${controller.monthNow}",
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.all(20),
-                    child: Text(controller.employee.getTotalSarlay().toString(),
+                    child: Text(NumberFormat.currency(locale: 'vi_VN').format(controller.employee.getTotalSarlay()),
                         style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w400,
@@ -151,7 +153,8 @@ class PayPage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () async {
-                 await detailEmployee.addSarlay();
+                 await detailEmployee.addListSarlay();
+                 await detailEmployee.deleteData(context);
                   Get.toNamed(RoutePaths.PAY_ADMIN);
                 },
               ),
